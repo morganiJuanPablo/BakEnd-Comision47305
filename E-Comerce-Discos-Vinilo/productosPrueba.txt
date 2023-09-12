@@ -1,0 +1,20 @@
+	{
+    "title": "Dee Gees",
+    "description": "Hail Satin es un álbum publicado por la banda americana de rock Foo Fighters, bajo el nombre Dee Gees,1​ el día 17 de julio de 2021, conmemorando el Record Store Day.2​ El álbum originalmente se lanzó exclusivamente en vinilo, aunque también se lanzó dos días después en plataformas de streaming como Apple Music, Spotify o Amazon Prime Music.",
+    "price": 32.99,
+    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/wunk0syfoaqjb_600_jbl6jy.jpg",
+    "code": "foo132",
+    "stock": 18,
+    "category": "EdicionesEspeciales",
+    "status": true
+  }
+	{
+    "title": "Foo Fighters",
+    "description": "Foo Fighters es un grupo de rock estadounidense formada en la ciudad de Seattle en 1994 por el exbaterista de Nirvana, Dave Grohl. El grupo debe su nombre a los ovnis y los diversos fenómenos aéreos que fueron reportados por los pilotos de los aviones aliados en la Segunda Guerra Mundial, que se conocen colectivamente como foo fighter.",
+    "price": 16.99,
+    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/0828765549622_600_b94vjr.jpg",
+    "code": "foo133",
+    "stock": 22,
+    "category": "TopVentas",
+    "status": true
+  }
