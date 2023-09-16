@@ -1,6 +1,5 @@
 import express from "express";
 import { productsRouter } from "./routes/products.routes.js";
-import { __dirname } from "./utils.js";
 import { cartsRouter } from "./routes/carts.routes.js";
 
 const port = 8080;
