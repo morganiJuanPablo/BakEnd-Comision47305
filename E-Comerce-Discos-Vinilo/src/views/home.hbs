@@ -1,0 +1,32 @@
+<div>
+  <div class="homeContainer">
+    <section class="homeContainer--principalSection">
+
+      <nav>
+        <ul class="navContainer">
+          <li class="navContainer--li"><a href="">Todos</a></li>
+          <li class="navContainer--li"><a href="">Top Vendidos</a></li>
+          <li class="navContainer--li"><a href="">Ediciones Especiales</a></li>
+          <li class="navContainer--li"><a href="/realtimeproducts"  style="border: solid 1px black; padding:1rem"> Administrador de productos</a></li>
+        </ul>
+      </nav>
+
+      <div class="productContainerCards">
+        {{#each products}}
+          <div class="productCard">
+            <a href=""><img
+                class="imgProduct"
+                src={{this.thumbnail}}
+                alt="Foo Fighters vinyl cover"
+              /></a>
+            <footer class="detailCard">
+              <h3 class="productTitle">{{this.title}}</h3>
+              <p class="productPrice">{{this.price}}€</p>
+            </footer>
+          </div>
+        {{/each}}
+
+      </div>
+    </section>
+  </div>
+</div>

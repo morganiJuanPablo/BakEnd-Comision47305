@@ -1,0 +1,83 @@
+.homeContainer {
+  width: 100%;
+  max-width: 220rem;
+  height: 300vh;
+  margin: auto;
+  background-image: url("https://res.cloudinary.com/dqykftyy6/image/upload/v1694942083/nme-cover-foo-fighters-2021-header_2560x1625_xarzen.png");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat, bottom;
+  position: relative;
+}
+.navContainer {
+  width: 65%;
+  height: 10rem;
+  display: flex;
+  flex-grow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin: 2rem auto 0 auto;
+}
+.navContainer--li {
+  list-style: none;
+}
+.navContainer--li a {
+  color: black;
+  font-size: 1.65rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.homeContainer--principalSection {
+  width: 100%;
+  height: auto;
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: 50rem;
+  margin-bottom: 10rem;
+}
+.productContainerCards {
+  width: 80%;
+  height: auto;
+  margin: auto;
+  padding: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(37rem, 1fr));
+  gap: 2rem;
+}
+.productCard {
+  width: 37rem;
+  height: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+.imgProduct {
+  width: 37rem;
+  height: 37rem;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.imgProduct:hover {
+  scale: 98.5%;
+  transition: 0.2s ease-in;
+}
+.detailCard {
+  width: 37rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 1rem auto 0 auto;
+}
+.productTitle {
+  font-size: 1.5rem;
+}
+.productPrice {
+  font-size: 1.8rem;
+}

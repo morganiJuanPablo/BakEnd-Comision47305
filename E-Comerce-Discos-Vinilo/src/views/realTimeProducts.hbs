@@ -1,0 +1,86 @@
+<h1 class="adminTitle">Bienvenido al administrador de productos</h1>
+<main class="mainContainer">
+
+  <section class="inputsSection">
+
+    {{! Form post method }}
+    <section class="formContainer">
+      <h3 class="formTitle">Crear producto nuevo</h3>
+      <form class="formProducts">
+        <input class="inputs" type="text" placeholder="Título del producto" />
+        <textarea
+          name=""
+          id=""
+          class="textAreaDescription"
+          placeholder="Descripción"
+        ></textarea>
+        <input class="inputs" type="text" placeholder="Precio" />
+        <input class="inputs" type="text" placeholder="Stock" />
+        <input class="inputs" type="text" placeholder="Categoría" />
+        <input class="inputs" type="text" placeholder="Código" />
+      </form>
+      <div>
+        <button id="customUploadButton" class="customUploadButton">Selecciona la
+          portada</button>
+        <input
+          id="fileInput"
+          class="fileInput"
+          type="file"
+          style="display: none"
+        />
+        <p id="fileSelectedMessage" class="fileSelectedMessage"></p>
+      </div>
+      <button class="generalButton">Crear</button>
+    </section>
+
+    {{! Form update method }}
+    <section class="formContainer">
+      <h3 class="formTitle">Actualizar producto</h3>
+      <form class="formProducts">
+        <input class="inputs" type="text" placeholder="Título del producto" />
+        <textarea
+          name=""
+          id=""
+          class="textAreaDescription"
+          placeholder="Descripción"
+        ></textarea>
+        <input class="inputs" type="text" placeholder="Precio" />
+        <input class="inputs" type="text" placeholder="Stock" />
+        <input class="inputs" type="text" placeholder="Categoría" />
+        <input class="inputs" type="text" placeholder="Código" />
+        <input class="inputs" type="text" placeholder="Id producto" />
+      </form>
+      <div>
+        <button id="customUploadButton2" class="customUploadButton">Selecciona
+          la portada</button>
+        <input
+          id="fileInput2"
+          class="fileInput"
+          type="file"
+          style="display: none"
+        />
+        <p id="fileSelectedMessage2" class="fileSelectedMessage"></p>
+      </div>
+      <button class="generalButton">Actualizar</button>
+    </section>
+
+    {{! Form update method }}
+    <section class="formContainer">
+      <h3 class="formTitle">Eliminar producto</h3>
+      <form class="formProducts">
+        <input class="inputs" type="text" placeholder="Id del producto" />
+      </form>
+      <button class="deleteButton">Eliminar</button>
+    </section>
+
+  </section>
+
+  <section class="productsSection" id="cardProductAdmin">
+
+
+  </section>
+
+</main>
+
+<script src="socket.io/socket.io.js"></script>
+<script src="js/realTimeProducts.js"></script>
