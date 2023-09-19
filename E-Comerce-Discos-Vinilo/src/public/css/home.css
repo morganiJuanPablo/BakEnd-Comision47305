@@ -1,14 +1,7 @@
 .homeContainer {
   width: 100%;
-  max-width: 220rem;
-  height: 300vh;
+  height: auto;
   margin: auto;
-  background-image: url("https://res.cloudinary.com/dqykftyy6/image/upload/v1694942083/nme-cover-foo-fighters-2021-header_2560x1625_xarzen.png");
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat, bottom;
-  position: relative;
 }
 .navContainer {
   width: 65%;
@@ -30,13 +23,11 @@
   text-decoration: none;
   cursor: pointer;
 }
-.homeContainer--principalSection {
+.homeContainer--productsSection {
   width: 100%;
   height: auto;
   background-color: white;
-  position: absolute;
-  left: 0;
-  top: 50rem;
+  margin-top: 50rem;
   margin-bottom: 10rem;
 }
 .productContainerCards {

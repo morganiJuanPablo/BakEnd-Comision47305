@@ -1,120 +1,126 @@
-<h1 class="adminTitle">Bienvenido al administrador de productos</h1>
-<main class="mainContainer">
+<main class="realTimeViewMain">
+  <h1 class="adminTitle">Bienvenido al administrador de productos</h1>
+  <div class="mainContainer">
 
-  <section class="inputsSection">
-    {{! Form post method }}
-    <section class="formContainer">
-      <h3 class="formTitle">Crear producto nuevo</h3>
-      <form class="formProducts" id="createProductsForm">
-        <input
-          class="inputs"
-          type="text"
-          placeholder="Título del producto"
-          name="title"
-          required
-        />
-        <textarea
-          name="description"
-          class="textAreaDescription"
-          placeholder="Descripción"
-          required
-        ></textarea>
-        <input
-          class="inputs"
-          type="number"
-          step="0.01"
-          min="1"
-          placeholder="Precio"
-          name="price"
-          required
-        />
-        <input
-          class="inputs"
-          type="number"
-          placeholder="Stock"
-          name="stock"
-          required
-        />
-        <input
-          class="inputs"
-          type="text"
-          placeholder="Categoría"
-          name="category"
-          required
-        />
-        <input
-          class="inputs"
-          type="text"
-          placeholder="Código"
-          name="code"
-          required
-        />
-        <input
-          class="inputs"
-          type="url"
-          placeholder="URL imagen"
-          name="thumbnail"
-          required
-        />
+    <section class="inputsSection">
+      {{! Form post method }}
+      <section class="formContainer">
+        <h3 class="formTitle">Crear producto nuevo</h3>
+        <form class="formProducts" id="createProductsForm">
+          <input
+            class="inputs"
+            type="text"
+            placeholder="Título del producto"
+            name="title"
+            required
+          />
+          <textarea
+            name="description"
+            class="textAreaDescription"
+            placeholder="Descripción"
+            required
+          ></textarea>
+          <input
+            class="inputs"
+            type="number"
+            step="0.01"
+            min="1"
+            placeholder="Precio"
+            name="price"
+            required
+          />
+          <input
+            class="inputs"
+            type="number"
+            placeholder="Stock"
+            name="stock"
+            required
+          />
+          <input
+            class="inputs"
+            type="text"
+            placeholder="Categoría"
+            name="category"
+            required
+          />
+          <input
+            class="inputs"
+            type="text"
+            placeholder="Código"
+            name="code"
+            required
+          />
+          <input
+            class="inputs"
+            type="url"
+            placeholder="URL imagen"
+            name="thumbnail"
+            required
+          />
 
-        <button class="generalButton" type="submit">Crear</button>
-      </form>
+          <button class="generalButton" type="submit">Crear</button>
+        </form>
+      </section>
+
+      {{! Form update method }}
+      <section class="formContainer">
+        <h3 class="formTitle">Actualizar producto</h3>
+
+        <form class="formProducts" id="updateProductsForm">
+          <input
+            class="inputs"
+            type="text"
+            placeholder="Título del producto"
+            name="title"
+          />
+          <textarea
+            name="description"
+            class="textAreaDescription"
+            placeholder="Descripción"
+          ></textarea>
+          <input
+            class="inputs"
+            type="number"
+            step="0.01"
+            min="1"
+            placeholder="Precio"
+            name="price"
+          />
+          <input
+            class="inputs"
+            type="number"
+            placeholder="Stock"
+            name="stock"
+          />
+          <input
+            class="inputs"
+            type="text"
+            placeholder="Categoría"
+            name="category"
+          />
+          <input class="inputs" type="text" placeholder="Código" name="code" />
+          <input
+            class="inputs"
+            type="url"
+            placeholder="URL imagen"
+            name="thumbnail"
+          />
+          <input
+            class="inputs"
+            type="text"
+            placeholder="Id producto"
+            name="Id"
+            required
+          />
+          <button class="generalButton">Actualizar</button>
+        </form>
+
+      </section>
     </section>
 
-    {{! Form update method }}
-    <section class="formContainer">
-      <h3 class="formTitle">Actualizar producto</h3>
-
-      <form class="formProducts" id="updateProductsForm">
-        <input
-          class="inputs"
-          type="text"
-          placeholder="Título del producto"
-          name="title"
-        />
-        <textarea
-          name="description"
-          class="textAreaDescription"
-          placeholder="Descripción"
-        ></textarea>
-        <input
-          class="inputs"
-          type="number"
-          step="0.01"
-          min="1"
-          placeholder="Precio"
-          name="price"
-        />
-        <input class="inputs" type="number" placeholder="Stock" name="stock" />
-        <input
-          class="inputs"
-          type="text"
-          placeholder="Categoría"
-          name="category"
-        />
-        <input class="inputs" type="text" placeholder="Código" name="code" />
-        <input
-          class="inputs"
-          type="url"
-          placeholder="URL imagen"
-          name="thumbnail"
-        />
-        <input
-          class="inputs"
-          type="text"
-          placeholder="Id producto"
-          name="Id"
-          required
-        />
-        <button class="generalButton">Actualizar</button>
-      </form>
-
-    </section>
-  </section>
-
-  <section class="productsSection" id="cardProductAdmin"></section>
+    <section class="productsSection" id="cardProductAdmin"></section>
+  </div>
 </main>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="socket.io/socket.io.js"></script>
 <script src="js/realTimeProducts.js"></script>

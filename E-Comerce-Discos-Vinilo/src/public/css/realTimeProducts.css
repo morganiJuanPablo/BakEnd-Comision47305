@@ -1,3 +1,9 @@
+.realTimeViewMain {
+  background-color: white;
+  width: 100%;
+  height: auto;
+  padding-bottom: 1rem;
+}
 .adminTitle {
   width: 100%;
   height: auto;
@@ -159,4 +165,40 @@
 .custom-modal-class {
   font-weight: bold;
   font-size: 2.5rem !important;
+}
+
+/* Modales */
+
+.swal2-popup {
+  width: 30% !important;
+  height: auto !important;
+  min-height: 12rem;
+  padding: 2rem !important;
+}
+.swal2-title {
+  font-size: 1.6rem !important;
+  font-weight: 400 !important;
+  color: black !important;
+}
+.swal2-confirm {
+  background-color: white !important;
+  border: solid 2px black !important;
+  width: 10rem !important;
+  height: auto !important;
+  color: black !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  margin-right: 0.5rem !important;
+  cursor: pointer;
+}
+.swal2-cancel {
+  background-color: white !important;
+  border: solid 2px black;
+  width: 10rem !important;
+  height: auto !important;
+  color: black !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  margin-left: 0.5rem !important;
+  cursor: pointer;
 }

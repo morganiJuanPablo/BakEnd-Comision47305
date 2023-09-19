@@ -6,7 +6,6 @@ import { Server } from "socket.io";
 import { __dirname } from "./utils.js";
 import path from "path";
 import { productsItem } from "./persistence/index.js";
-import { prueba } from "./routes/prueba.routes.js";
 
 const port = 8080;
 const app = express();
@@ -24,7 +23,6 @@ app.set("views", path.join(__dirname, "/views"));
 
 app.use("/", productsRouter);
 app.use("/", realTimeProducts);
-app.use("/", prueba)
 
 //Websockets
 

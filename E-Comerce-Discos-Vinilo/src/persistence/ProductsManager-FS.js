@@ -81,8 +81,8 @@ export class ProductsManagerFs {
     try {
       if (this.fileExist()) {
         await this.loadProductsFromFile();
-        return this.products;
       }
+      return this.products;
     } catch (error) {
       throw new Error("Error al obtener los productos:", error.message);
     }

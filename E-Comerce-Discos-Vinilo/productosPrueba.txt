@@ -1,20 +1,19 @@
-	{
-    "title": "Dee Gees",
-    "description": "Hail Satin es un álbum bajo el nombre Dee Gees, conmemorando el Record Store Day.",
-    "price": 32.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/wunk0syfoaqjb_600_jbl6jy.jpg",
-    "code": "foo132",
-    "stock": 18,
-    "category": "EdicionesEspeciales",
-    "status": true
-  }
-	{
-    "title": "Foo Fighters",
-    "description": "Foo Fighters es un grupo de rock estadounidense formada en la ciudad de Seattle en 1994 por el exbaterista de Nirvana, Dave Grohl. Este es su disco lanzamiento.",
-    "price": 16.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/0828765549622_600_b94vjr.jpg",
-    "code": "foo133",
-    "stock": 22,
+
+    "title": "Chasing Birds",
+    "description": "Representa un cambio de tono en la música de la banda, explorando un estilo más reflexivo y relajado en contraste con su sonido de rock característico.",
+    "price": 19.99,
+    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1695137240/tsksmubkxybec_600_duo7lo.jpg",
+    "code": "foo170",
+    "stock": 26,
     "category": "TopVentas",
-    "status": true
-  }
+    
+
+
+    "title": "Songs From The Laundry Room",
+    "description": "Es una joya oculta que ofrece una mirada íntima a las raíces de la banda, con demos y grabaciones inéditas. Este lanzamiento especial captura la esencia cruda y la creatividad temprana de Foo Fighters.",
+    "price": 32.99,
+    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1695137150/0886445482935_600_xivo5y.jpg",
+    "code": "foo171",
+    "stock": 36,
+    "category": "EdicionesEspeciales",
+    
