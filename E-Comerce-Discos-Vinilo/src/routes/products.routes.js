@@ -40,6 +40,4 @@ router.get("/:IdProduct", async (req, res) => {
   }
 }); */
 
-
-
 export { router as productsRouter };

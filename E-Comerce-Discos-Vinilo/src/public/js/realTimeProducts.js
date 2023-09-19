@@ -1,16 +1,66 @@
 const socketClient = io();
-
 const cardProductAdmin = document.getElementById("cardProductAdmin");
 
-socketClient.on("products", async (dataProducts) => {
-  await dataProducts.forEach((p) => {
+//Formulario para crear producto
+const createProductsForm = document.getElementById("createProductsForm");
+createProductsForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(createProductsForm);
+  const productJson = {};
+  for (const [key, value] of formData.entries()) {
+    //Key se refiere a name del input, value a lo que ingresamos y hacemos un for of para ir capturando los valores en cada input de una sola vez
+    productJson[key] = value;
+  }
+  productJson.price = +productJson.price;
+  productJson.stock = +productJson.stock;
+
+  socketClient.emit("productJson", productJson);
+  createProductsForm.reset();
+  Swal.fire({
+    imageUrl: `${productJson.thumbnail}`,
+    width: "450px",
+    height: "450px",
+    showConfirmButton: false,
+    text: `¡Producto creado con éxito!`,
+    customClass: {
+      popup: "custom-modal-class",
+    },
+  });
+});
+
+//Formulario para actualizar producto
+const updateProductsForm = document.getElementById("updateProductsForm");
+
+updateProductsForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const updateData = new FormData(updateProductsForm);
+  const productUpdatedJson = {};
+  for (const [key, value] of updateData.entries()) {
+    if (value != "" && value != null) {
+      productUpdatedJson[key] = value;
+    }
+    parseFloat(productUpdatedJson.price);
+    parseInt(productUpdatedJson.stock);
+  }
+  socketClient.emit("productUpdatedJson", productUpdatedJson);
+  updateProductsForm.reset();
+});
+
+//Recibimos los productos
+socketClient.on("arrayProducts", (dataProducts) => {  
+  let productsElms = "";
+  dataProducts.forEach((p) => {
     const { thumbnail, title, description, category, price, code, stock, Id } =
       p;
-    cardProductAdmin.innerHTML += ` <div class="cardProductAdmin"><img
+    productsElms += ` <div class="cardProductAdmin">
+    <div class="imgAndDeleteBtn">
+    <img
     class="imgCardProductDetail"
     src=${thumbnail}
-    alt=""
+    alt="Vinyl Cover"
     />
+    <button class="trashBtn" onclick="deleteProduct('${Id}')"><img src="https://res.cloudinary.com/dqykftyy6/image/upload/v1695040127/TrashIcon-01_hgtcmn.png" alt="Eliminar producto"></button>
+    </div>
     <div class="productInfo">
     <h1 class="title">${title}</h1>
     <p class="description">${description}</p>
@@ -24,41 +74,10 @@ socketClient.on("products", async (dataProducts) => {
     </div>
     </div>`;
   });
+  cardProductAdmin.innerHTML = productsElms;
 });
 
-//Hacemos el btn de carga de archivo EN POST más bonito que el por defecto
-document.addEventListener("DOMContentLoaded", function () {
-  const customUploadButton = document.getElementById("customUploadButton");
-  const fileInput = document.getElementById("fileInput");
-  const fileSelectedMessage = document.getElementById("fileSelectedMessage");
-
-  customUploadButton.addEventListener("click", function () {
-    fileInput.click();
-  });
-  fileInput.addEventListener("change", function () {
-    const selectedFile = this.files[0];
-    if (selectedFile) {
-      fileSelectedMessage.textContent = "Archivo seleccionado";
-    } else {
-      fileSelectedMessage.textContent = "";
-    }
-  });
-});
-//Hacemos el btn de carga de archivo EN UPDATE más bonito que el por defecto
-document.addEventListener("DOMContentLoaded", function () {
-  const customUploadButton = document.getElementById("customUploadButton2");
-  const fileInput = document.getElementById("fileInput2");
-  const fileSelectedMessage = document.getElementById("fileSelectedMessage2");
-
-  customUploadButton.addEventListener("click", function () {
-    fileInput.click();
-  });
-  fileInput.addEventListener("change", function () {
-    const selectedFile = this.files[0];
-    if (selectedFile) {
-      fileSelectedMessage.textContent = "Archivo seleccionado";
-    } else {
-      fileSelectedMessage.textContent = "";
-    }
-  });
-});
+//Delete products By Id
+const deleteProduct = (productId) => {
+  socketClient.emit("deleteProductById", productId);
+};

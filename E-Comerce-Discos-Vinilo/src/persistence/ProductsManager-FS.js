@@ -49,7 +49,7 @@ export class ProductsManagerFs {
   async addProduct(product) {
     try {
       await this.loadProductsFromFile();
-      const { title, description, price, code, stock, status, category } =
+      const { title, description, price, code, stock, /* status, */ category } =
         product;
       if (
         !title ||
@@ -57,7 +57,7 @@ export class ProductsManagerFs {
         !price ||
         !code ||
         !stock ||
-        !status ||
+        /* !status || */
         !category
       ) {
         throw new Error("Todos los campos son obligatorios.");
@@ -104,18 +104,12 @@ export class ProductsManagerFs {
 
   async deleteProductById(Id) {
     try {
-      await this.loadProductsFromFile();
-      let newArray;
-      const idExist = this.products.some((p) => p.Id === Id);
-      if (idExist) {
-        newArray = this.products.filter((p) => p.Id !== Id);
-        await fs.promises.writeFile(
-          this.filePath,
-          JSON.stringify(newArray, null, 2),
-          "utf-8"
-        );
+      const productIndex = this.products.findIndex((p) => p.Id === Id);
+      if (productIndex !== -1) {
+        await this.products.splice(productIndex, 1);
+        await this.saveProductsToFile();
       } else {
-        throw new Error(`El producto con Id: ${Id} no existe`);
+        console.log("Error: Producto no encontrado");
       }
     } catch (error) {
       throw new Error(error.message);
