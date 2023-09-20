@@ -1,16 +1,5 @@
 [
   {
-    "title": "Echoes, Silence, Patience & Grace",
-    "description": "En este disco, the Foos alternan con toda naturalidad lo acústico con lo eléctrico, el delicado folk de guitarra de púa con el potente hard rock que viene definiendo al grupo.",
-    "price": 10.59,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/71Hq8BJMGqL._UF894_1000_QL80__ineqof.jpg",
-    "code": "foo127",
-    "stock": 10,
-    "category": "TopVentas",
-    "status": true,
-    "Id": "AR8z7r"
-  },
-  {
     "title": "Wasting Light",
     "description": "Wasting light es el séptimo álbum de estudio de Foo Fighters, y primero desde 'Echoes, silence, patience & grace' (2007). Grabado en cintas analógicas en el garaje de la casa de Dave Grohl.",
     "price": 36.99,
@@ -53,17 +42,6 @@
     "category": "TopVentas",
     "status": true,
     "Id": "kf8itT"
-  },
-  {
-    "title": "Concrete and gold",
-    "description": "Foo Fighters es un grupo de rock estadounidense formada en la ciudad de Seattle en 1994 por el exbaterista de Nirvana, Dave Grohl. Este es su disco lanzamiento.",
-    "price": 28.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/81T4_-KbjSL._SL1500__gy7xti.jpg",
-    "code": "foo151",
-    "stock": 12,
-    "category": "TopVentas",
-    "status": true,
-    "Id": "7fl9ez"
   },
   {
     "title": "Sonic Highways",
@@ -150,5 +128,26 @@
     "code": "Foo162",
     "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1695136554/0888880335630_600_f67ct1.jpg",
     "Id": "QOOFsf"
+  },
+  {
+    "title": "Echoes, Silence, Patience & Grace",
+    "description": "En este disco, the Foos alternan con toda naturalidad lo acústico con lo eléctrico, el delicado folk de guitarra de púa con el potente hard rock que viene definiendo al grupo.",
+    "price": 10.59,
+    "stock": 127,
+    "category": "10",
+    "code": "TopVentas",
+    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/71Hq8BJMGqL._UF894_1000_QL80__ineqof.jpg",
+    "Id": "2TdIuJ"
+  },
+  {
+    "title": "Concrete and gold",
+    "description": "Foo Fighters es un grupo de rock estadounidense formada en la ciudad de Seattle en 1994 por el exbaterista de Nirvana, Dave Grohl. Este es su disco lanzamiento.",
+    "price": 28.99,
+    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/81T4_-KbjSL._SL1500__gy7xti.jpg",
+    "code": "foo151",
+    "stock": "4",
+    "category": "TopVentas",
+    "status": true,
+    "Id": "7fl9ez"
   }
 ]
