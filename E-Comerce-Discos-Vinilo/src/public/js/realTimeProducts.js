@@ -14,7 +14,7 @@ socketClient.on("arrayProducts", (dataProducts) => {
     src=${thumbnail}
     alt="Vinyl Cover"
     />
-    <button class="trashBtn" onclick="deleteProduct('${Id}')"><img src="https://res.cloudinary.com/dqykftyy6/image/upload/v1695040127/TrashIcon-01_hgtcmn.png" alt="Eliminar producto"></button>
+    <button class="trashBtn" onclick= deleteProduct('${Id}') ><img src="https://res.cloudinary.com/dqykftyy6/image/upload/v1695040127/TrashIcon-01_hgtcmn.png" alt="Eliminar producto"></button>
     </div>
     <div class="productInfo">
     <h1 class="title">${title}</h1>
