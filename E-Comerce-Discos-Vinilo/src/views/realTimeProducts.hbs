@@ -57,7 +57,26 @@
             name="thumbnail"
             required
           />
-
+          <label for="fileInput" class="uploadImgSection">
+            <span
+              id="customUploadButton"
+              class="customUploadButton"
+              type="button"
+            >Selecciona la portada</span>
+            <input
+              id="fileInput"
+              class="fileInput"
+              type="file"
+              style="display: none"
+              name="fileInput"
+            />
+            <p id="fileSelectedMessage" class="fileSelectedMessage"></p>
+          </label>
+          <div class="statusCheck">
+            <p>Status</p>
+            <input type="checkbox" name="status" id="inputStatus" />
+            <p>(Marcar en caso de que sea 'True')</p>
+          </div>
           <button class="generalButton" type="submit">Crear</button>
         </form>
       </section>
@@ -120,6 +139,7 @@
 
     <section class="productsSection" id="cardProductAdmin"></section>
   </div>
+  
 </main>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="socket.io/socket.io.js"></script>

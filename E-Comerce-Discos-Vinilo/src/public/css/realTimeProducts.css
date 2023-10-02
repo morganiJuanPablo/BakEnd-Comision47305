@@ -43,6 +43,15 @@
   gap: 3rem;
   align-items: start;
 }
+.statusCheck {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+.statusCheck p {
+  font-size: 1.5rem;
+}
 .productsSection {
   width: 70%;
   min-height: 70rem;
@@ -82,7 +91,8 @@
 .stock,
 .code,
 .category,
-.id {
+.id,
+.status {
   font-size: 1.5rem;
   font-weight: 400;
   padding: 0.3rem;
@@ -123,6 +133,10 @@
   font-size: 1.5rem;
   padding: 1rem;
 }
+
+.uploadImgSection {
+  width: fit-content;
+}
 .customUploadButton {
   width: auto;
   height: auto;
@@ -136,11 +150,9 @@
 .fileSelectedMessage {
   font-size: 1.1rem;
   font-weight: 700;
-  margin-top: 0.5rem;
-  padding: 0.3rem;
   color: rgb(109, 178, 7);
+  margin-top: 2rem;
 }
-
 .generalButton {
   width: auto;
   height: auto;
@@ -164,7 +176,7 @@
 }
 .custom-modal-class {
   font-weight: bold;
-  font-size: 2.5rem !important;
+  font-size: 2.5rem;
 }
 
 /* Modales */
@@ -177,6 +189,11 @@
 }
 .swal2-title {
   font-size: 1.6rem !important;
+  font-weight: 400 !important;
+  color: black !important;
+}
+.swal2-html-container {
+  font-size: 1.8rem !important;
   font-weight: 400 !important;
   color: black !important;
 }

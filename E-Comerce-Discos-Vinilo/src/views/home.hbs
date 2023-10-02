@@ -13,16 +13,17 @@
     </nav>
 
     <div class="productContainerCards">
-      {{#each products}}
+
+      {{#each processedData}}
         <div class="productCard">
           <a href=""><img
               class="imgProduct"
-              src={{this.thumbnail}}
-              alt="Foo Fighters vinyl cover"
+              src="{{thumbnail}}"
+              alt="Vinyl-Cover"
             /></a>
           <footer class="detailCard">
-            <h3 class="productTitle">{{this.title}}</h3>
-            <p class="productPrice">{{this.price}}€</p>
+            <h3 class="productTitle">{{title}}</h3>
+            <p class="productPrice">{{price}}€</p>
           </footer>
         </div>
       {{/each}}

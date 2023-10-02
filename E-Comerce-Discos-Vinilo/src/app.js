@@ -5,49 +5,58 @@ import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import { __dirname } from "./utils.js";
 import path from "path";
-import { productsItem } from "./persistence/index.js";
+import { dbConnection } from "./config/dbConnection.js";
+import { mongoProductsItem } from "./dao/index.js";
 
 const port = 8080;
 const app = express();
 
-const httpServer = app.listen(port, () => console.log("Server is working"));
-const socketServer = new Server(httpServer);
-
+//Middlewares
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//Servers
+const httpServer = app.listen(port, () => console.log("Server is working"));
+const socketServer = new Server(httpServer);
+
+//DB connection
+dbConnection();
+
+//Handlebars Config
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", path.join(__dirname, "/views"));
 
+//Routes
 app.use("/", productsRouter);
 app.use("/", realTimeProducts);
 
 //Websockets
-
 socketServer.on("connection", async (socket) => {
   console.log("Cliente en linea");
-  const products = await productsItem.getProducts();
+  const products = await mongoProductsItem.getProducts();
   socket.emit("arrayProducts", products);
 
   socket.on("productJson", async (newProduct) => {
-    const result = await productsItem.addProduct(newProduct);
-    const products = await productsItem.getProducts();
-    io.emit("arrayProducts", products);
+    const result = await mongoProductsItem.addProduct(newProduct);
+    const products = await mongoProductsItem.getProducts();
+    socket.emit("arrayProducts", products);
   });
 
   socket.on("deleteProductById", async (idProduct) => {
-    const products = await productsItem.deleteProductById(idProduct);
-    io.emit("arrayProducts", products);
+    await mongoProductsItem.deleteProductById(idProduct);
+    const products = await mongoProductsItem.getProducts();
+    socket.emit("arrayProducts", products);
   });
 
   socket.on("productUpdatedJson", async (productUpdatedJson) => {
-    const result = await productsItem.updateProduct(
+    const result = await mongoProductsItem.updateProductById(
       productUpdatedJson.Id,
       productUpdatedJson
     );
-    const products = await productsItem.getProducts();
-    io.emit("arrayProducts", products);
+    const products = await mongoProductsItem.getProducts();
+    socket.emit("arrayProducts", products);
   });
+
 });

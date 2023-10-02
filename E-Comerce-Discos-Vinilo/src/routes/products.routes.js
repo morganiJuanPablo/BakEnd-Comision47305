@@ -1,22 +1,28 @@
 //
 import { Router } from "express";
-import { productsItem } from "../persistence/index.js";
-
+import { mongoProductsItem } from "../dao/index.js";
 const router = Router();
+
+
 
 //GET
 router.get("/", async (req, res) => {
   try {
-    const products = await productsItem.getProducts();    
+    const products = await mongoProductsItem.getProducts();
+    const processedData = products.map((item) => ({
+      title: item.title,
+      price: item.price,
+      thumbnail: item.thumbnail,
+    }));
     const data = {
       style: "home.css",
-      products,
+      processedData,
     };
+    
     res.render("home", data);
   } catch (error) {
-    res.json({ Error: error.message });
+    res.status(500).json({ status: "Error", message: error.message });
   }
 });
-
 
 export { router as productsRouter };
