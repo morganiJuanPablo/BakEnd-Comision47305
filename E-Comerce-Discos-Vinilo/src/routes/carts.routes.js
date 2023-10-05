@@ -13,52 +13,51 @@ router.get("/carts", async (req, res) => {
   }
 });
 
-router.get("/carts/:idCart", async (req, res) => {
+router.get("/cart/:idCart", async (req, res) => {
   try {
     const idCart = req.params.idCart;
     const cart = await mongoCartItem.getCartById(idCart);
-    res.json({ status: "success", data: cart });
+    res.json({ data: cart });
   } catch (error) {
     res.json({ Error: error.message });
   }
 });
 
 //POST
-router.post("/carts", async (req, res) => {
+router.post("/cart", async (req, res) => {
   try {
     const newCart = await mongoCartItem.createCart();
-    console.log(newCart)
-    res.json({ status: "success", message: "Carrito creado con éxito." });
+    res.json({
+      status: "success",
+      message: "Carrito creado con éxito.",
+      data: newCart,
+    });
   } catch (error) {
     res.json({ Error: error.message });
   }
 });
 
-router.post("/:IdCart/products/:IdProduct", async (req, res) => {
-    try {
-      const IdCart = req.params.IdCart;
-      const IdProduct = req.params.IdProduct;
-      await mongoCartItem.ad(IdCart, IdProduct);
-      res.json({
-        message: `Producto añadido con éxito al carrito con id: ${IdCart}.`,
-      });
-    } catch (error) {
-      res.json({ Error: error.message });
-    }
-  });
+router.post("/cart/:idCart/product/:idProduct", async (req, res) => {
+  try {
+    const idCarts = req.params.idCart;
+    const idProduct = req.params.idProduct;
+
+    const cart = await mongoCartItem.addProduct(idCarts, idProduct);
+    res.json({ message: "Producto agregado al carrito", data: cart });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
+
+//DELETE
+router.delete("/cart/:idCart", async (req, res) => {
+  try {
+    const idCart = req.params.idCart;
+    const cart = await mongoCartItem.deleteCartById(idCart);
+    res.json({ status: "success", message: "Carrito eliminado con éxito." });
+  } catch (error) {
+    res.json({ Error: error.message });
+  }
+});
 
 export { router as cartsRouter };
-
-
-/* app.put("/add-students", async (req, res) => {
-    try {
-      const { studentId, courseId } = req.body;
-      const course = await coursesModel.findById(courseId);
-      course.courseStudents.push(studentId);
-      const resultado = await coursesModel.findByIdAndUpdate(courseId, course, {
-        new: true,
-      });
-      res.json({ data: resultado });
-    } catch (error) {
-      console.log(error.message);
-    } */

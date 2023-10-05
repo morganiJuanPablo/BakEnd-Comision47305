@@ -12,7 +12,7 @@ let user;
 
 //Conexión del usuario
 Swal.fire({
-  text: "Ingresa tu nombre de usuario",
+  title: "Ingresa tu nombre de usuario",
   input: "text",
   inputValidator: (value) => {
     return !value && "Debes ingresar tu usuario";

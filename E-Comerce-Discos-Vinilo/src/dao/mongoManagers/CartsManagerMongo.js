@@ -56,4 +56,27 @@ export class CartsManagerMongo {
       throw new Error("No se pudo eliminar el carrito.");
     }
   }
+  async addProduct(cartId, productId) {
+    try {
+      let quantity = 1;
+      const cart = await this.cartModel.findOneAndUpdate({ _id: cartId });
+
+      if (!cart) {
+        throw new Error("No es posible obtener los carritos");
+      }
+      const product = cart.products.find((p) => p.id === productId);
+      if (product) {
+        product.quantity++;
+      } else {
+        cart.products.push({
+          id: productId,
+          quantity: quantity,
+        });
+      }
+      return cart;
+    } catch (error) {
+      console.log(error.message);
+      throw new Error("No se pudo agregar el producto.");
+    }
+  }
 }

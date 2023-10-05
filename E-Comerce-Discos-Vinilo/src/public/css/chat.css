@@ -119,3 +119,34 @@
   font-size: 1.8rem;
   padding: 1rem;
 }
+.swal2-modal {
+  width: 25% !important;
+  height: auto !important;
+  min-height: 12rem;
+}
+.swal2-title {
+  font-size: 1.6rem !important;
+  font-weight: 400 !important;
+  color: black !important;
+}
+.swal2-confirm {
+  background-color: white !important;
+  border: solid 2px black !important;
+  width: 8rem !important;
+  height: auto !important;
+  color: black !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  margin-right: 0.5rem !important;
+  cursor: pointer;
+}
+.swal2-confirm:hover {
+  background-color: none !important;
+}
+.swal2-input:focus {
+  border-color: black !important;
+  box-shadow: none !important;
+}
+.swal2-validation-message{
+  font-size: 1.5rem;
+}
