@@ -11,7 +11,6 @@ router.get("/", async (req, res) => {
       style: "home.css",
       products,
     };
-
     res.render("home", data);
   } catch (error) {
     res.status(500).json({ status: "Error", message: error.message });

@@ -10,6 +10,7 @@ import { dbConnection } from "./config/dbConnection.js";
 import { mongoProductsItem } from "./dao/index.js";
 import { mongoChatItem } from "./dao/index.js";
 import { chatRouter } from "./routes/chats.routes.js";
+import { cartsRouter } from "./routes/carts.routes.js";
 
 const port = 8080;
 const app = express();
@@ -20,7 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Servidores
-const httpServer = app.listen(port, () => console.log("Server is working"));
+const httpServer = app.listen(port, () => console.log("Servidor funcionando."));
 const socketServer = new Server(httpServer);
 
 //DB conexión
@@ -35,6 +36,7 @@ app.set("views", path.join(__dirname, "/views"));
 app.use("/", productsRouter);
 app.use("/", realTimeProducts);
 app.use("/", chatRouter);
+app.use("/", cartsRouter);
 
 //Websockets
 socketServer.on("connection", async (socket) => {

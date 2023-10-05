@@ -54,17 +54,6 @@ inputStatus.addEventListener("change", () => {
   isChecked = inputStatus.checked;
 });
 
-const fileInput = document.getElementById("thumbnail");
-
-fileInput.addEventListener("change", function () {
-  const selectedFile = this.files[0];
-  if (selectedFile) {
-    fileSelectedMessage.textContent = "Archivo seleccionado";
-  } else {
-    fileSelectedMessage.textContent = "";
-  }
-});
-
 createProductsForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(createProductsForm);

@@ -8,7 +8,10 @@ export class CartsManagerMongo {
 
   async createCart() {
     try {
-      const newCart = await this.cartModel.create();
+      const newCart = {
+        products: [],
+      };
+      await this.cartModel.create(newCart);
       return newCart;
     } catch (error) {
       console.log(error.message);
