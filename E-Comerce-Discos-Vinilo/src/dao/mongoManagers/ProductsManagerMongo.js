@@ -17,7 +17,7 @@ export class ProductsManagerMongo {
 
   async getProducts() {
     try {
-      const products = await this.model.find();
+      const products = await this.model.find().lean();
       return products;
     } catch (error) {
       console.log(error.message);
@@ -27,7 +27,7 @@ export class ProductsManagerMongo {
 
   async getProductById(productId) {
     try {
-      const product = await this.model.find({ _id: productId });
+      const product = await this.model.find({ _id: productId }).lean();
       return product;
     } catch (error) {
       console.log(error.message);

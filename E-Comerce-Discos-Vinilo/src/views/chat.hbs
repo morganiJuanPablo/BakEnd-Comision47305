@@ -1,0 +1,36 @@
+<main class="chatContainer">
+  <section class="chatContainer--chatSection">
+    <div class="chatSection--header">
+      <h1 class="chatSection--header-title">Bienvenid@ a nuestra comunidad</h1>
+    </div>
+    <div id="chatSection--chatWindow">
+      <div class="chatWindow-header">
+        <img
+          src="https://res.cloudinary.com/dqykftyy6/image/upload/v1696363822/ProyectoBackEnd/avatarChat2_snxaym.svg"
+          alt="Avatar Chat"
+          style="scale: 140%;"
+        />
+        <span>Staff</span>
+        <p id="welcome-message" style="margin-left:auto"></p>
+      </div>
+      <div id="chatSection--messagesSection"></div>
+    </div>
+    <form class="chatSection--inputTextContainer">
+      <textarea
+        name="message"
+        id="chatSection--inputText"
+        cols="25"
+        rows="5"
+        class="chatSection--inputText"
+        placeholder="Escribe tu mensaje"
+      ></textarea>
+      <button type="submit" id="chatSection--submitBtn"><img
+          src="https://res.cloudinary.com/dqykftyy6/image/upload/v1696349640/ProyectoBackEnd/sendArrowChat_b8thij.svg"
+          alt="Enviar mensaje"
+        /></button>
+    </form>
+  </section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="js/chat.js"></script>

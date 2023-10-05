@@ -117,7 +117,6 @@ export class CartsManagerFs {
         Id: IdProduct,
         quantity: quantity,
       };
-
       if (cart) {
         const { products } = cart;
         const indexProduct = products.findIndex((iP) => iP.Id === IdProduct);

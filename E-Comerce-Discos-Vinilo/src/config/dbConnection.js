@@ -1,10 +1,13 @@
+//
 import mongoose from "mongoose";
 
-export const dbConnection = async ()=>{
-    try {
-        mongoose.connect('mongodb+srv://morganijuanpablo:XgMe7LjudVbQGoKJ@juampidb.wigsasz.mongodb.net/ecomerceDB?retryWrites=true&w=majority')
-        console.log('Connected to the database')
-    } catch (error) {
-        console.log('Failed to connect to the database',error.message)
-    }
-}
+export const dbConnection = async () => {
+  try {
+    mongoose.connect(
+      "mongodb+srv://morganijuanpablo:XgMe7LjudVbQGoKJ@juampidb.wigsasz.mongodb.net/ecomerceDB?retryWrites=true&w=majority"
+    );
+    console.log("Conectado con la base de datos.");
+  } catch (error) {
+    console.log("Error al conectarse con la base de datos.", error.message);
+  }
+};

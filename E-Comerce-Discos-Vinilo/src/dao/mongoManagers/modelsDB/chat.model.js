@@ -1,3 +1,4 @@
+//
 import mongoose from "mongoose";
 
 const chatCollection = "chats";
@@ -5,7 +6,6 @@ const chatCollection = "chats";
 const chatSchema = new mongoose.Schema({
   user: {
     type: String,
-    unique: true,
     required: true,
   },
   message: {

@@ -6,7 +6,7 @@
       {{! Form post method }}
       <section class="formContainer">
         <h3 class="formTitle">Crear producto nuevo</h3>
-        <form class="formProducts" id="createProductsForm">
+        <form class="formProducts" id="createProductsForm" enctype="multipart/form-data">
           <input
             class="inputs"
             type="text"
@@ -50,25 +50,25 @@
             name="code"
             required
           />
-          <input
+    {{!--       <input
             class="inputs"
             type="url"
             placeholder="URL imagen"
             name="thumbnail"
             required
-          />
-          <label for="fileInput" class="uploadImgSection">
+          /> --}}
+          <label for="thumbnail" class="uploadImgSection">
             <span
               id="customUploadButton"
               class="customUploadButton"
               type="button"
             >Selecciona la portada</span>
             <input
-              id="fileInput"
+              id="thumbnail"
               class="fileInput"
               type="file"
               style="display: none"
-              name="fileInput"
+              name="thumbnail"
             />
             <p id="fileSelectedMessage" class="fileSelectedMessage"></p>
           </label>

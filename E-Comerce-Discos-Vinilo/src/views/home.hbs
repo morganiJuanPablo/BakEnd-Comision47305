@@ -1,4 +1,4 @@
-<div class="homeContainer">
+<main class="homeContainer">
   <section class="homeContainer--productsSection">
     <nav>
       <ul class="navContainer">
@@ -9,21 +9,25 @@
             href="/realtimeproducts"
             style="border: solid 1px black; padding:1rem"
           > Administrador de productos</a></li>
+        <li class="navContainer--li"><a
+            href="/chat"
+            style="background-color: black; padding:1rem; color:white"
+          > Chat</a></li>
       </ul>
     </nav>
 
     <div class="productContainerCards">
 
-      {{#each processedData}}
+      {{#each products}}
         <div class="productCard">
           <a href=""><img
               class="imgProduct"
-              src="{{thumbnail}}"
+              src="{{this.thumbnail}}"
               alt="Vinyl-Cover"
             /></a>
           <footer class="detailCard">
-            <h3 class="productTitle">{{title}}</h3>
-            <p class="productPrice">{{price}}€</p>
+            <h3 class="productTitle">{{this.title}}</h3>
+            <p class="productPrice">{{this.price}}€</p>
           </footer>
         </div>
       {{/each}}
@@ -31,4 +35,4 @@
     </div>
   </section>
 
-</div>
+</main>

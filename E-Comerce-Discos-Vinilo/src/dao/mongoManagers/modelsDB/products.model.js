@@ -1,3 +1,4 @@
+//
 import mongoose from "mongoose";
 
 const productsCollection = "products";
@@ -31,7 +32,7 @@ const productsSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum:["TopVentas","EdicionesEspeciales"]
+    enum: ["TopVentas", "EdicionesEspeciales"],
   },
   status: {
     type: Boolean,
