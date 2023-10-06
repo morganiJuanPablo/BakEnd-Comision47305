@@ -31,7 +31,7 @@ export class CartsManagerMongo {
 
   async getCartById(cartId) {
     try {
-      const cartById = await this.cartModel.find({ _id: cartId });
+      const cartById = await this.cartModel.findOne(cartId);
       if (cartById) {
         return cartById;
       } else {
