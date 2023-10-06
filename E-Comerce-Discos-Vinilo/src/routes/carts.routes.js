@@ -37,12 +37,12 @@ router.post("/cart", async (req, res) => {
   }
 });
 
-router.post("/cart/:idCart/product/:idProduct", async (req, res) => {
+//PUT
+router.put("/cart/:cartId/product/:productId", async (req, res) => {
   try {
-    const idCarts = req.params.idCart;
-    const idProduct = req.params.idProduct;
-
-    const cart = await mongoCartItem.addProduct(idCarts, idProduct);
+    const cartId = req.params.cartId;
+    const productId = req.params.productId;
+    const cart = await mongoCartItem.addProduct(cartId, productId);
     res.json({ message: "Producto agregado al carrito", data: cart });
   } catch (error) {
     res.json({ status: "error", message: error.message });
