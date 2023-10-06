@@ -56,27 +56,26 @@ export class CartsManagerMongo {
       throw new Error("No se pudo eliminar el carrito.");
     }
   }
-  async addProduct(cartId, productId) {
+
+    async addProduct(cartId, productId) {
     try {
       let quantity = 1;
-      const cart = await this.cartModel.findOneAndUpdate({ _id: cartId });
+      const cart = await this.cartModel.findById(cartId);
+      if (cart) {
+        const { products } = cart;
+        const product = products.find((p) => p.productId === productId);
+        !product
+          ? products.push({ productId: productId, quantity: quantity })
+          : product.quantity++;
+      }
 
-      if (!cart) {
-        throw new Error("No es posible obtener los carritos");
-      }
-      const product = cart.products.find((p) => p.id === productId);
-      if (product) {
-        product.quantity++;
-      } else {
-        cart.products.push({
-          id: productId,
-          quantity: quantity,
-        });
-      }
-      return cart;
+      const cartUpdated = await this.cartModel.findByIdAndUpdate(cartId, cart, {
+        new: true,
+      });
+      return cartUpdated;
     } catch (error) {
       console.log(error.message);
-      throw new Error("No se pudo agregar el producto.");
+      throw new Error(`El carrito con Id: ${cartId} no existe`);
     }
   }
 }
