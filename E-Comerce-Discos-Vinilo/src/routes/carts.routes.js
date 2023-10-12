@@ -20,8 +20,12 @@ router.get("/cart/:cartId", async (req, res) => {
   try {
     const cartId = req.params.cartId;
     const cart = await mongoCartItem.getCartById(cartId);
-    res.json({ status: "success", data: cart });
-    /* res.render( "cart", cart ); */
+    const data = {
+      style: "cart.css",
+      products: cart.products,
+    };
+    /* res.json({ status: "success", data: cart }); */
+    res.render("cart", data);
   } catch (error) {
     res.json({ Error: error.message });
   }

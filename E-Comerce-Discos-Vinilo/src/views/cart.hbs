@@ -1,0 +1,37 @@
+<main class="cartContainer">
+  <section class="cartContainer--cartSection">
+    <nav>
+      <ul class="navContainer">
+        <li class="navContainer--li"><a href="/products/inicio">Todos</a></li>
+        <li class="navContainer--li"><a href="/products/TopVentas">Top Ventas</a></li>
+        <li class="navContainer--li"><a
+            href="/products/EdicionesEspeciales"
+          >Ediciones Especiales</a></li>
+        <li class="navContainer--li"><a
+            href="/realtimeproducts"
+            style="border: solid 1px black; padding:1rem"
+          > Administrador de productos</a></li>
+        <li class="navContainer--li"><a
+            href="/chat"
+            style="background-color: black; padding:1rem; color:white"
+          > Chat</a></li>
+      </ul>
+    </nav>
+    <div class="cartContainerCards">
+      {{#each products}}
+        <div class="cartProductCard">
+          <img src={{this.productId.thumbnail}} alt="" />
+          <div class="infoCard">
+            <p class="productTitle">{{this.productId.title}}</p>
+            <p class="productPrice">{{this.productId.price}}€</p>
+            <p class="productDescription">{{this.productId.description}}</p>
+          </div>
+          <div class="btnsContainer">
+            <a class="btnDeleteProduct" href="">Eliminar producto</a>
+            <a class="btnBackToDetail" href="/item/{{this.productId._id}}">Volver al detalle</a>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </section>
+</main>

@@ -25,7 +25,7 @@ router.get("/products/:category", async (req, res) => {
       products.nextLink = products.hasNextPage
         ? `http://localhost:8080/products/${category}?page=${products.nextPage}`
         : "";
-      console.log(products.nextLink);
+      
     } else if (category === "inicio") {
       products = await productModel.paginate(
         {},

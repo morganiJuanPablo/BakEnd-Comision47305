@@ -37,7 +37,7 @@ export class CartsManagerMongo {
   async getCartById(cartId) {
     try {
       const cartById = await this.cartModel
-        .findById(cartId)
+        .findById(cartId).lean()
         .populate("products.productId");
       return cartById;
     } catch (error) {
