@@ -7,7 +7,7 @@
   font-size: 62.5%;
   font-family: "Hepta Slab";
 }
-.principalMain {
+#principalMain {
   width: 100%;
   height: auto;
   background-image: url("https://res.cloudinary.com/dqykftyy6/image/upload/v1694942083/nme-cover-foo-fighters-2021-header_2560x1625_xarzen.png");
@@ -37,7 +37,7 @@
   align-items: center;
   gap: 2rem;
 }
-.socialMedia {  
+.socialMedia {
   height: auto;
   display: flex;
   align-items: center;

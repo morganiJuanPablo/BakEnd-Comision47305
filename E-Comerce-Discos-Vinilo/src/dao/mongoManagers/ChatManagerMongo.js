@@ -6,6 +6,8 @@ export class ChatManagerMongo {
     this.chatModel = chatModel;
   }
 
+  ///////////////////////////////////////////////////////////////////
+
   async createChat() {
     try {
       const chat = await this.chatModel.create();
@@ -15,6 +17,8 @@ export class ChatManagerMongo {
       throw new Error("No se pudo crear el chat.");
     }
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   async getChat() {
     try {
@@ -26,6 +30,8 @@ export class ChatManagerMongo {
     }
   }
 
+  ///////////////////////////////////////////////////////////////////
+
   async updateChat(newMessage) {
     try {
       const result = await this.chatModel.create(newMessage);
@@ -35,6 +41,8 @@ export class ChatManagerMongo {
       throw new Error("No se pudo cargar el nuevo mensaje.");
     }
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   async emptyChat() {
     try {

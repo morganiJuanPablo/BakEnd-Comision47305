@@ -2,9 +2,11 @@
   <section class="homeContainer--productsSection">
     <nav>
       <ul class="navContainer">
-        <li class="navContainer--li"><a href="/">Todos</a></li>
-        <li class="navContainer--li"><a href="/">Top Ventas</a></li>
-        <li class="navContainer--li"><a href="/">Ediciones Especiales</a></li>
+        <li class="navContainer--li"><a href="/products/inicio">Todos</a></li>
+        <li class="navContainer--li"><a href="/products/TopVentas">Top Ventas</a></li>
+        <li class="navContainer--li"><a
+            href="/products/EdicionesEspeciales"
+          >Ediciones Especiales</a></li>
         <li class="navContainer--li"><a
             href="/realtimeproducts"
             style="border: solid 1px black; padding:1rem"
@@ -16,11 +18,14 @@
       </ul>
     </nav>
 
-    <div class="productContainerCards">
+    <div class="sortContainer">
+      <a href={{products.linkAsc}}>ORDENAR POR MENOR PRECIO</a>
+    </div>
 
-      {{#each products}}
+    <div class="productContainerCards">
+      {{#each products.docs}}
         <div class="productCard">
-          <a href=""><img
+          <a href="/item/{{this._id}}"><img
               class="imgProduct"
               src="{{this.thumbnail}}"
               alt="Vinyl-Cover"
@@ -30,9 +35,30 @@
             <p class="productPrice">{{this.price}}€</p>
           </footer>
         </div>
+
       {{/each}}
 
     </div>
-  </section>
+    <section class="productsSection--pagesCounter">
+      {{#if this.products.hasPrevPage}}
+        <a href={{this.products.prevLink}}>
+          <img
+            src="https://res.cloudinary.com/dqykftyy6/image/upload/v1696861398/ProyectoBackEnd/rightArray_q0010t.svg"
+            alt="Página anterior"
+          /></a>
+      {{/if}}
 
+      <p class="pagesCounter--text">Página</p>
+      <p class="pagesCounter--actualPage">{{this.products.page}}</p>
+      <p class="pagesCounter--text"> de {{this.products.totalPages}}</p>
+      {{#if this.products.hasNextPage}}
+        <a href={{this.products.nextLink}}>
+          <img
+            src="https://res.cloudinary.com/dqykftyy6/image/upload/v1696861397/ProyectoBackEnd/leftArray_br6lhs.svg"
+            alt="Página anterior"
+          /></a>
+      {{/if}}
+    </section>
+  </section>
 </main>
+<script src="/js/home.js"></script>

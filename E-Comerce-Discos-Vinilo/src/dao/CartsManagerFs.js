@@ -110,9 +110,7 @@ export class CartsManagerFs {
     try {
       await this.loadCartsFromFile();
       const cart = this.carts.find((c) => c.IdCart === IdCart);
-
       let quantity = 1;
-
       const cartWithProducts = {
         Id: IdProduct,
         quantity: quantity,

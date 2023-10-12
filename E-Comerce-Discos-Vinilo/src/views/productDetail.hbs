@@ -1,0 +1,44 @@
+<main class="productDetailContainer">
+  <section class="productDetailContainer--productSection">
+    <nav>
+      <ul class="navContainer">
+        <li class="navContainer--li"><a href="/products/inicio">Todos</a></li>
+        <li class="navContainer--li"><a href="/products/TopVentas">Top Ventas</a></li>
+        <li class="navContainer--li"><a
+            href="/products/EdicionesEspeciales"
+          >Ediciones Especiales</a></li>
+        <li class="navContainer--li"><a
+            href="/realtimeproducts"
+            style="border: solid 1px white; padding:1rem"
+          > Administrador de productos</a></li>
+        <li class="navContainer--li"><a
+            href="/chat"
+            style="background-color:white;color:black;padding:1rem"
+          > Chat</a></li>
+      </ul>
+    </nav>
+    <div class="productContainer">
+      {{#each product}}
+        <img style="width:100%" src={{this.thumbnail}} alt="{{this.title}}" />
+        <div class="productContainer--info">
+          <h5 class="productDetail--title">{{this.title}}</h5>
+          <p class="productDetail--description">{{this.description}}</p>
+          <p class="productDetail--price">{{this.price}} €</p>
+        </div>
+        <div class="counterContainer">
+          <a class="counterElems">-</a>
+          <p class="counter">5</p>
+          <a class="counterElems">+</a>
+        </div>
+        <div class="btnsContainer">
+          <button id="addToCartBtn">Agregar al carrito</button>
+          <a class="btnInicio" href="/products/inicio">Volver al inicio</a>
+        </div>
+
+      {{/each}}
+
+    </div>
+
+  </section>
+</main>
+<script src="/js/main.js"></script>

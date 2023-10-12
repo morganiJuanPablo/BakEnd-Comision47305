@@ -1,0 +1,108 @@
+.productDetailContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+.navContainer {
+  width: 65%;
+  height: 10rem;
+  display: flex;
+  flex-grow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin: 2rem auto 0 auto;
+}
+.navContainer--li {
+  list-style: none;
+  color: white;
+}
+.navContainer--li a {
+  color: white;
+  font-size: 1.65rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.productDetailContainer--productSection {
+  width: 100%;
+  height: auto;
+  background-color: black;
+  margin-top: 50rem;
+  margin-bottom: 10rem;
+  padding: 2rem;
+}
+
+.productContainer {
+  width: 37%;
+  margin: 10rem auto 10rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.productContainer--info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.productDetail--title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.productDetail--description {
+  color: white;
+  font-size: 1.8rem;
+}
+.productDetail--price {
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.counterContainer {
+  width: 21%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+  height: auto;
+  border: solid 1px white;
+}
+.counter {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.counterElems {
+  color: white;
+  font-size: 3rem;
+  font-weight: 700;
+}
+.btnsContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+#addToCartBtn {
+  color: color;
+  background-color: white;
+  border-style: none;
+  font-size: 1.65rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 1rem;
+}
+.btnInicio {
+  color: white;
+  border: solid 1px white;
+  padding: 1rem;
+  font-size: 1.65rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}

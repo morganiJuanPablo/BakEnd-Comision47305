@@ -5,6 +5,8 @@ export class ProductsManagerMongo {
     this.model = productModel;
   }
 
+  ///////////////////////////////////////////////////////////////////
+
   async addProduct(product) {
     try {
       const newProduct = await this.model.create(product);
@@ -14,6 +16,8 @@ export class ProductsManagerMongo {
       throw new Error("No se pudo crear el producto.");
     }
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   async getProducts() {
     try {
@@ -25,6 +29,8 @@ export class ProductsManagerMongo {
     }
   }
 
+  ///////////////////////////////////////////////////////////////////
+
   async getProductById(productId) {
     try {
       const product = await this.model.find({ _id: productId }).lean();
@@ -34,6 +40,21 @@ export class ProductsManagerMongo {
       throw new Error("No se pudo obtener el producto.");
     }
   }
+
+  ///////////////////////////////////////////////////////////////////
+
+  async getCategoryProducts(category) {
+    try {
+      console.log(category);
+      const products = await this.model.find({ category: category }).lean();
+      return products;
+    } catch (error) {
+      console.log(error.message);
+      throw new Error("No se pudo obtener los productos.");
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
 
   async updateProductById(productId, productUpdated) {
     try {
@@ -53,6 +74,8 @@ export class ProductsManagerMongo {
       throw new Error("No se pudo actualizar el producto.");
     }
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   async deleteProductById(productId) {
     try {

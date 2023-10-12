@@ -1,7 +1,7 @@
 .homeContainer {
   width: 100%;
   height: auto;
-  margin: auto;
+  margin: auto;  
 }
 .navContainer {
   width: 65%;
@@ -23,15 +23,32 @@
   text-decoration: none;
   cursor: pointer;
 }
+.sortContainer {
+  width: 65%;
+  margin: auto;
+  display: flex;
+  justify-content: center;  
+  gap: 2rem;
+  padding: 1rem;
+}
+.sortContainer a {
+  font-size: 1.2rem;  
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
 .homeContainer--productsSection {
   width: 100%;
   height: auto;
   background-color: white;
   margin-top: 50rem;
   margin-bottom: 10rem;
+  padding: 2rem;
 }
 .productContainerCards {
-  width: 80%;
+  width: 65%;
   height: auto;
   margin: auto;
   padding: 5rem;
@@ -71,4 +88,29 @@
 }
 .productPrice {
   font-size: 1.8rem;
+}
+
+.productsSection--pagesCounter {
+  width: 30%;
+  display: flex;
+  margin: 0rem auto 2rem auto;
+  align-items: center;
+  justify-content: center;
+}
+.pagesCounter--actualPage {
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 1rem;
+  border: solid 1px black;
+}
+.pagesCounter--text {
+  font-size: 1.8rem;
+  padding: 1rem;
+}
+.arrows {
+  cursor: pointer;
+}
+.arrowDisabled {
+  filter: opacity(0.1);
+  display: none;
 }
