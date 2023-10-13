@@ -29,7 +29,7 @@
           </div>
           <div class="btnsContainer">
             <button
-              class="btnDeleteProduct"
+              class="btnDeleteProduct"              
               onclick="deleteProductCart(`{{this.productId._id}}`)"
             >Eliminar</button>
             <a
@@ -41,6 +41,7 @@
       {{/each}}
     </div>
     <button
+    id="btnEmptyCart"
       class="btnEmptyCart"
       onclick="emptyCart()"
     >Vaciar al carrito</button>

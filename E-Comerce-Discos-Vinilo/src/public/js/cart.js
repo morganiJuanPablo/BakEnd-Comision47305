@@ -24,12 +24,12 @@ const emptyCart = async () => {
   }
 };
 
+const btnEmptyCart = document.getElementById("btnEmptyCart");
+const cartContainerCards = document.getElementById("cartContainerCards");
 async function emptyCartCheck() {
-  const cartContainerCards = await document.getElementById(
-    "cartContainerCards"
-  );
   if (!cartContainerCards.innerHTML.trim()) {
-    cartContainerCards.innerHTML = `<p class='emptyCartmessage'> El carrito está vacío<br>:(</p>`
+    cartContainerCards.innerHTML = `<p class='emptyCartmessage'> El carrito está vacío<br>:(</p>`;
+    btnEmptyCart.classList.add("btnEmptyCartDisabled");
   }
 }
 

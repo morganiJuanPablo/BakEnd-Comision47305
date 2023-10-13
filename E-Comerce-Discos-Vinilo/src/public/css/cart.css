@@ -99,6 +99,10 @@
   background-color: red;
   border-style: none;
 }
+.btnEmptyCartDisabled {
+  display: none;
+}
+
 .emptyCartmessage {
   display: flex;
   justify-content: center;
