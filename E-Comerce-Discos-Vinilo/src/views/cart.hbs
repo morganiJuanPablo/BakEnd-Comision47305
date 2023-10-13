@@ -17,7 +17,7 @@
           > Chat</a></li>
       </ul>
     </nav>
-    <div class="cartContainerCards">
+    <div class="cartContainerCards" id="cartContainerCards">
       {{#each products}}
         <div class="cartProductCard">
           <img src={{this.productId.thumbnail}} alt="" />
@@ -28,7 +28,10 @@
             <p class="productsQuantity">Cantidad: {{this.quantity}}</p>
           </div>
           <div class="btnsContainer">
-            <button class="btnDeleteProduct" onclick="deleteProductCart(`{{this.productId._id}}`)">Eliminar</button>
+            <button
+              class="btnDeleteProduct"
+              onclick="deleteProductCart(`{{this.productId._id}}`)"
+            >Eliminar</button>
             <a
               class="btnBackToDetail"
               href="/item/{{this.productId._id}}"
@@ -37,6 +40,10 @@
         </div>
       {{/each}}
     </div>
+    <button
+      class="btnEmptyCart"
+      onclick="emptyCart()"
+    >Vaciar al carrito</button>
   </section>
 </main>
 <script src="/js/cart.js"></script>
