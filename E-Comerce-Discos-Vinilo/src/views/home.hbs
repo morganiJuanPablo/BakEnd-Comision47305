@@ -23,11 +23,11 @@
     </nav>
 
     <div class="sortContainer">
-      <a href={{products.linkAsc}}>ORDENAR POR MENOR PRECIO</a>
+      <a href={{this.linkAsc}}>ORDENAR POR MENOR PRECIO</a>
     </div>
 
     <div class="productContainerCards">
-      {{#each products.docs}}
+      {{#each payload}}
         <div class="productCard">
           <a href="/item/{{this._id}}"><img
               class="imgProduct"
@@ -44,8 +44,8 @@
 
     </div>
     <section class="productsSection--pagesCounter">
-      {{#if this.products.hasPrevPage}}
-        <a href={{this.products.prevLink}}>
+      {{#if this.prevPage}}
+        <a href={{this.prevLink}}>
           <img
             src="https://res.cloudinary.com/dqykftyy6/image/upload/v1696861398/ProyectoBackEnd/rightArray_q0010t.svg"
             alt="Página anterior"
@@ -53,10 +53,10 @@
       {{/if}}
 
       <p class="pagesCounter--text">Página</p>
-      <p class="pagesCounter--actualPage">{{this.products.page}}</p>
-      <p class="pagesCounter--text"> de {{this.products.totalPages}}</p>
-      {{#if this.products.hasNextPage}}
-        <a href={{this.products.nextLink}}>
+      <p class="pagesCounter--actualPage">{{this.actualPage}}</p>
+      <p class="pagesCounter--text"> de {{this.totalPages}}</p>
+      {{#if this.nextPage}}
+        <a href={{this.nextLink}}>
           <img
             src="https://res.cloudinary.com/dqykftyy6/image/upload/v1696861397/ProyectoBackEnd/leftArray_br6lhs.svg"
             alt="Página anterior"

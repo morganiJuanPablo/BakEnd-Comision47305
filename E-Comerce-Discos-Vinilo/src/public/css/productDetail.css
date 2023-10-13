@@ -32,7 +32,6 @@
   margin-bottom: 10rem;
   padding: 2rem;
 }
-
 .productContainer {
   width: 37%;
   margin: 10rem auto 10rem auto;
@@ -40,7 +39,6 @@
   flex-direction: column;
   gap: 5rem;
 }
-
 .productContainer--info {
   display: flex;
   flex-direction: column;
@@ -105,4 +103,15 @@
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
+}
+.swal2-popup {
+  width: 20% !important;
+  height: auto !important;
+  min-height: 12rem;
+  padding: 2rem !important;
+}
+.swal2-title {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: black !important;
 }

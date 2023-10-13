@@ -25,7 +25,6 @@ router.get("/products/:category", async (req, res) => {
       products.nextLink = products.hasNextPage
         ? `http://localhost:8080/products/${category}?page=${products.nextPage}`
         : "";
-      
     } else if (category === "inicio") {
       products = await productModel.paginate(
         {},
@@ -40,7 +39,14 @@ router.get("/products/:category", async (req, res) => {
     }
     const data = {
       style: "home.css",
-      products,
+      status: "success",
+      payload: products.docs,
+      totalPages: products.totalPages,
+      prevLink: products.prevLink,
+      nextLink: products.nextLink,
+      actualPage: page,
+      prevPage: products.hasPrevPage,
+      nextPage: products.hasNextPage,
     };
     res.render("home", data);
   } catch (error) {

@@ -25,13 +25,18 @@
             <p class="productTitle">{{this.productId.title}}</p>
             <p class="productPrice">{{this.productId.price}}€</p>
             <p class="productDescription">{{this.productId.description}}</p>
+            <p class="productsQuantity">Cantidad: {{this.quantity}}</p>
           </div>
           <div class="btnsContainer">
-            <a class="btnDeleteProduct" href="">Eliminar producto</a>
-            <a class="btnBackToDetail" href="/item/{{this.productId._id}}">Volver al detalle</a>
+            <button class="btnDeleteProduct" onclick="deleteProductCart(`{{this.productId._id}}`)">Eliminar</button>
+            <a
+              class="btnBackToDetail"
+              href="/item/{{this.productId._id}}"
+            >Volver al detalle</a>
           </div>
         </div>
       {{/each}}
     </div>
   </section>
 </main>
+<script src="/js/cart.js"></script>

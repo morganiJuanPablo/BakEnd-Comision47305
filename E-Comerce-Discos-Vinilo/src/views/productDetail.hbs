@@ -35,14 +35,14 @@
           <a class="counterElems">+</a>
         </div> }}
         <div class="btnsContainer">
-          <button id="addToCartBtn">Agregar al carrito</button>
+          <button id="addToCartBtn" onclick="addToCart(`{{this._id}}`)">Agregar
+            al carrito</button>
           <a class="btnInicio" href="/products/inicio">Volver al inicio</a>
         </div>
-
       {{/each}}
-
     </div>
 
   </section>
 </main>
-<script src="/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="/js/productDetail.js"></script>

@@ -42,7 +42,6 @@
   padding: 2rem;
   border: solid 1px black;
 }
-
 .infoCard {
   display: flex;
   flex-direction: column;
@@ -54,10 +53,14 @@
   font-weight: 700;
 }
 .productPrice {
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 .productDescription {
   font-size: 1.6rem;
+}
+.productsQuantity {
+  font-size: 1.6rem;
+  font-weight: 600;
 }
 .btnsContainer {
   display: flex;
@@ -72,7 +75,9 @@
   font-size: 1.2rem;
   font-weight: 600;
   text-decoration: none;
+  text-align: center;
   cursor: pointer;
   padding: 0.5rem;
   border: solid 1px black;
+  background-color: transparent;
 }
