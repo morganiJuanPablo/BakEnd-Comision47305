@@ -2,22 +2,15 @@
   <section class="productDetailContainer--productSection">
     <nav>
       <ul class="navContainer">
-        <li class="navContainer--li"><a href="/products/inicio">Todos</a></li>
+        <li class="navContainer--li"><a href="/products/inicio">Inicio</a></li>
         <li class="navContainer--li"><a href="/products/TopVentas">Top Ventas</a></li>
         <li class="navContainer--li"><a
             href="/products/EdicionesEspeciales"
           >Ediciones Especiales</a></li>
-        <li class="navContainer--li"><a
-            href="/realtimeproducts"
-            style="border: solid 1px white; padding:1rem"
-          > Administrador de productos</a></li>
-        <li class="navContainer--li"><a
-            href="/chat"
-            style="background-color:white;color:black;padding:1rem"
-          > Chat</a></li>
+        <li class="navContainer--li"><a href="/chat"> Chat</a></li>
         <li class="navContainer--li"><a
             href="/cart/65227efc9ddfa566df832c8e"
-            style="background-color: white; padding:1rem; color:black"
+            style="background-color: black; padding:1rem; color:white"
           > CARRITO</a></li>
       </ul>
     </nav>
@@ -37,7 +30,9 @@
         <div class="btnsContainer">
           <button id="addToCartBtn" onclick="addToCart(`{{this._id}}`)">Agregar
             al carrito</button>
-          <a class="btnInicio" href="/products/inicio">Volver al inicio</a>
+          <a class="btnInicio_Cart" href="/products/inicio">Volver al inicio</a>
+          <a class="btnInicio_Cart" href="/cart/65227efc9ddfa566df832c8e">Ir al
+            carrito</a>
         </div>
       {{/each}}
     </div>

@@ -11,6 +11,10 @@ import { mongoProductsItem } from "./dao/index.js";
 import { mongoChatItem } from "./dao/index.js";
 import { chatRouter } from "./routes/chats.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
+import { loginRouter } from "./routes/login.routes.js";
+import { sessionsRouter } from "./routes/sessions.routes.js";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 
 const port = 8080;
 const app = express();
@@ -19,6 +23,19 @@ const app = express();
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//Configurar la sesión
+app.use(
+  session({
+    store: MongoStore.create({
+      ttl: 300,
+      mongoUrl:
+        "mongodb+srv://morganijuanpablo:XgMe7LjudVbQGoKJ@juampidb.wigsasz.mongodb.net/ecomerceDB?retryWrites=true&w=majority",
+    }),
+    secret: "coderKey",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 //Servidores
 const httpServer = app.listen(port, () => console.log("Servidor funcionando."));
@@ -37,6 +54,8 @@ app.use("/", productsRouter);
 app.use("/", realTimeProducts);
 app.use("/", chatRouter);
 app.use("/", cartsRouter);
+app.use("/", loginRouter);
+app.use("/api/session", sessionsRouter);
 
 //Websockets
 socketServer.on("connection", async (socket) => {

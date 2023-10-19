@@ -28,7 +28,7 @@ const btnEmptyCart = document.getElementById("btnEmptyCart");
 const cartContainerCards = document.getElementById("cartContainerCards");
 async function emptyCartCheck() {
   if (!cartContainerCards.innerHTML.trim()) {
-    cartContainerCards.innerHTML = `<p class='emptyCartmessage'> El carrito está vacío<br>:(</p>`;
+    cartContainerCards.innerHTML = `<p class='emptyCartmessage'> El carrito está vacío</p>`;
     btnEmptyCart.classList.add("btnEmptyCartDisabled");
   }
 }

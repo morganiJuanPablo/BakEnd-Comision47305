@@ -6,7 +6,6 @@ const router = Router();
 ///////////////////////////////////////////////////////////////////
 
 //GET
-
 router.get("/carts", async (req, res) => {
   try {
     const carts = await mongoCartItem.getCarts();
@@ -16,13 +15,20 @@ router.get("/carts", async (req, res) => {
   }
 });
 
+///////////////////////////////////////////////////////////////////
+
+//GET
 router.get("/cart/:cartId", async (req, res) => {
   try {
     const cartId = req.params.cartId;
     const cart = await mongoCartItem.getCartById(cartId);
+    const isAdmin = req.session.role === "Admin" && true;
     const data = {
+      isAdmin,
       style: "cart.css",
       products: cart.products,
+      role: req.session.role,
+      userFirstName: req.session.first_name,
     };
     /* res.json({ status: "success", data: cart }); */
     res.render("cart", data);
@@ -34,7 +40,6 @@ router.get("/cart/:cartId", async (req, res) => {
 ///////////////////////////////////////////////////////////////////
 
 //POST
-
 router.post("/cart", async (req, res) => {
   try {
     const newCart = await mongoCartItem.createCart();
@@ -48,6 +53,9 @@ router.post("/cart", async (req, res) => {
   }
 });
 
+///////////////////////////////////////////////////////////////////
+
+//POST
 router.post("/cart/:cartId/product/:productId", async (req, res) => {
   try {
     const cartId = req.params.cartId;
@@ -67,7 +75,6 @@ router.post("/cart/:cartId/product/:productId", async (req, res) => {
 ///////////////////////////////////////////////////////////////////
 
 //PUT
-
 router.put("/cart/:cartId/product/:productId", async (req, res) => {
   try {
     const quantity = req.body.quantity;
@@ -91,7 +98,6 @@ router.put("/cart/:cartId/product/:productId", async (req, res) => {
 ///////////////////////////////////////////////////////////////////
 
 //DELETE
-
 /* router.delete("/cart/:cartId", async (req, res) => {
   try {
     const cartId = req.params.cartId;
@@ -105,6 +111,9 @@ router.put("/cart/:cartId/product/:productId", async (req, res) => {
   }
 }); */
 
+///////////////////////////////////////////////////////////////////
+
+//DELETE
 router.delete("/cart/:cartId/product/:productId", async (req, res) => {
   try {
     const cartId = req.params.cartId;
@@ -120,6 +129,9 @@ router.delete("/cart/:cartId/product/:productId", async (req, res) => {
   }
 });
 
+///////////////////////////////////////////////////////////////////
+
+//DELETE
 router.delete("/cart/:cartId", async (req, res) => {
   try {
     const cartId = req.params.cartId;

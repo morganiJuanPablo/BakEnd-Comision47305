@@ -14,10 +14,23 @@
 
   <main id="principalMain">
     <header class="headerContainer">
-      <a href="/products/inicio"><img
-          src="https://res.cloudinary.com/dqykftyy6/image/upload/v1694874155/ProyectoBackEnd/FooFightersLogo_vusix0.svg"
-          alt="Foo Fighters Logo"
-        /></a>
+      {{#if isAdmin}}
+        <a class="productsAdminBtn" href="/realtimeproducts">
+          Administrador de productos</a>
+      {{/if}}
+      <img
+        src="https://res.cloudinary.com/dqykftyy6/image/upload/v1694874155/ProyectoBackEnd/FooFightersLogo_vusix0.svg"
+        alt="Foo Fighters Logo"
+      />
+      <section class="profileHeader">
+        {{#if role}}
+          <p class="greetingUser">Hola
+            {{userFirstName}}!
+          </p>
+          <a href="/profile" class="profileBtn">// PERFIL //</a>
+        {{/if}}
+
+      </section>
     </header>
     <body>
       {{{body}}}
@@ -50,4 +63,5 @@
       </div>
     </footer>
   </main>
+  <script src="/js/main.js"></script>
 </html>

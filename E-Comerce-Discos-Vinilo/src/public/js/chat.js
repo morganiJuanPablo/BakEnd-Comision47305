@@ -8,10 +8,8 @@ const messagesContainer = document.getElementById(
   "chatSection--messagesSection"
 );
 
-let user;
-
 //Conexión del usuario
-Swal.fire({
+/* Swal.fire({
   title: "Ingresa tu nombre de usuario",
   input: "text",
   inputValidator: (value) => {
@@ -21,8 +19,8 @@ Swal.fire({
   allowEscapeKey: false,
 }).then((inputValue) => {
   user = inputValue.value;
-  welcomeMessage.innerHTML = `Hola ${user}, dejanos tu mensaje, consulta, o lo que quieras!`;
-});
+  welcomeMessage.innerHTML = ``;
+}); */
 
 //Evento submit del mensaje
 btnSubmit.addEventListener("click", (e) => {

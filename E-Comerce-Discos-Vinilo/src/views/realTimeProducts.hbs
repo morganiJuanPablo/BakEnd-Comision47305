@@ -1,7 +1,7 @@
 <main class="realTimeViewMain">
-  <h1 class="adminTitle">Bienvenido al administrador de productos</h1>
+  <h2 class="adminTitle">Bienvenido al administrador de productos</h2>
+  <a href="/products/inicio" class="goBackBtn">// Volver //</a>
   <div class="mainContainer">
-
     <section class="inputsSection">
       {{! Form post method }}
       <section class="formContainer">
@@ -122,13 +122,10 @@
           />
           <button class="generalButton">Actualizar</button>
         </form>
-
       </section>
     </section>
-
     <section class="productsSection" id="cardProductAdmin"></section>
   </div>
-
 </main>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="socket.io/socket.io.js"></script>

@@ -147,6 +147,16 @@
   border-color: black !important;
   box-shadow: none !important;
 }
-.swal2-validation-message{
+.swal2-validation-message {
   font-size: 1.5rem;
+}
+.goBackBtn {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+  margin-top: 5rem;
+  width: 50%;
+  margin: auto;
+  display: flex;
 }

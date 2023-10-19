@@ -1,0 +1,26 @@
+<main class="profileContainer">
+  <section class="profileContainer--profileSection">
+    <aside>
+      <img
+        src="https://res.cloudinary.com/dqykftyy6/image/upload/v1697662110/ProyectoBackEnd/MV5BZjRmNzhhNDUtMWE1Zi00ZjM5LWEzYjYtZThmMTkwNDU5YjcyXkEyXkFqcGdeQXVyNjc1OTk4NjA_._V1__bvpfdc.jpg"
+        alt=""
+      />
+    </aside>
+    <article class="userProfile">
+      <h3 class="profileWelcome">Bienvenido a tu perfil</h3>
+      <h5 class="profileTitle">Nombre</h5>
+      <p class="profileDetail">{{userFirstName}}</p>
+      {{#if ageExist}}
+        <h5 class="profileTitle">Edad</h5>
+        <p class="profileDetail">{{age}}</p>
+      {{/if}}
+      <h5 class="profileTitle">Email</h5>
+      <p class="profileDetail">{{email}}</p>
+      <h5 class="profileTitle">Rol</h5>
+      <p class="profileDetail">{{role}}</p>
+      <a href="/products/inicio" class="goBackBtn">// Volver //</a>
+      <a class="logout" href="/api/session/logout">// Cerrar sesión //</a>
+    </article>
+
+  </section>
+</main>

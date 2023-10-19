@@ -18,26 +18,29 @@
   color: white;
 }
 .navContainer--li a {
-  color: white;
+  color: black;
   font-size: 1.65rem;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
 }
 .productDetailContainer--productSection {
   width: 100%;
   height: auto;
-  background-color: black;
+  background-color: white;
   margin-top: 50rem;
   margin-bottom: 10rem;
   padding: 2rem;
 }
 .productContainer {
-  width: 37%;
-  margin: 10rem auto 10rem auto;
+  width: 33%;
+  margin: 8rem auto 10rem auto;
   display: flex;
   flex-direction: column;
   gap: 5rem;
+}
+.productContainer img {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 .productContainer--info {
   display: flex;
@@ -45,16 +48,16 @@
   gap: 2rem;
 }
 .productDetail--title {
-  color: white;
+  color: black;
   font-size: 2rem;
   font-weight: 700;
 }
 .productDetail--description {
-  color: white;
+  color: black;
   font-size: 1.8rem;
 }
 .productDetail--price {
-  color: white;
+  color: black;
   font-size: 2.2rem;
   font-weight: 700;
 }
@@ -86,8 +89,8 @@
   gap: 2rem;
 }
 #addToCartBtn {
-  color: color;
-  background-color: white;
+  color: white;
+  background-color: black;
   border-style: none;
   font-size: 1.65rem;
   font-weight: 600;
@@ -95,9 +98,9 @@
   cursor: pointer;
   padding: 1rem;
 }
-.btnInicio {
-  color: white;
-  border: solid 1px white;
+.btnInicio_Cart {
+  color: black;
+  border: solid 1px black;
   padding: 1rem;
   font-size: 1.65rem;
   font-weight: 600;

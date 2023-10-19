@@ -3,6 +3,9 @@
   width: 100%;
   height: auto;
   padding-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .adminTitle {
   width: 100%;
@@ -17,7 +20,7 @@
 .mainContainer {
   width: 80%;
   max-width: 220rem;
-  margin: 3rem auto 10rem auto;
+  margin: 1rem auto 10rem auto;
   padding: 2rem;
   display: flex;
   flex-direction: row;
@@ -218,4 +221,12 @@
   font-weight: 700 !important;
   margin-left: 0.5rem !important;
   cursor: pointer;
+}
+.goBackBtn {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+  padding:3rem;  
+  text-align: center;
 }

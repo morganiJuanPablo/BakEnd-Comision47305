@@ -1,0 +1,26 @@
+<main class="loginMain" id="loginView">
+
+  <aside class="sessionImage">
+    <img
+      src="https://res.cloudinary.com/dqykftyy6/image/upload/v1697571357/1_bewhlt.jpg"
+      alt="Inicio sesión"
+    />
+  </aside>
+  <form method="post" action="/api/session/login">
+    {{#if message}}
+      <p class="welcomeMessage">{{message}}</p>
+    {{/if}}
+    {{#if error}}
+      <p class="errorMessage">{{error}}</p>
+    {{/if}}
+    <h3 class="formSessionTitle">Inicia sesión</h3>
+    <input type="email" name="email" placeholder="Ingresa tu email" />
+    <input type="password" name="password" placeholder="Contraseña" />
+    <button>Ingresar</button>
+    <footer class="footerForm">Si no tienes cuenta<a
+        id="btnRegistro"
+        href="/new_user"
+      >
+        registrate</a></footer>
+  </form>
+</main>

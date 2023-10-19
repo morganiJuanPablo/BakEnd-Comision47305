@@ -1,18 +1,22 @@
 <main class="chatContainer">
   <section class="chatContainer--chatSection">
-    <div class="chatSection--header">
-      <h1 class="chatSection--header-title">Bienvenid@ a nuestra comunidad</h1>
-    </div>
+    <a href="/products/inicio" class="goBackBtn">// Volver //</a>
     <div id="chatSection--chatWindow">
-      <div class="chatWindow-header">
+      <header class="chatWindow-header">
         <img
           src="https://res.cloudinary.com/dqykftyy6/image/upload/v1696363822/ProyectoBackEnd/avatarChat2_snxaym.svg"
           alt="Avatar Chat"
           style="scale: 140%;"
         />
         <span>Staff</span>
-        <p id="welcome-message" style="margin-left:auto"></p>
-      </div>
+        <script>
+          const user = "{{userFirstName}}";
+        </script>
+        <p id="welcome-message" style="margin-left:auto"><strong
+            style="font-size: 1.7rem;"
+          >{{userFirstName}}</strong>, dejanos tu mensaje, consulta, o lo que
+          quieras!</p>
+      </header>
       <div id="chatSection--messagesSection"></div>
     </div>
     <form class="chatSection--inputTextContainer">

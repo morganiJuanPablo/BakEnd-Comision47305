@@ -1,0 +1,21 @@
+<main
+  style="width: 100%; heigth:100vh"
+  class="loginMain viewOff"
+  id="newUserView"
+>
+  <form method="post" action="/api/session/new_user">
+    <h3 class="formSessionTitle">Crea tu cuenta</h3>
+    <input type="text" name="first_name" placeholder="Nombre" />
+    <input type="text" name="last_name" placeholder="Apellido" />
+    <input type="email" name="email" placeholder="E-mail" />
+    <input type="number" name="age" placeholder="Edad" />
+    <input type="password" name="password" placeholder="Contraseña" />
+    <button>Crear</button>
+  </form>
+  <aside class="sessionImage">
+    <img
+      src="https://res.cloudinary.com/dqykftyy6/image/upload/v1697571357/2_uqnx27.jpg"
+      alt="Inicio sesión"
+    />
+  </aside>
+</main>
