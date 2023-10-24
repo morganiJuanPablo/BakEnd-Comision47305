@@ -1,16 +1,34 @@
-<main
-  style="width: 100%; heigth:100vh"
-  class="loginMain viewOff"
-  id="newUserView"
->
+<main class="loginMain">
+  <div class="loaderBackground">// CARGANDO... //</div>
   <form method="post" action="/api/session/new_user">
+    {{#if error}}
+      <p class="errorMessage">{{error}}</p>
+    {{/if}}
     <h3 class="formSessionTitle">Crea tu cuenta</h3>
     <input type="text" name="first_name" placeholder="Nombre" />
     <input type="text" name="last_name" placeholder="Apellido" />
     <input type="email" name="email" placeholder="E-mail" />
     <input type="number" name="age" placeholder="Edad" />
     <input type="password" name="password" placeholder="Contraseña" />
-    <button>Crear</button>
+    <button class="submitBtns">// Crear //</button>
+    <section class="externalConnectSection">
+      <a class="submitBtns" href="/api/session/github_new_user">O crea tu cuenta
+        con GitHub
+        <img
+          src="https://res.cloudinary.com/dqykftyy6/image/upload/v1698062452/ProyectoBackEnd/githubIcon_kr0dd0.svg"
+          alt="GitHub Icon"
+        /></a>
+    </section>
+    <section class="externalConnectSection">
+      <a class="submitBtns" href="/api/session/google/new_user">O crea tu cuenta
+        con Google
+        <img
+          src="https://res.cloudinary.com/dqykftyy6/image/upload/v1698062819/ProyectoBackEnd/icon__google_oz88y0.svg"
+          alt="Google Icon"
+        /></a>
+    </section>
+    <footer class="footerForm">Si ya tienes cuenta<a href="/login">
+        ingresa aquí</a></footer>
   </form>
   <aside class="sessionImage">
     <img
@@ -19,3 +37,4 @@
     />
   </aside>
 </main>
+<script src="js/loaderBackground.js"></script>

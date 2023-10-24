@@ -8,18 +8,18 @@
     </aside>
     <article class="userProfile">
       <h3 class="profileWelcome">Bienvenido a tu perfil</h3>
-      <h5 class="profileTitle">Nombre</h5>
+      <h4 class="profileTitle">Nombre</h4>
       <p class="profileDetail">{{userFirstName}}</p>
       {{#if ageExist}}
-        <h5 class="profileTitle">Edad</h5>
+        <h4 class="profileTitle">Edad</h4>
         <p class="profileDetail">{{age}}</p>
       {{/if}}
-      <h5 class="profileTitle">Email</h5>
+      <h4 class="profileTitle">Email</h4>
       <p class="profileDetail">{{email}}</p>
-      <h5 class="profileTitle">Rol</h5>
+      <h4 class="profileTitle">Rol</h4>
       <p class="profileDetail">{{role}}</p>
       <a href="/products/inicio" class="goBackBtn">// Volver //</a>
-      <a class="logout" href="/api/session/logout">// Cerrar sesión //</a>
+      <a class="logout" href="/logout">// Cerrar sesión //</a>
     </article>
 
   </section>

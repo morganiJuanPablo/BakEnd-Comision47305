@@ -44,8 +44,7 @@ export class ProductsManagerMongo {
   ///////////////////////////////////////////////////////////////////
 
   async getCategoryProducts(category) {
-    try {
-      console.log(category);
+    try {      
       const products = await this.model.find({ category: category }).lean();
       return products;
     } catch (error) {

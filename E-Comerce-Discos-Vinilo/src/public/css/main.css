@@ -19,22 +19,24 @@
 }
 .headerContainer {
   width: 100%;
-  height: 14rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  height: 15rem;
   padding: 5rem;
   background-color: white;
+  display: grid;
+  grid-template-columns: 2fr 8fr 2fr;
+  grid-template-areas: "btnAdmin logoArea profileArea";
 }
 .headerContainer img {
-  margin: auto;
+  margin: 0 auto;
+  grid-area: logoArea;
   align-self: center;
 }
 .profileHeader {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  grid-area: profileArea;
+  align-self: center;
 }
 .greetingUser {
   font-size: 1.8rem;
@@ -49,14 +51,17 @@
   text-align: right;
   text-decoration: none;
 }
-.productsAdminBtn {
+.productsAdminBtn {  
   color: black;
   font-size: 1.5rem;
+  text-align: center;
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
   border: solid 1px black;
   padding: 1rem;
+  grid-area: btnAdmin;
+  align-self: center;
 }
 .footerContainer {
   width: 100%;

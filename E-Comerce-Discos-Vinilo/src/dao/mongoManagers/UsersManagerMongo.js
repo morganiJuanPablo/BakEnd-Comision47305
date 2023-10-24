@@ -22,7 +22,19 @@ export class UsersManagerMongo {
 
   async getUser(userEmail) {
     try {
-      const user = await this.userModel.findOne({email:userEmail});
+      const user = await this.userModel.findOne({ email: userEmail });
+      return user;
+    } catch (error) {
+      console.log(error.message);
+      throw new Error(`El usuario solicitado no existe en nuestros registros`);
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
+  async getUserById(userId) {
+    try {
+      const user = await this.userModel.findById(userId);
       return user;
     } catch (error) {
       console.log(error.message);

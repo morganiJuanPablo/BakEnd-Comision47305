@@ -15,6 +15,9 @@ import { loginRouter } from "./routes/login.routes.js";
 import { sessionsRouter } from "./routes/sessions.routes.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import passport from "passport";
+import { passportInit } from "./config/passportConfig.js";
+import { generalConfig } from "./config/generalConfig.js";
 
 const port = 8080;
 const app = express();
@@ -23,19 +26,24 @@ const app = express();
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 //Configurar la sesión
 app.use(
   session({
     store: MongoStore.create({
       ttl: 300,
-      mongoUrl:
-        "mongodb+srv://morganijuanpablo:XgMe7LjudVbQGoKJ@juampidb.wigsasz.mongodb.net/ecomerceDB?retryWrites=true&w=majority",
+      mongoUrl: generalConfig.mongo.url,
     }),
-    secret: "coderKey",
+    secret: generalConfig.server.secretSession,
     resave: true,
     saveUninitialized: true,
   })
 );
+
+//Configuración passport
+passportInit();
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Servidores
 const httpServer = app.listen(port, () => console.log("Servidor funcionando."));

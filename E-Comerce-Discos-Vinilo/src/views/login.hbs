@@ -1,5 +1,5 @@
 <main class="loginMain" id="loginView">
-
+  <div class="loaderBackground">// CARGANDO... //</div>
   <aside class="sessionImage">
     <img
       src="https://res.cloudinary.com/dqykftyy6/image/upload/v1697571357/1_bewhlt.jpg"
@@ -16,11 +16,25 @@
     <h3 class="formSessionTitle">Inicia sesión</h3>
     <input type="email" name="email" placeholder="Ingresa tu email" />
     <input type="password" name="password" placeholder="Contraseña" />
-    <button>Ingresar</button>
-    <footer class="footerForm">Si no tienes cuenta<a
-        id="btnRegistro"
-        href="/new_user"
-      >
+    <button class="submitBtns">// Ingresar //</button>
+    <section class="externalConnectSection">
+      <a class="submitBtns" href="/api/session/github_new_user">O inicia sesión
+        con GitHub
+        <img
+          src="https://res.cloudinary.com/dqykftyy6/image/upload/v1698062452/ProyectoBackEnd/githubIcon_kr0dd0.svg"
+          alt="GitHub Icon"
+        /></a>
+    </section>
+    <section class="externalConnectSection">
+      <a class="submitBtns" href="/api/session/google/new_user">O inicia sesión
+        con Google
+        <img
+          src="https://res.cloudinary.com/dqykftyy6/image/upload/v1698062819/ProyectoBackEnd/icon__google_oz88y0.svg"
+          alt="Google Icon"
+        /></a>
+    </section>
+    <footer class="footerForm">Si no tienes cuenta<a href="/new_user">
         registrate</a></footer>
   </form>
 </main>
+<script src="js/loaderBackground.js"></script>

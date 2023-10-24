@@ -1,6 +1,7 @@
 //
 import { Router } from "express";
 import { mongoCartItem } from "../dao/index.js";
+import { roleClient } from "../utils.js";
 const router = Router();
 
 ///////////////////////////////////////////////////////////////////
@@ -8,8 +9,12 @@ const router = Router();
 //GET
 router.get("/carts", async (req, res) => {
   try {
-    const carts = await mongoCartItem.getCarts();
-    res.json({ status: "success", data: carts });
+    if (req.user?.email) {
+      const carts = await mongoCartItem.getCarts();
+      res.json({ status: "success", data: carts });
+    } else {
+      res.redirect("/session_destroyed");
+    }
   } catch (error) {
     res.json({ Error: error.message });
   }
@@ -20,18 +25,23 @@ router.get("/carts", async (req, res) => {
 //GET
 router.get("/cart/:cartId", async (req, res) => {
   try {
-    const cartId = req.params.cartId;
-    const cart = await mongoCartItem.getCartById(cartId);
-    const isAdmin = req.session.role === "Admin" && true;
-    const data = {
-      isAdmin,
-      style: "cart.css",
-      products: cart.products,
-      role: req.session.role,
-      userFirstName: req.session.first_name,
-    };
-    /* res.json({ status: "success", data: cart }); */
-    res.render("cart", data);
+    if (req.user?.email) {
+      const cartId = req.params.cartId;
+      const cart = await mongoCartItem.getCartById(cartId);
+      const role = roleClient(req);
+      const isAdmin = req.user.role === "Administrador" && true;
+      const data = {
+        isAdmin,
+        role,
+        style: "cart.css",
+        products: cart.products,
+        userFirstName: req.user.first_name,
+      };
+      /* res.json({ status: "success", data: cart }); */
+      res.render("cart", data);
+    } else {
+      res.redirect("/session_destroyed");
+    }
   } catch (error) {
     res.json({ Error: error.message });
   }
