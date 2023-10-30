@@ -13,22 +13,21 @@ import { chatRouter } from "./routes/chats.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
 import { loginRouter } from "./routes/login.routes.js";
 import { sessionsRouter } from "./routes/sessions.routes.js";
-import session from "express-session";
-import MongoStore from "connect-mongo";
+import cookieParser from "cookie-parser";
 import passport from "passport";
 import { passportInit } from "./config/passportConfig.js";
-import { generalConfig } from "./config/generalConfig.js";
 
 const port = 8080;
 const app = express();
 
 //Middlewares
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Configurar la sesión
-app.use(
+/* app.use(
   session({
     store: MongoStore.create({
       ttl: 300,
@@ -38,12 +37,12 @@ app.use(
     resave: true,
     saveUninitialized: true,
   })
-);
+); */
 
 //Configuración passport
 passportInit();
 app.use(passport.initialize());
-app.use(passport.session());
+/* app.use(passport.session()); */
 
 //Servidores
 const httpServer = app.listen(port, () => console.log("Servidor funcionando."));

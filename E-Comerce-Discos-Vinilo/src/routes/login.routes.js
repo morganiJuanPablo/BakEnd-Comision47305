@@ -1,6 +1,7 @@
 //
 import { Router } from "express";
 import { roleClient } from "../utils.js";
+import passport from "passport";
 const router = Router();
 
 ///////////////////////////////////////////////////////////////////
@@ -65,44 +66,39 @@ router.get("/new_user_fail", async (req, res) => {
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get("/profile", async (req, res) => {
-  try {
-    if (req.user?.email) {
-      const role = roleClient(req);
-      const ageExist = req.user.age && true;
-      const data = {
-        style: "profile.css",
-        userFirstName: req.user.first_name,
-        age: req.user.age,
-        email: req.user.email,
-        role,
-        ageExist,
-      };
-      res.render("profile", data);
-    } else {
-      res.redirect("/session_destroyed");
+router.get(
+  "/profile",
+  passport.authenticate("jwtAuth", { session: false }),
+  async (req, res) => {
+    try {
+      if (req.user?.email) {
+        const role = roleClient(req);
+        const ageExist = req.user.age && true;
+        const data = {
+          style: "profile.css",
+          userFirstName: req.user.name,
+          age: req.user.age,
+          email: req.user.email,
+          role,
+          ageExist,
+        };
+        res.render("profile", data);
+      } else {
+        res.redirect("/session_destroyed");
+      }
+    } catch (error) {
+      res.json({ status: "Error", message: error.message });
     }
-  } catch (error) {
-    res.json({ status: "Error", message: error.message });
   }
-});
+);
 
 ///////////////////////////////////////////////////////////////////
 
 //GET
 router.get("/logout", async (req, res) => {
   try {
-    req.session.destroy((err) => {
-      if (err) {
-        const data = {
-          style: "home.css",
-          error: "No se pudo cerrar sesión",
-        };
-        return res.render("home", data);
-      } else {
-        res.redirect("/login");
-      }
-    });
+    res.clearCookie("authLogin");
+    res.redirect("/login");
   } catch (error) {
     console.log(error.message);
   }

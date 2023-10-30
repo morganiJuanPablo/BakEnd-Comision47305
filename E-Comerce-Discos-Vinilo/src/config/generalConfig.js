@@ -3,9 +3,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const generalConfig = {
-  server: {
-    secretSession: process.env.SESSION_KEY,
-  },
   mongo: {
     url: process.env.MONGO_URL,
   },
@@ -18,5 +15,8 @@ export const generalConfig = {
     callbackUrl: process.env.GOOGLE_CALLBACK_URL,
     clientId: process.env.GOOGLE_CLIENT_ID,
     clientKey: process.env.GOOGLE_CLIENT_KEY,
+  },
+  tokenJWT: {
+    tokenJWTkey: process.env.PRIVATE_KEY_TOKENS,
   },
 };

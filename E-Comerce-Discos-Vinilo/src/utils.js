@@ -1,6 +1,8 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import { generalConfig } from "./config/generalConfig.js";
 
 export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -10,6 +12,20 @@ export const createHashPass = (password) => {
 
 export const isValidated = (password, userInfo) => {
   return bcrypt.compareSync(password, userInfo.password);
+};
+
+export const generateToken = (user) => {
+    const token = jwt.sign(
+    {
+      name: user.first_name,
+      email: user.email,
+      role: user.role,
+      age: user.age,
+    },
+    generalConfig.tokenJWT.tokenJWTkey,
+    { expiresIn: "1h" }
+  );
+  return token;
 };
 
 //función para saber conocer el rol del cliente y poder acceder o no al administrador de productos

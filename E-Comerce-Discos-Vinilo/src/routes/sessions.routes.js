@@ -3,6 +3,7 @@ import { Router } from "express";
 import { generalConfig } from "../config/generalConfig.js";
 import passport from "passport";
 const router = Router();
+import { generateToken } from "../utils.js";
 
 ///////////////////////////////////////////////////////////////////
 
@@ -11,6 +12,7 @@ router.post(
   "/new_user",
   passport.authenticate("localRegisterStrategy", {
     failureRedirect: "/new_user_fail",
+    session: false,
   }),
   async (req, res) => {
     try {
@@ -32,9 +34,13 @@ router.post(
   "/login",
   passport.authenticate("localLoginStrategy", {
     failureRedirect: "/login_fail",
+    session: false,
   }),
   async (req, res) => {
     try {
+      const user = req.user;
+      const token = generateToken(user);
+      res.cookie("authLogin", token, { maxAge: 3600000, httpOnly: true });
       res.redirect("/products/inicio");
     } catch (error) {
       const data = {
@@ -54,8 +60,12 @@ router.get(
   generalConfig.github.callbackUrl,
   passport.authenticate("githubRegisterStrategy", {
     failureRedirect: "api/session/github_new_user_fail",
+    session: false,
   }),
   (req, res) => {
+    const user = req.user;
+    const token = generateToken(user);
+    res.cookie("authLogin", token, { maxAge: 3600000, httpOnly: true });
     res.redirect("/products/inicio");
   }
 );
@@ -68,8 +78,12 @@ router.get(
   generalConfig.google.callbackUrl,
   passport.authenticate("googleRegisterStrategy", {
     failureRedirect: "/login",
+    session: false,
   }),
   (req, res) => {
+    const user = req.user;
+    const token = generateToken(user);
+    res.cookie("authLogin", token, { maxAge: 3600000, httpOnly: true });
     res.redirect("/products/inicio");
   }
 );

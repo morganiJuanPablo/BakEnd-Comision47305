@@ -2,50 +2,59 @@
 import { Router } from "express";
 import { mongoCartItem } from "../dao/index.js";
 import { roleClient } from "../utils.js";
+import passport from "passport";
 const router = Router();
 
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get("/carts", async (req, res) => {
-  try {
-    if (req.user?.email) {
-      const carts = await mongoCartItem.getCarts();
-      res.json({ status: "success", data: carts });
-    } else {
-      res.redirect("/session_destroyed");
+router.get(
+  "/carts",
+  passport.authenticate("jwtAuth", { session: false }),
+  async (req, res) => {
+    try {
+      if (req.user?.email) {
+        const carts = await mongoCartItem.getCarts();
+        res.json({ status: "success", data: carts });
+      } else {
+        res.redirect("/session_destroyed");
+      }
+    } catch (error) {
+      res.json({ Error: error.message });
     }
-  } catch (error) {
-    res.json({ Error: error.message });
   }
-});
+);
 
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get("/cart/:cartId", async (req, res) => {
-  try {
-    if (req.user?.email) {
-      const cartId = req.params.cartId;
-      const cart = await mongoCartItem.getCartById(cartId);
-      const role = roleClient(req);
-      const isAdmin = req.user.role === "Administrador" && true;
-      const data = {
-        isAdmin,
-        role,
-        style: "cart.css",
-        products: cart.products,
-        userFirstName: req.user.first_name,
-      };
-      /* res.json({ status: "success", data: cart }); */
-      res.render("cart", data);
-    } else {
-      res.redirect("/session_destroyed");
+router.get(
+  "/cart/:cartId",
+  passport.authenticate("jwtAuth", { session: false }),
+  async (req, res) => {
+    try {
+      if (req.user?.email) {
+        const cartId = req.params.cartId;
+        const cart = await mongoCartItem.getCartById(cartId);
+        const role = roleClient(req);
+        const isAdmin = req.user.role === "Administrador" && true;
+        const data = {
+          isAdmin,
+          role,
+          style: "cart.css",
+          products: cart.products,
+          userFirstName: req.user.name,
+        };
+        /* res.json({ status: "success", data: cart }); */
+        res.render("cart", data);
+      } else {
+        res.redirect("/session_destroyed");
+      }
+    } catch (error) {
+      res.json({ Error: error.message });
     }
-  } catch (error) {
-    res.json({ Error: error.message });
   }
-});
+);
 
 ///////////////////////////////////////////////////////////////////
 

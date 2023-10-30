@@ -3,9 +3,14 @@ import passport from "passport";
 import localStrategy from "passport-local";
 import GithubStrategy from "passport-github2";
 import GoogleStrategy from "passport-google-oauth20";
+import jwt from "passport-jwt";
 import { createHashPass, isValidated } from "../utils.js";
 import { mongoUserItem } from "../dao/index.js";
 import { generalConfig } from "./generalConfig.js";
+
+
+const JWTStrategy = jwt.Strategy;
+const extractJwt = jwt.ExtractJwt;
 
 export const passportInit = () => {
   //////////////////////////////////////////////////////////////////REGISTRO LOCAL
@@ -115,7 +120,6 @@ export const passportInit = () => {
       },
       async (accesToken, refreshToken, profile, done) => {
         try {
-          
           const user = await mongoUserItem.getUser(profile._json.email);
           if (user) {
             return done(null, user);
@@ -137,14 +141,44 @@ export const passportInit = () => {
     )
   );
 
-  /////////////////////////////////////////////////////////////////////
-  //SERIALIZER
+  //////////////////////////////////////////////////////////////////PASSPORT JWT
 
-  passport.serializeUser((user, done) => {
-    done(null, user._id);
-  });
-  passport.deserializeUser(async (userId, done) => {
-    const user = await mongoUserItem.getUserById(userId);
-    done(null, user); //req.user quedara guardada la informacion del usuario para acceder desde otras partes del codigo
-  });
+  passport.use(
+    "jwtAuth",
+    new JWTStrategy(
+      {
+        //Extraer la informacion del token
+        jwtFromRequest: extractJwt.fromExtractors([cookieExtractor]),
+        secretOrKey: generalConfig.tokenJWT.tokenJWTkey,
+      },
+      async (jwtPayload, done) => {
+        try {
+          return done(null, jwtPayload);
+        } catch (error) {
+          return done(error);
+        }
+      }
+    )
+  );
 };
+
+const cookieExtractor = (req) => {
+  let token;
+  if (req && req.cookies) {
+    token = req.cookies["authLogin"];
+  } else {
+    token = null;
+  }
+  return token;
+};
+
+/////////////////////////////////////////////////////////////////////
+// SERIALIZER
+
+//   passport.serializeUser((user, done) => {
+//     done(null, user._id);
+//   });
+//   passport.deserializeUser(async (userId, done) => {
+//     const user = await mongoUserItem.getUserById(userId);
+//     done(null, user); //req.user quedara guardada la informacion del usuario para acceder desde otras partes del codigo
+//   });
