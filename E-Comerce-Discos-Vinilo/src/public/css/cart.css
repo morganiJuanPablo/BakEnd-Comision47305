@@ -37,7 +37,7 @@
 }
 .cartProductCard {
   width: 100%;
-  height: 25rem;
+  height: 27rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -3,7 +3,6 @@ import { Router } from "express";
 import passport from "passport";
 import { mongoProductsItem } from "../dao/index.js";
 import { productModel } from "../dao/mongoManagers/modelsDB/products.model.js";
-import { roleClient } from "../utils.js";
 const router = Router();
 
 ///////////////////////////////////////////////////////////////////
@@ -11,12 +10,13 @@ const router = Router();
 //GET
 router.get(
   "/products/:category",
-  passport.authenticate("jwtAuth", { session: false }),
+  passport.authenticate("jwtAuth", {
+    failureRedirect: "/session_destroyed",
+    session: false,
+  }),
   async (req, res) => {
     try {
       if (req.user?.email) {
-        const role = roleClient(req);
-        const isAdmin = role === "Administrador" && true;
         const category = req.params.category;
         let page = +req.query.page || 1;
         let products;
@@ -43,9 +43,10 @@ router.get(
             ? `http://localhost:8080/products/inicio?page=${products.nextPage}`
             : "";
         }
+        const sessionExist = req.user.email && true;
         const data = {
-          isAdmin,
-          role,
+          sessionExist,
+          cartId: req.user.cartId,
           userFirstName: req.user.name,
           style: "home.css",
           status: "success",
@@ -63,7 +64,7 @@ router.get(
       }
     } catch (error) {
       console.log(error.message);
-      res.json({ status: "Error", message: error.message });
+      res.status(500).json({ message: error.message });
     }
   }
 );
@@ -73,18 +74,21 @@ router.get(
 //GET
 router.get(
   "/item/:productId",
-  passport.authenticate("jwtAuth", { session: false }),
+  passport.authenticate("jwtAuth", {
+    failureRedirect: "/session_destroyed",
+    session: false,
+  }),
   async (req, res) => {
     try {
       if (req.user?.email) {
+        const cartId = req.user.cartId;
         const productId = req.params.productId;
         const product = await mongoProductsItem.getProductById(productId);
-        const role = roleClient(req);
-        const isAdmin = role === "Administrador" && true;
+        const sessionExist = req.user.email && true;
         const data = {
-          isAdmin,
+          sessionExist,
+          cartId,
           product,
-          role,
           style: "productDetail.css",
           userFirstName: req.user.name,
         };
@@ -93,7 +97,8 @@ router.get(
         res.redirect("/session_destroyed");
       }
     } catch (error) {
-      res.json({ Error: error.message });
+      console.log(error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 );
@@ -136,8 +141,6 @@ router.get("/products/:category/sort_asc", async (req, res) => {
       }
 
       const data = {
-        isAdmin,
-        role,
         style: "home.css",
         payload: products.docs,
         /*  sortLink: products.linkAsc, */
@@ -153,7 +156,8 @@ router.get("/products/:category/sort_asc", async (req, res) => {
       res.redirect("/session_destroyed");
     }
   } catch (error) {
-    res.json({ status: "Error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 

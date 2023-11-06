@@ -1,7 +1,6 @@
 //
 import { Router } from "express";
 import { mongoCartItem } from "../dao/index.js";
-import { roleClient } from "../utils.js";
 import passport from "passport";
 const router = Router();
 
@@ -20,7 +19,8 @@ router.get(
         res.redirect("/session_destroyed");
       }
     } catch (error) {
-      res.json({ Error: error.message });
+      console.log(error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 );
@@ -30,28 +30,32 @@ router.get(
 //GET
 router.get(
   "/cart/:cartId",
-  passport.authenticate("jwtAuth", { session: false }),
+  passport.authenticate("jwtAuth", {
+    failureRedirect: "/session_destroyed",
+    session: false,
+  }),
   async (req, res) => {
     try {
       if (req.user?.email) {
-        const cartId = req.params.cartId;
+        const cartId = req.user.cartId;
         const cart = await mongoCartItem.getCartById(cartId);
-        const role = roleClient(req);
-        const isAdmin = req.user.role === "Administrador" && true;
+        const sessionExist = req.user.email && true;
         const data = {
-          isAdmin,
-          role,
+          sessionExist,
+          cartId,
           style: "cart.css",
           products: cart.products,
           userFirstName: req.user.name,
         };
-        /* res.json({ status: "success", data: cart }); */
+        console.log(data);
         res.render("cart", data);
+        /* res.json({ status: "success", data: cart }); */
       } else {
         res.redirect("/session_destroyed");
       }
     } catch (error) {
-      res.json({ Error: error.message });
+      console.log(error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 );
@@ -68,7 +72,8 @@ router.post("/cart", async (req, res) => {
       data: newCart,
     });
   } catch (error) {
-    res.json({ Error: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -87,7 +92,8 @@ router.post("/cart/:cartId/product/:productId", async (req, res) => {
       data: newCart,
     });
   } catch (error) {
-    res.json({ status: "error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -110,7 +116,8 @@ router.put("/cart/:cartId/product/:productId", async (req, res) => {
       data: cart,
     });
   } catch (error) {
-    res.json({ status: "error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -144,7 +151,8 @@ router.delete("/cart/:cartId/product/:productId", async (req, res) => {
       data: cart,
     });
   } catch (error) {
-    res.json({ status: "error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -161,7 +169,8 @@ router.delete("/cart/:cartId", async (req, res) => {
       data: cart,
     });
   } catch (error) {
-    res.json({ status: "error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 

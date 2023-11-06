@@ -34,7 +34,7 @@ export const passportInit = () => {
               last_name,
               age,
               email: username,
-              password: createHashPass(password),
+              password: createHashPass(password),                           
             };
             const userRegistered = await mongoUserItem.createUser(newUser);
             return done(null, userRegistered);

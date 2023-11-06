@@ -14,7 +14,7 @@
 
   <main id="principalMain">
     <header class="headerContainer">
-      {{#if isAdmin}}
+      {{#if sessionExist}}
         <a class="productsAdminBtn" href="/realtimeproducts">
           Administrador de productos</a>
       {{/if}}
@@ -23,7 +23,7 @@
         alt="Foo Fighters Logo"
       />
       <section class="profileHeader">
-        {{#if role}}
+        {{#if sessionExist}}
           <p class="greetingUser">Hola
             {{userFirstName}}!
           </p>

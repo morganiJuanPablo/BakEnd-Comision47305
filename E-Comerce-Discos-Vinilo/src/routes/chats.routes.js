@@ -1,6 +1,5 @@
 //
 import { Router } from "express";
-import { roleClient } from "../utils.js";
 import passport from "passport";
 const router = Router();
 
@@ -13,11 +12,9 @@ router.get(
   async (req, res) => {
     try {
       if (req.user?.email) {
-        const role = roleClient(req);
-        const isAdmin = req.user.role === "Administrador" && true;
+        const sessionExist = req.user.email && true;
         const data = {
-          isAdmin,
-          role,
+          sessionExist,
           userFirstName: req.user.name,
           style: "chat.css",
         };
@@ -26,7 +23,8 @@ router.get(
         res.redirect("/session_destroyed");
       }
     } catch (error) {
-      res.json({ Error: error.message });
+      console.log(error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 );

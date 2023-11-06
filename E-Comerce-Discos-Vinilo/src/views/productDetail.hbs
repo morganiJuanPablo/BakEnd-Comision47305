@@ -9,13 +9,19 @@
           >Ediciones Especiales</a></li>
         <li class="navContainer--li"><a href="/chat"> Chat</a></li>
         <li class="navContainer--li"><a
-            href="/cart/65227efc9ddfa566df832c8e"
+            href="/cart/{{this.cartId}}"
             style="background-color: black; padding:1rem; color:white"
           > CARRITO</a></li>
       </ul>
     </nav>
+    <script>
+      const cartId = "{{cartId}}"
+    </script>
     <div class="productContainer">
       {{#each product}}
+        <script>
+          const productId = "{{this._id}}"
+        </script>
         <img style="width:100%" src={{this.thumbnail}} alt="{{this.title}}" />
         <div class="productContainer--info">
           <h5 class="productDetail--title">{{this.title}}</h5>
@@ -27,14 +33,12 @@
           <p class="counter">5</p>
           <a class="counterElems">+</a>
         </div> }}
-        <div class="btnsContainer">
-          <button id="addToCartBtn" onclick="addToCart(`{{this._id}}`)">Agregar
-            al carrito</button>
-          <a class="btnInicio_Cart" href="/products/inicio">Volver al inicio</a>
-          <a class="btnInicio_Cart" href="/cart/65227efc9ddfa566df832c8e">Ir al
-            carrito</a>
-        </div>
       {{/each}}
+      <div class="btnsContainer">
+        <button id="addToCartBtn">Agregar al carrito</button>
+        <a class="btnInicio_Cart" href="/products/inicio">Volver al inicio</a>
+        <a class="btnInicio_Cart" href="/cart/{{cartId}}">Ir al carrito</a>
+      </div>
     </div>
 
   </section>

@@ -1,30 +1,31 @@
-.sessionDestroyedMain {
+.unauthorizedMain {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   position: fixed;
   justify-content: center;
   align-items: center;
 }
-.sessionDestroyedMain img {
+.unauthorizedMain img {
   width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
   object-fit: cover;
 }
-.sessionDestroyedMain p {
+.unauthorizedMain p {
   font-size: 1.6rem;
   font-weight: 900;
+  color: white;
   position: absolute;
   top: 30%;
   bottom: 0;
 }
-.sessionDestroyedMain a {
+.unauthorizedMain a {
   font-size: 1.8rem;
   font-weight: 900;
   position: absolute;
-  color: black;
+  color: white;
   text-decoration: none;
   top: 35%;
   bottom: 0;

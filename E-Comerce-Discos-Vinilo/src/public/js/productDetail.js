@@ -1,10 +1,12 @@
 //
-const addToCart = async (productId) => {
+const btnAddtoCart = document.getElementById("addToCartBtn");
+
+
+btnAddtoCart.addEventListener("click", async () => {
   try {
-    const response = await fetch(
-      `/cart/65227efc9ddfa566df832c8e/product/${productId}`,
-      { method: "POST" }
-    );
+    const response = await fetch(`/cart/${cartId}/product/${productId}`, {
+      method: "POST",
+    });
     const result = await response.json();
     Swal.fire({
       showConfirmButton: false,
@@ -14,4 +16,4 @@ const addToCart = async (productId) => {
   } catch (error) {
     console.error("Error de red:", error);
   }
-};
+});

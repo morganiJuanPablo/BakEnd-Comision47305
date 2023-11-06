@@ -15,12 +15,13 @@ export const isValidated = (password, userInfo) => {
 };
 
 export const generateToken = (user) => {
-    const token = jwt.sign(
+  const token = jwt.sign(
     {
       name: user.first_name,
       email: user.email,
       role: user.role,
       age: user.age,
+      cartId: user.cart,
     },
     generalConfig.tokenJWT.tokenJWTkey,
     { expiresIn: "1h" }
@@ -28,12 +29,22 @@ export const generateToken = (user) => {
   return token;
 };
 
-//función para saber conocer el rol del cliente y poder acceder o no al administrador de productos
+//funciones para manejar la autorización según el rol del cliente
 
-export const roleClient = (req) => {
-  req.user?.email === "adminCoder@coder.com"
-    ? (req.user.role = "Administrador")
-    : (req.user.role = "Usuario");
-  const role = req.user?.role;
-  return role;
+export const roleClient = () => {
+  return async (req) => {
+    const role = req.user.role;
+    return role;
+  };
+};
+
+export const authorize = () => {
+  return async (req, res, next) => {
+    if (req.user.role !== "administrador") {
+      return res.redirect("/unauthorized");
+      /* .status(403)
+        .json({ error: "No tienes los permisos para acceder." }); */
+    }
+    next();
+  };
 };

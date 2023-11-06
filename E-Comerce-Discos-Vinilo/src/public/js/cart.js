@@ -1,10 +1,10 @@
 //
+console.log(cartId);
 const deleteProductCart = async (productId) => {
   try {
-    const response = await fetch(
-      `/cart/65227efc9ddfa566df832c8e/product/${productId}`,
-      { method: "DELETE" }
-    );
+    const response = await fetch(`/cart/${cartId}/product/${productId}`, {
+      method: "DELETE",
+    });
     const result = await response.json();
     location.reload();
   } catch (error) {
@@ -14,7 +14,7 @@ const deleteProductCart = async (productId) => {
 
 const emptyCart = async () => {
   try {
-    const response = await fetch(`/cart/65227efc9ddfa566df832c8e`, {
+    const response = await fetch(`/cart/${cartId}`, {
       method: "DELETE",
     });
     const result = await response.json();

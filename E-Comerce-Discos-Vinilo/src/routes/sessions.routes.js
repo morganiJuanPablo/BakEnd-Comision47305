@@ -22,7 +22,8 @@ router.post(
       };
       res.render("login", data);
     } catch (error) {
-      res.render("login", { Error: error.message });
+      console.log(error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 );
@@ -48,6 +49,8 @@ router.post(
         error: "No se pudo iniciar la sesión",
       };
       res.render("login", data);
+      /*       console.log(error.message);
+      res.status(500).json({ message: error.message }); */
     }
   }
 );

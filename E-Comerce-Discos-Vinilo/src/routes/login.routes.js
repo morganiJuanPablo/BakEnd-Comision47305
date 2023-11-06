@@ -1,6 +1,5 @@
 //
 import { Router } from "express";
-import { roleClient } from "../utils.js";
 import passport from "passport";
 const router = Router();
 
@@ -14,7 +13,8 @@ router.get("/login", async (req, res) => {
     };
     res.render("login", data);
   } catch (error) {
-    res.json({ status: "Error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -29,7 +29,8 @@ router.get("/login_fail", async (req, res) => {
     };
     res.render("login", data);
   } catch (error) {
-    res.json({ status: "Error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -43,7 +44,8 @@ router.get("/new_user", async (req, res) => {
     };
     res.render("loginNewUser", data);
   } catch (error) {
-    res.json({ status: "Error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -59,7 +61,8 @@ router.get("/new_user_fail", async (req, res) => {
     };
     res.render("loginNewUser", data);
   } catch (error) {
-    res.json({ status: "Error", message: error.message });
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -68,26 +71,29 @@ router.get("/new_user_fail", async (req, res) => {
 //GET
 router.get(
   "/profile",
-  passport.authenticate("jwtAuth", { session: false }),
+  passport.authenticate("jwtAuth", {
+    failureRedirect: "/session_destroyed",
+    session: false,
+  }),
   async (req, res) => {
     try {
       if (req.user?.email) {
-        const role = roleClient(req);
         const ageExist = req.user.age && true;
+        const sessionExist = req.user.email && true;
         const data = {
           style: "profile.css",
           userFirstName: req.user.name,
           age: req.user.age,
           email: req.user.email,
-          role,
+          role: req.user.role,
           ageExist,
+          sessionExist,
         };
         res.render("profile", data);
-      } else {
-        res.redirect("/session_destroyed");
       }
     } catch (error) {
-      res.json({ status: "Error", message: error.message });
+      console.log(error.message);
+      res.status(500).json({ message: error.message });
     }
   }
 );
@@ -101,6 +107,7 @@ router.get("/logout", async (req, res) => {
     res.redirect("/login");
   } catch (error) {
     console.log(error.message);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -112,6 +119,20 @@ router.get("/session_destroyed", async (req, res) => {
     res.render("sessionDestroyed", { style: "sessionDestroyed.css" });
   } catch (error) {
     console.log(error.message);
+    res.status(500).json({ message: error.message });
+    res.redirect("/login");
+  }
+});
+
+///////////////////////////////////////////////////////////////////
+
+//GET
+router.get("/unauthorized", async (req, res) => {
+  try {
+    res.render("unauthorized", { style: "unauthorized.css" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({ message: error.message });
     res.redirect("/login");
   }
 });
