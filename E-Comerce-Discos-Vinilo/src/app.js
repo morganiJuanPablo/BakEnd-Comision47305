@@ -6,12 +6,11 @@ import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import { __dirname } from "./utils.js";
 import path from "path";
-import { dbConnection } from "./config/dbConnection.js";
+import { DbConnection } from "./config/dbConnection.js";
 import { mongoProductsItem } from "./dao/index.js";
 import { mongoChatItem } from "./dao/index.js";
 import { chatRouter } from "./routes/chats.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
-import { loginRouter } from "./routes/login.routes.js";
 import { sessionsRouter } from "./routes/sessions.routes.js";
 import cookieParser from "cookie-parser";
 import passport from "passport";
@@ -26,30 +25,16 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//Configurar la sesión
-/* app.use(
-  session({
-    store: MongoStore.create({
-      ttl: 300,
-      mongoUrl: generalConfig.mongo.url,
-    }),
-    secret: generalConfig.server.secretSession,
-    resave: true,
-    saveUninitialized: true,
-  })
-); */
-
 //Configuración passport
 passportInit();
 app.use(passport.initialize());
-/* app.use(passport.session()); */
 
 //Servidores
 const httpServer = app.listen(port, () => console.log("Servidor funcionando."));
 const socketServer = new Server(httpServer);
 
 //DB conexión
-dbConnection();
+const dbConection = DbConnection.getInstance();
 
 //Handlebars Configuración
 app.engine(".hbs", engine({ extname: ".hbs" }));
@@ -61,7 +46,6 @@ app.use("/", productsRouter);
 app.use("/", realTimeProducts);
 app.use("/", chatRouter);
 app.use("/", cartsRouter);
-app.use("/", loginRouter);
 app.use("/api/session", sessionsRouter);
 
 //Websockets

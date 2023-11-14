@@ -1,5 +1,5 @@
 //
-import { ProductsManagerFs } from "./ProductsManager-FS.js";
+import { ProductsManagerFs } from "./fileSystemManagers/ProductsManager-FS.js";
 import { __dirname } from "../utils.js";
 import path from "path";
 import { ProductsManagerMongo } from "./mongoManagers/ProductsManagerMongo.js";

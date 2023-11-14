@@ -2,11 +2,22 @@
 import { generalConfig } from "./generalConfig.js";
 import mongoose from "mongoose";
 
-export const dbConnection = async () => {
-  try {
-    mongoose.connect(generalConfig.mongo.url);    
+export class DbConnection {
+  static #instance;
+
+  static #getConnection() {
+    const connection = mongoose.connect(generalConfig.mongo.url);
     console.log("Conectado con la base de datos.");
-  } catch (error) {
-    console.log("Error al conectarse con la base de datos.", error.message);
+    return connection;
   }
-};
+  static getInstance() {
+    if (this.#instance) {
+      console.log("La conexión con la base de datos ya existe.");
+      return this.#instance;
+    } else {
+      this.#instance = this.#getConnection();
+      return this.#instance;
+    }
+  }
+}
+

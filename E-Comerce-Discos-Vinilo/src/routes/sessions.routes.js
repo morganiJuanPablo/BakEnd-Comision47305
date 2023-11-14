@@ -2,93 +2,84 @@
 import { Router } from "express";
 import { generalConfig } from "../config/generalConfig.js";
 import passport from "passport";
+import { SessionsController } from "../controller/sessions.controller.js";
+
 const router = Router();
-import { generateToken } from "../utils.js";
+
+////GET
+///////////////////////////////////////////////////////////////////
+router.get("/login", SessionsController.renderLoginView);
 
 ///////////////////////////////////////////////////////////////////
+router.get("/login_fail", SessionsController.renderLoginfailView);
 
-//POST
-router.post(
-  "/new_user",
-  passport.authenticate("localRegisterStrategy", {
-    failureRedirect: "/new_user_fail",
+///////////////////////////////////////////////////////////////////
+router.get("/new_user", SessionsController.renderNewUserView);
+
+///////////////////////////////////////////////////////////////////
+router.get("/new_user_fail", SessionsController.renderNewUserFailView);
+
+///////////////////////////////////////////////////////////////////
+router.get(
+  "/profile",
+  passport.authenticate("jwtAuth", {
+    failureRedirect: "/api/session/session_destroyed",
     session: false,
   }),
-  async (req, res) => {
-    try {
-      const data = {
-        style: "login.css",
-        message: `🤟Felicidades ${req.user.first_name}, estás dentro🤟`,
-      };
-      res.render("login", data);
-    } catch (error) {
-      console.log(error.message);
-      res.status(500).json({ message: error.message });
-    }
-  }
+  SessionsController.renderProfileView
 );
 
 ///////////////////////////////////////////////////////////////////
+router.get("/session_destroyed", SessionsController.renderSessionDestroyedView);
 
-//POST
-router.post(
-  "/login",
-  passport.authenticate("localLoginStrategy", {
-    failureRedirect: "/login_fail",
-    session: false,
-  }),
-  async (req, res) => {
-    try {
-      const user = req.user;
-      const token = generateToken(user);
-      res.cookie("authLogin", token, { maxAge: 3600000, httpOnly: true });
-      res.redirect("/products/inicio");
-    } catch (error) {
-      const data = {
-        style: "login.css",
-        error: "No se pudo iniciar la sesión",
-      };
-      res.render("login", data);
-      /*       console.log(error.message);
-      res.status(500).json({ message: error.message }); */
-    }
-  }
-);
+///////////////////////////////////////////////////////////////////
+router.get("/unauthorized", SessionsController.renderUnauthorizedView);
+
+///////////////////////////////////////////////////////////////////
+router.get("/logout", SessionsController.logout);
 
 ///////////////////////////////////////////////////////////////////GITHUB
-
 router.get("/github_new_user", passport.authenticate("githubRegisterStrategy"));
-
 router.get(
   generalConfig.github.callbackUrl,
   passport.authenticate("githubRegisterStrategy", {
-    failureRedirect: "api/session/github_new_user_fail",
+    failureRedirect: "/api/session/login",
     session: false,
   }),
-  (req, res) => {
-    const user = req.user;
-    const token = generateToken(user);
-    res.cookie("authLogin", token, { maxAge: 3600000, httpOnly: true });
-    res.redirect("/products/inicio");
-  }
+  SessionsController.newSessionGitHub
 );
 
 ///////////////////////////////////////////////////////////////////GOOGLE
-
 router.get("/google/new_user", passport.authenticate("googleRegisterStrategy"));
-
 router.get(
   generalConfig.google.callbackUrl,
   passport.authenticate("googleRegisterStrategy", {
-    failureRedirect: "/login",
+    failureRedirect: "/api/session/login",
     session: false,
   }),
-  (req, res) => {
-    const user = req.user;
-    const token = generateToken(user);
-    res.cookie("authLogin", token, { maxAge: 3600000, httpOnly: true });
-    res.redirect("/products/inicio");
-  }
+  SessionsController.newSessionGoogle
 );
+
+////POST
+///////////////////////////////////////////////////////////////////
+router.post(
+  "/new_user",
+  passport.authenticate("localRegisterStrategy", {
+    failureRedirect: "/api/session/new_user_fail",
+    session: false,
+  }),
+  SessionsController.redirectLoginNewUser
+),
+  ///////////////////////////////////////////////////////////////////
+  router.post(
+    "/login",
+    passport.authenticate("localLoginStrategy", {
+      failureRedirect: "/api/session/login_fail",
+      session: false,
+    }),
+    SessionsController.newSessionUser
+  );
+
+///////////////////////////////////////////////////////////////////
 
 export { router as sessionsRouter };

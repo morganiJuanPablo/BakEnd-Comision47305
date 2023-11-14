@@ -16,7 +16,7 @@
     <div class="cartContainerCards" id="cartContainerCards">
       {{#each products}}
         <div class="cartProductCard">
-          <img src={{this.productId.thumbnail}} alt="" />
+          <img src={{this.productId.thumbnail}} alt={{this.productId.title}} />
           <div class="infoCard">
             <p class="productTitle">{{this.productId.title}}</p>
             <p class="productPrice">{{this.productId.price}}€</p>

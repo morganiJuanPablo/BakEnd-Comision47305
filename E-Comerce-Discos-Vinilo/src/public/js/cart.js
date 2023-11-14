@@ -1,5 +1,4 @@
 //
-console.log(cartId);
 const deleteProductCart = async (productId) => {
   try {
     const response = await fetch(`/cart/${cartId}/product/${productId}`, {

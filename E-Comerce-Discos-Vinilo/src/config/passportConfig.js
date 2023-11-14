@@ -8,7 +8,6 @@ import { createHashPass, isValidated } from "../utils.js";
 import { mongoUserItem } from "../dao/index.js";
 import { generalConfig } from "./generalConfig.js";
 
-
 const JWTStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
 
@@ -34,7 +33,7 @@ export const passportInit = () => {
               last_name,
               age,
               email: username,
-              password: createHashPass(password),                           
+              password: createHashPass(password),
             };
             const userRegistered = await mongoUserItem.createUser(newUser);
             return done(null, userRegistered);
@@ -165,20 +164,9 @@ export const passportInit = () => {
 const cookieExtractor = (req) => {
   let token;
   if (req && req.cookies) {
-    token = req.cookies["authLogin"];
+    token = req.cookies["authLoginFoo"];
   } else {
     token = null;
   }
   return token;
 };
-
-/////////////////////////////////////////////////////////////////////
-// SERIALIZER
-
-//   passport.serializeUser((user, done) => {
-//     done(null, user._id);
-//   });
-//   passport.deserializeUser(async (userId, done) => {
-//     const user = await mongoUserItem.getUserById(userId);
-//     done(null, user); //req.user quedara guardada la informacion del usuario para acceder desde otras partes del codigo
-//   });

@@ -46,6 +46,9 @@
   padding: 2rem;
   border: solid 1px black;
 }
+.cartProductCard img {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
 .infoCard {
   display: flex;
   flex-direction: column;

@@ -150,9 +150,7 @@ export class CartsManagerMongo {
   async newCartWithoutProduct(cartId, productId) {
     try {
       let cart = await this.cartModel.findById(cartId);
-
       let cartWithoutProduct = await this.deleteProduct(cartId, productId);
-
       const newCart = await this.cartModel.findByIdAndUpdate(
         cartId,
         cartWithoutProduct,

@@ -30,18 +30,16 @@ export const generateToken = (user) => {
 };
 
 //funciones para manejar la autorización según el rol del cliente
-
 export const roleClient = () => {
   return async (req) => {
     const role = req.user.role;
     return role;
   };
 };
-
 export const authorize = () => {
   return async (req, res, next) => {
     if (req.user.role !== "administrador") {
-      return res.redirect("/unauthorized");
+      return res.redirect("/api/session/unauthorized");
       /* .status(403)
         .json({ error: "No tienes los permisos para acceder." }); */
     }
