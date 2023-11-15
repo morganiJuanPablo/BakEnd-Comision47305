@@ -36,6 +36,7 @@ const socketServer = new Server(httpServer);
 //DB conexión
 const dbConection = DbConnection.getInstance();
 
+
 //Handlebars Configuración
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");

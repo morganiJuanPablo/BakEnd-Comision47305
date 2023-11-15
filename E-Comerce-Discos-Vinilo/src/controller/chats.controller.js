@@ -1,7 +1,7 @@
 //
 export class ChatsController {
   /////////////////////////////////////////////////////
-  static getChats_controller = async (req, res) => {
+  static getChats = async (req, res) => {
     try {
       if (req.user?.email) {
         const sessionExist = req.user.email && true;

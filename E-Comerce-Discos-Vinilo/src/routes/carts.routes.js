@@ -14,7 +14,7 @@ router.get(
     failureRedirect: "/session_destroyed",
     session: false,
   }),
-  CartsController.getCartById_controller
+  CartsController.getCartById
 );
 
 ///////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ router.get(
 //POST
 router.post(
   "/cart/:cartId/product/:productId",
-  CartsController.addProduct_controller
+  CartsController.addProduct
 );
 
 ///////////////////////////////////////////////////////////////////
@@ -54,13 +54,13 @@ router.put("/cart/:cartId/product/:productId", async (req, res) => {
 //DELETE
 router.delete(
   "/cart/:cartId/product/:productId",
-  CartsController.deleteProduct_controller
+  CartsController.deleteProduct
 );
 
 ///////////////////////////////////////////////////////////////////
 
 //DELETE
-router.delete("/cart/:cartId", CartsController.deleteAllProducts_controller);
+router.delete("/cart/:cartId", CartsController.deleteAllProducts);
 
 ///////////////////////////////////////////////////////////////////
 

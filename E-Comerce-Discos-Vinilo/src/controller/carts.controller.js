@@ -3,11 +3,11 @@ import { CartsService } from "../service/carts.service.js";
 
 export class CartsController {
   /////////////////////////////////////////////////////
-  static getCartById_controller = async (req, res) => {
+  static getCartById = async (req, res) => {
     try {
       if (req.user?.email) {
         const cartId = req.user.cartId;
-        const cart = await CartsService.getCartById_service(cartId);
+        const cart = await CartsService.getCartById(cartId);
         const sessionExist = req.user.email && true;
         const data = {
           sessionExist,
@@ -28,11 +28,11 @@ export class CartsController {
   };
 
   /////////////////////////////////////////////////////
-  static addProduct_controller = async (req, res) => {
+  static addProduct = async (req, res) => {
     try {
       const cartId = req.params.cartId;
       const productId = req.params.productId;
-      const newCart = await CartsService.addProduct_service(cartId, productId);
+      const newCart = await CartsService.addProduct(cartId, productId);
       res.json({
         status: "success",
         message: "Producto agregado al carrito",
@@ -45,11 +45,11 @@ export class CartsController {
   };
 
   /////////////////////////////////////////////////////
-  static deleteProduct_controller = async (req, res) => {
+  static deleteProduct = async (req, res) => {
     try {
       const cartId = req.params.cartId;
       const productId = req.params.productId;
-      const cart = await CartsService.deleteProduct_service(cartId, productId);
+      const cart = await CartsService.deleteProduct(cartId, productId);
       res.json({
         status: "success",
         message: "Producto eliminado del carrito",
@@ -62,10 +62,10 @@ export class CartsController {
   };
 
   /////////////////////////////////////////////////////
-  static deleteAllProducts_controller = async (req, res) => {
+  static deleteAllProducts = async (req, res) => {
     try {
       const cartId = req.params.cartId;
-      const cart = await CartsService.deleteAllProducts_service(cartId);
+      const cart = await CartsService.deleteAllProducts(cartId);
       res.json({
         status: "success",
         message: `Carrito con Id: ${cartId} vaciado con éxito.`,

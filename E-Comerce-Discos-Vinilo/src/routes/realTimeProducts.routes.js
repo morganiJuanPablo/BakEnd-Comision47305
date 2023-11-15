@@ -7,9 +7,8 @@ import { realTimeProductsController } from "../controller/realTimeProducts.contr
 let role = roleClient();
 const router = Router();
 
-///////////////////////////////////////////////////////////////////
-
 //GET
+///////////////////////////////////////////////////////////////////
 router.get(
   "/realtimeproducts",
   passport.authenticate("jwtAuth", {

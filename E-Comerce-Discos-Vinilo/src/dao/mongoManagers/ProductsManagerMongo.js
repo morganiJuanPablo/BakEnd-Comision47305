@@ -19,9 +19,15 @@ export class ProductsManagerMongo {
 
   ///////////////////////////////////////////////////////////////////
 
-  async getProducts() {
+  async getProducts(category, options) {
     try {
-      const products = await this.model.find().lean();
+      let products;
+      if (category) {
+        products = await this.model.paginate({ category: category }, options);
+      }
+      if (category === "inicio") {
+        products = await this.model.paginate({}, options);
+      }
       return products;
     } catch (error) {
       console.log(error.message);
@@ -44,7 +50,7 @@ export class ProductsManagerMongo {
   ///////////////////////////////////////////////////////////////////
 
   async getCategoryProducts(category) {
-    try {      
+    try {
       const products = await this.model.find({ category: category }).lean();
       return products;
     } catch (error) {

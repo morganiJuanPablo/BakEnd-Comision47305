@@ -10,7 +10,7 @@ const router = Router();
 router.get(
   "/chat",
   passport.authenticate("jwtAuth", { session: false }),
-  ChatsController.getChats_controller
+  ChatsController.getChats
 );
 
 ///////////////////////////////////////////////////////////////////
