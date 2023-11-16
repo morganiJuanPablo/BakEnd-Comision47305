@@ -1,7 +1,6 @@
 //
 import { Router } from "express";
-import passport from "passport";
-import { authorize, roleClient } from "../utils.js";
+import { authorize, roleClient, tokenAuth } from "../middleware/middleware.js";
 import { realTimeProductsController } from "../controller/realTimeProducts.controller.js";
 
 let role = roleClient();
@@ -11,10 +10,7 @@ const router = Router();
 ///////////////////////////////////////////////////////////////////
 router.get(
   "/realtimeproducts",
-  passport.authenticate("jwtAuth", {
-    failureRedirect: "/api/session/session_destroyed",
-    session: false,
-  }),
+  tokenAuth,
   authorize(role),
   realTimeProductsController.renderRealTimeProductsView
 );

@@ -7,7 +7,8 @@ import { Server } from "socket.io";
 import { __dirname } from "./utils.js";
 import path from "path";
 import { DbConnection } from "./config/dbConnection.js";
-import { mongoProductsItem } from "./dao/index.js";
+import { ProductsService } from "./service/products.service.js";
+import { ChatsService } from "./service/chats.service.js";
 import { mongoChatItem } from "./dao/index.js";
 import { chatRouter } from "./routes/chats.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
@@ -36,7 +37,6 @@ const socketServer = new Server(httpServer);
 //DB conexión
 const dbConection = DbConnection.getInstance();
 
-
 //Handlebars Configuración
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
@@ -52,37 +52,37 @@ app.use("/api/session", sessionsRouter);
 //Websockets
 socketServer.on("connection", async (socket) => {
   console.log("Cliente en linea");
-  const products = await mongoProductsItem.getProducts();
+  const products = await ProductsService.getProductsAdmin();
   socket.emit("arrayProducts", products);
 
   socket.on("productJson", async (newProduct) => {
-    const result = await mongoProductsItem.addProduct(newProduct);
-    const products = await mongoProductsItem.getProducts();
+    const result = await ProductsService.addProduct(newProduct);
+    const products = await ProductsService.getProductsAdmin();
     socket.emit("arrayProducts", products);
   });
 
   socket.on("deleteProductById", async (idProduct) => {
-    await mongoProductsItem.deleteProductById(idProduct);
-    const products = await mongoProductsItem.getProducts();
+    await ProductsService.deleteProductById(idProduct);
+    const products = await ProductsService.getProductsAdmin();
     socket.emit("arrayProducts", products);
   });
 
   socket.on("productUpdatedJson", async (productUpdatedJson) => {
-    const result = await mongoProductsItem.updateProductById(
+    const result = await ProductsService.updateProductById(
       productUpdatedJson.Id,
       productUpdatedJson
     );
-    const products = await mongoProductsItem.getProducts();
+    const products = await ProductsService.getProductsAdmin();
     socket.emit("arrayProducts", products);
   });
 
   //Chat
-  /* await mongoChatItem.emptyChat(); */ //Para eliminar las pruebas que fui haciendo
-  const historyChat = await mongoChatItem.getChat();
+  /* await ChatsService.emptyChat(); */ //Para eliminar las pruebas que fui haciendo
+  const historyChat = await ChatsService.getChat();
   socket.emit("historyChat", historyChat);
   socket.on("messageChat", async (messageInfo) => {
-    const result = await mongoChatItem.updateChat(messageInfo);
-    const historyChat = await mongoChatItem.getChat();
+    const result = await ChatsService.updateChat(messageInfo);
+    const historyChat = await ChatsService.getChat();
     socketServer.emit("historyChat", historyChat);
   });
 });

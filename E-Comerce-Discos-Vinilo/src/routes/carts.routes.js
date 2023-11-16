@@ -1,29 +1,19 @@
 //
 import { Router } from "express";
-import passport from "passport";
 import { CartsController } from "../controller/carts.controller.js";
+import { tokenAuth } from "../middleware/middleware.js";
 
 const router = Router();
 
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get(
-  "/cart/:cartId",
-  passport.authenticate("jwtAuth", {
-    failureRedirect: "/session_destroyed",
-    session: false,
-  }),
-  CartsController.getCartById
-);
+router.get("/cart/:cartId", tokenAuth, CartsController.getCartById);
 
 ///////////////////////////////////////////////////////////////////
 
 //POST
-router.post(
-  "/cart/:cartId/product/:productId",
-  CartsController.addProduct
-);
+router.post("/cart/:cartId/product/:productId", CartsController.addProduct);
 
 ///////////////////////////////////////////////////////////////////
 

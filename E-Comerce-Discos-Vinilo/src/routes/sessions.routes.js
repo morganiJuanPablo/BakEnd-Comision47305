@@ -3,6 +3,11 @@ import { Router } from "express";
 import { generalConfig } from "../config/generalConfig.js";
 import passport from "passport";
 import { SessionsController } from "../controller/sessions.controller.js";
+import {
+  tokenAuth,
+  authRegisterPassport,
+  authLoginPassport,
+} from "../middleware/middleware.js";
 
 const router = Router();
 
@@ -20,14 +25,7 @@ router.get("/new_user", SessionsController.renderNewUserView);
 router.get("/new_user_fail", SessionsController.renderNewUserFailView);
 
 ///////////////////////////////////////////////////////////////////
-router.get(
-  "/profile",
-  passport.authenticate("jwtAuth", {
-    failureRedirect: "/api/session/session_destroyed",
-    session: false,
-  }),
-  SessionsController.renderProfileView
-);
+router.get("/profile", tokenAuth, SessionsController.renderProfileView);
 
 ///////////////////////////////////////////////////////////////////
 router.get("/session_destroyed", SessionsController.renderSessionDestroyedView);
@@ -64,21 +62,11 @@ router.get(
 ///////////////////////////////////////////////////////////////////
 router.post(
   "/new_user",
-  passport.authenticate("localRegisterStrategy", {
-    failureRedirect: "/api/session/new_user_fail",
-    session: false,
-  }),
+  authRegisterPassport,
   SessionsController.redirectLoginNewUser
 ),
   ///////////////////////////////////////////////////////////////////
-  router.post(
-    "/login",
-    passport.authenticate("localLoginStrategy", {
-      failureRedirect: "/api/session/login_fail",
-      session: false,
-    }),
-    SessionsController.newSessionUser
-  );
+  router.post("/login", authLoginPassport, SessionsController.newSessionUser);
 
 ///////////////////////////////////////////////////////////////////
 

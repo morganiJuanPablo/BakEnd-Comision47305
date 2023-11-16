@@ -1,3 +1,4 @@
+import { mongoProductsItem } from "../index.js";
 import { productModel } from "./modelsDB/products.model.js";
 
 export class ProductsManagerMongo {
@@ -28,6 +29,18 @@ export class ProductsManagerMongo {
       if (category === "inicio") {
         products = await this.model.paginate({}, options);
       }
+      return products;
+    } catch (error) {
+      console.log(error.message);
+      throw new Error("No se pudo obtener los productos.");
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
+  async getProductsAdmin() {
+    try {
+      const products = await this.model.find();
       return products;
     } catch (error) {
       console.log(error.message);

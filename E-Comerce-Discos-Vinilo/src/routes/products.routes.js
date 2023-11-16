@@ -1,30 +1,23 @@
 //
 import { Router } from "express";
-import passport from "passport";
 import { ProductsController } from "../controller/products.controller.js";
+import { tokenAuth } from "../middleware/middleware.js";
 
 const router = Router();
 
 //GET
 ///////////////////////////////////////////////////////////////////
-router.get(
-  "/products/:category",
-  passport.authenticate("jwtAuth", {
-    failureRedirect: "/api/session/session_destroyed",
-    session: false,
-  }),
-  ProductsController.getProducts
-);
+router.get("/products/:category", tokenAuth, ProductsController.getProducts);
 
 ///////////////////////////////////////////////////////////////////
-router.get(
-  "/item/:productId",
-  passport.authenticate("jwtAuth", {
-    failureRedirect: "/api/session/session_destroyed",
-    session: false,
-  }),
-  ProductsController.getProductsById
-);
+router.get("/item/:productId", tokenAuth, ProductsController.getProductsById);
+
+//POST
+///////////////////////////////////////////////////////////////////
+router.post("/products/:category", (req, res) => {
+  const sort = req.body.sort;
+  console.log(sort);
+});
 
 ///////////////////////////////////////////////////////////////////
 

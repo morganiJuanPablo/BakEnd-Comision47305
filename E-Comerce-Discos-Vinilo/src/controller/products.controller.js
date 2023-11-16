@@ -7,11 +7,16 @@ export class ProductsController {
     try {
       if (req.user?.email) {
         const category = req.params.category;
-        let page = +req.query.page || 1;
+        const page = +req.query.page || 1;
+        const sort = req.query.sort || { price: 1 };
         let products;
-
         if (category !== "inicio") {
-          const options = { limit: 6, page, lean: true, sort: { price: 1 } };
+          const options = {
+            limit: 6,
+            page,
+            lean: true,
+            sort /* sort: { price: 1 } */,
+          };
           products = await ProductsService.getProducts(category, options);
 
           products.prevLink = products.hasPrevPage
@@ -21,7 +26,12 @@ export class ProductsController {
             ? `http://localhost:8080/products/${category}?page=${products.nextPage}`
             : "";
         } else if (category === "inicio") {
-          const options = { limit: 6, page, lean: true, sort: { price: 1 } };
+          const options = {
+            limit: 6,
+            page,
+            lean: true,
+            sort /* sort: { price: 1 } */,
+          };
           products = await ProductsService.getProducts(category, options);
 
           products.prevLink = products.hasPrevPage

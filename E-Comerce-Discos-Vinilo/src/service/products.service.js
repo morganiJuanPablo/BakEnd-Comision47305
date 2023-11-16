@@ -13,4 +13,19 @@ export class ProductsService {
     const products = await mongoProductsItem.getProducts(category, options);
     return products;
   }
+
+  /////////////////////////////////////////////////////
+  static async getProductsAdmin() {
+    const products = await mongoProductsItem.getProductsAdmin();
+    return products;
+  }
+  /////////////////////////////////////////////////////
+  static async deleteProductById(idProduct) {
+    await mongoProductsItem.deleteProductById(idProduct);
+  }
+
+  /////////////////////////////////////////////////////
+  static async updateProductById(productId, productUpdated) {
+    await mongoProductsItem.updateProductById(productId, productUpdated);
+  }
 }

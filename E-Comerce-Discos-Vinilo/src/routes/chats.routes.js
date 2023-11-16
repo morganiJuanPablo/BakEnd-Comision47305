@@ -1,17 +1,13 @@
 //
 import { Router } from "express";
-import passport from "passport";
 import { ChatsController } from "../controller/chats.controller.js";
+import { tokenAuth } from "../middleware/middleware.js";
 const router = Router();
 
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get(
-  "/chat",
-  passport.authenticate("jwtAuth", { session: false }),
-  ChatsController.getChats
-);
+router.get("/chat", tokenAuth, ChatsController.getChats);
 
 ///////////////////////////////////////////////////////////////////
 

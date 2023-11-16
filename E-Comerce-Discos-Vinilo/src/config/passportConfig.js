@@ -5,7 +5,7 @@ import GithubStrategy from "passport-github2";
 import GoogleStrategy from "passport-google-oauth20";
 import jwt from "passport-jwt";
 import { createHashPass, isValidated } from "../utils.js";
-import { mongoUserItem } from "../dao/index.js";
+import { SessionsService } from "../service/sessions.service.js";
 import { generalConfig } from "./generalConfig.js";
 
 const JWTStrategy = jwt.Strategy;
@@ -24,7 +24,7 @@ export const passportInit = () => {
       async (req, username, password, done) => {
         const { first_name, last_name, age } = req.body;
         try {
-          const user = await mongoUserItem.getUser(username);
+          const user = await SessionsService.getUser(username);
           if (user) {
             return done(null, false);
           } else {
@@ -35,7 +35,7 @@ export const passportInit = () => {
               email: username,
               password: createHashPass(password),
             };
-            const userRegistered = await mongoUserItem.createUser(newUser);
+            const userRegistered = await SessionsService.createUser(newUser);
             return done(null, userRegistered);
           }
         } catch (error) {
@@ -56,7 +56,7 @@ export const passportInit = () => {
       },
       async (username, password, done) => {
         try {
-          const user = await mongoUserItem.getUser(username);
+          const user = await SessionsService.getUser(username);
           if (!user) {
             return done(null, false);
           }
@@ -83,7 +83,7 @@ export const passportInit = () => {
       },
       async (accesToken, refreshToken, profile, done) => {
         try {
-          const user = await mongoUserItem.getUser(profile.username);
+          const user = await SessionsService.getUser(profile.username);
           if (user) {
             return done(null, user);
           } else {
@@ -93,7 +93,7 @@ export const passportInit = () => {
               email: profile.username,
               password: createHashPass(profile.id),
             };
-            const userRegistered = await mongoUserItem.createUser(newUser);
+            const userRegistered = await SessionsService.createUser(newUser);
             return done(null, userRegistered);
           }
         } catch (error) {
@@ -119,7 +119,7 @@ export const passportInit = () => {
       },
       async (accesToken, refreshToken, profile, done) => {
         try {
-          const user = await mongoUserItem.getUser(profile._json.email);
+          const user = await SessionsService.getUser(profile._json.email);
           if (user) {
             return done(null, user);
           } else {
@@ -130,7 +130,7 @@ export const passportInit = () => {
               email: profile._json.email,
               password: createHashPass(profile.id),
             };
-            const userRegistered = await mongoUserItem.createUser(newUser);
+            const userRegistered = await SessionsService.createUser(newUser);
             return done(null, userRegistered);
           }
         } catch (error) {
