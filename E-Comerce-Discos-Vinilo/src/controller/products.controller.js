@@ -71,11 +71,13 @@ export class ProductsController {
     try {
       if (req.user?.email) {
         const cartId = req.user.cartId;
+        const roleClient = req.user.role;
         const productId = req.params.productId;
         const product = await ProductsService.getProductById(productId);
         const sessionExist = req.user.email && true;
         const data = {
           sessionExist,
+          roleClient,
           cartId,
           product,
           style: "productDetail.css",

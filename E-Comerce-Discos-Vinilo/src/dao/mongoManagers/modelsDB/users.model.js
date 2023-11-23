@@ -6,6 +6,10 @@ import { mongoCartItem } from "../../index.js";
 const usersCollection = "users";
 
 const usersSchema = new mongoose.Schema({
+  full_name: {
+    type: String,
+    required: true,
+  },
   first_name: {
     type: String,
     required: true,

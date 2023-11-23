@@ -2,17 +2,21 @@
 
 import passport from "passport";
 
-//funciones para manejar la autorización según el rol del cliente en el RealTimeProducts
+//funciones para manejar la autorización según el rol del cliente en el RealTimeProducts, chat y carritos
 
-export const roleClient = () => {
-  return async (req) => {
-    const role = req.user.role;
-    return role;
+export const onlyAdminAcess = () => {
+  return (req, res, next) => {
+    if (req.user.role !== "administrador") {
+      return res.redirect("/api/session/unauthorized");
+      /* .status(403)
+          .json({ error: "No tienes los permisos para acceder." }); */
+    }
+    next();
   };
 };
-export const authorize = () => {
-  return async (req, res, next) => {
-    if (req.user.role !== "administrador") {
+export const onlyUserAcess = () => {
+  return (req, res, next) => {
+    if (req.user.role !== "usuario") {
       return res.redirect("/api/session/unauthorized");
       /* .status(403)
           .json({ error: "No tienes los permisos para acceder." }); */

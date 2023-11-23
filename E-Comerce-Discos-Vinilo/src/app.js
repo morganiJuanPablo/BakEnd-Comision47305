@@ -9,15 +9,15 @@ import path from "path";
 import { DbConnection } from "./config/dbConnection.js";
 import { ProductsService } from "./service/products.service.js";
 import { ChatsService } from "./service/chats.service.js";
-import { mongoChatItem } from "./dao/index.js";
 import { chatRouter } from "./routes/chats.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
 import { sessionsRouter } from "./routes/sessions.routes.js";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import { passportInit } from "./config/passportConfig.js";
+import { generalConfig } from "./config/generalConfig.js";
 
-const port = 8080;
+const port = generalConfig.server.port;
 const app = express();
 
 //Middlewares

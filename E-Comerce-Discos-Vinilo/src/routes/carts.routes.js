@@ -2,13 +2,19 @@
 import { Router } from "express";
 import { CartsController } from "../controller/carts.controller.js";
 import { tokenAuth } from "../middleware/middleware.js";
+import { onlyUserAcess } from "../middleware/middleware.js";
 
 const router = Router();
 
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get("/cart/:cartId", tokenAuth, CartsController.getCartById);
+router.get(
+  "/cart/:cartId",
+  tokenAuth,
+  onlyUserAcess(),
+  CartsController.getCartById
+);
 
 ///////////////////////////////////////////////////////////////////
 

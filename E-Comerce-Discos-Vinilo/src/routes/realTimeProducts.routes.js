@@ -1,9 +1,8 @@
 //
 import { Router } from "express";
-import { authorize, roleClient, tokenAuth } from "../middleware/middleware.js";
+import { onlyAdminAcess, tokenAuth } from "../middleware/middleware.js";
 import { realTimeProductsController } from "../controller/realTimeProducts.controller.js";
 
-let role = roleClient();
 const router = Router();
 
 //GET
@@ -11,7 +10,7 @@ const router = Router();
 router.get(
   "/realtimeproducts",
   tokenAuth,
-  authorize(role),
+  onlyAdminAcess(),
   realTimeProductsController.renderRealTimeProductsView
 );
 
