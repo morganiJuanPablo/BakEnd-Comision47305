@@ -1,31 +1,26 @@
 //
-import { mongoProductsItem } from "../dao/index.js";
+import { productsDao } from "../dao/factory.js";
 
 export class ProductsService {
   /////////////////////////////////////////////////////
   static async getProductById(productId) {
-    const product = await mongoProductsItem.getProductById(productId);
+    const product = await productsDao.getProductById(productId);
     return product;
   }
 
   /////////////////////////////////////////////////////
   static async getProducts(category, options) {
-    const products = await mongoProductsItem.getProducts(category, options);
+    const products = await productsDao.getProducts(category, options);
     return products;
   }
 
   /////////////////////////////////////////////////////
-  static async getProductsAdmin() {
-    const products = await mongoProductsItem.getProductsAdmin();
-    return products;
-  }
-  /////////////////////////////////////////////////////
   static async deleteProductById(idProduct) {
-    await mongoProductsItem.deleteProductById(idProduct);
+    await productsDao.deleteProductById(idProduct);
   }
 
   /////////////////////////////////////////////////////
   static async updateProductById(productId, productUpdated) {
-    await mongoProductsItem.updateProductById(productId, productUpdated);
+    await productsDao.updateProductById(productId, productUpdated);
   }
 }

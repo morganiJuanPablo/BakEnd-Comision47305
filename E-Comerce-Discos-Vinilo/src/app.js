@@ -6,7 +6,6 @@ import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import { __dirname } from "./utils.js";
 import path from "path";
-import { DbConnection } from "./config/dbConnection.js";
 import { ProductsService } from "./service/products.service.js";
 import { ChatsService } from "./service/chats.service.js";
 import { chatRouter } from "./routes/chats.routes.js";
@@ -34,8 +33,6 @@ app.use(passport.initialize());
 const httpServer = app.listen(port, () => console.log("Servidor funcionando."));
 const socketServer = new Server(httpServer);
 
-//DB conexión
-const dbConection = DbConnection.getInstance();
 
 //Handlebars Configuración
 app.engine(".hbs", engine({ extname: ".hbs" }));
@@ -52,18 +49,18 @@ app.use("/api/session", sessionsRouter);
 //Websockets
 socketServer.on("connection", async (socket) => {
   console.log("Cliente en linea");
-  const products = await ProductsService.getProductsAdmin();
+  const products = await ProductsService.getProducts();
   socket.emit("arrayProducts", products);
 
   socket.on("productJson", async (newProduct) => {
     const result = await ProductsService.addProduct(newProduct);
-    const products = await ProductsService.getProductsAdmin();
+    const products = await ProductsService.getProducts();
     socket.emit("arrayProducts", products);
   });
 
   socket.on("deleteProductById", async (idProduct) => {
     await ProductsService.deleteProductById(idProduct);
-    const products = await ProductsService.getProductsAdmin();
+    const products = await ProductsService.getProducts();
     socket.emit("arrayProducts", products);
   });
 
@@ -72,7 +69,7 @@ socketServer.on("connection", async (socket) => {
       productUpdatedJson.Id,
       productUpdatedJson
     );
-    const products = await ProductsService.getProductsAdmin();
+    const products = await ProductsService.getProducts();
     socket.emit("arrayProducts", products);
   });
 

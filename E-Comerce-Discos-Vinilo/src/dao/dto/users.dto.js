@@ -1,3 +1,4 @@
+//
 export class UsersDto {
   constructor(userInfo) {
     this.full_name = `${userInfo.first_name} ${userInfo.last_name}`;

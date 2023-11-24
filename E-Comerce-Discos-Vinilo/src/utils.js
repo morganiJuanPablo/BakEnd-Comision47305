@@ -28,5 +28,3 @@ export const generateToken = (user) => {
   );
   return token;
 };
-
-

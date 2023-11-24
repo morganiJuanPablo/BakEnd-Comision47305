@@ -1,4 +1,4 @@
-import { mongoProductsItem } from "../index.js";
+//
 import { productModel } from "./modelsDB/products.model.js";
 
 export class ProductsManagerMongo {
@@ -23,25 +23,18 @@ export class ProductsManagerMongo {
   async getProducts(category, options) {
     try {
       let products;
-      if (category) {
-        products = await this.model.paginate({ category: category }, options);
+      if (category && options) {
+        if (category) {
+          products = await this.model.paginate({ category: category }, options);
+        }
+        if (category === "inicio") {
+          products = await this.model.paginate({}, options);
+        }
+        return products;
+      } else {
+        products = await this.model.find();
+        return products;
       }
-      if (category === "inicio") {
-        products = await this.model.paginate({}, options);
-      }
-      return products;
-    } catch (error) {
-      console.log(error.message);
-      throw new Error("No se pudo obtener los productos.");
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////
-
-  async getProductsAdmin() {
-    try {
-      const products = await this.model.find();
-      return products;
     } catch (error) {
       console.log(error.message);
       throw new Error("No se pudo obtener los productos.");

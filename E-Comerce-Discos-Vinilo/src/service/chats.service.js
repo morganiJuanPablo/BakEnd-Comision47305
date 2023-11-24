@@ -1,22 +1,22 @@
 //
-import { mongoChatItem } from "../dao/index.js";
+import { chatsDao } from "../dao/factory.js";
 
 export class ChatsService {
   /////////////////////////////////////////////////////
   static async getChat() {
-    const chat = await mongoChatItem.getChat();
+    const chat = await chatsDao.getChat();
     return chat;
   }
 
   /////////////////////////////////////////////////////
   static async updateChat(newMessage) {
-    const newChat = await mongoChatItem.updateChat(newMessage);
+    const newChat = await chatsDao.updateChat(newMessage);
     return newChat;
   }
 
   /////////////////////////////////////////////////////
   static async emptyChat() {
-    const emptyCart = await mongoChatItem.deleteMany({});
+    const emptyCart = await chatsDao.deleteMany({});
     return emptyCart;
   }
 }

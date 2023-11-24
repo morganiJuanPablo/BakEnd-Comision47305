@@ -1,7 +1,7 @@
 //
 import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
-import { mongoCartItem } from "../../index.js";
+import { cartsDao } from "../../factory.js";
 
 const usersCollection = "users";
 
@@ -45,7 +45,7 @@ usersSchema.plugin(mongoosePaginate);
 
 usersSchema.pre("save", async function (next) {
   try {
-    const newCart = await mongoCartItem.createCart();
+    const newCart = await cartsDao.createCart();
     this.cart = newCart._id;
   } catch (error) {
     next(error);

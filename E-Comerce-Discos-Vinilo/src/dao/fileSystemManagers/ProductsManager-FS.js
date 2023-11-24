@@ -7,9 +7,13 @@ export class ProductsManagerFs {
     this.filePath = path;
   }
 
+  ///////////////////////////////////////////////////////////////////
+
   fileExist() {
     return fs.existsSync(this.filePath);
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   async getId() {
     try {
@@ -25,6 +29,8 @@ export class ProductsManagerFs {
     }
   }
 
+  ///////////////////////////////////////////////////////////////////
+
   async loadProductsFromFile() {
     try {
       const data = await fs.promises.readFile(this.filePath, "utf-8");
@@ -33,6 +39,8 @@ export class ProductsManagerFs {
       throw new Error(error.message);
     }
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   async saveProductsToFile() {
     try {
@@ -45,6 +53,8 @@ export class ProductsManagerFs {
       throw new Error(error.message);
     }
   }
+
+  ///////////////////////////////////////////////////////////////////
 
   async addProduct(product) {
     try {
@@ -77,34 +87,72 @@ export class ProductsManagerFs {
     }
   }
 
-  async getProducts() {
+  ///////////////////////////////////////////////////////////////////
+
+  async getProducts(category, options) {
     try {
-      if (this.fileExist()) {
-        await this.loadProductsFromFile();
+      if (!category && !options) {
+        if (this.fileExist()) {
+          await this.loadProductsFromFile();
+        }
+        return this.products;
       }
-      return this.products;
     } catch (error) {
-      throw new Error("Error al obtener los productos:", error.message);
+      console.log(error.message);
+      throw new Error("No se pudo obtener los productos.");
     }
   }
 
-  async getProductById(Id) {
+  ///////////////////////////////////////////////////////////////////
+
+  async getProductById(productId) {
     try {
       await this.loadProductsFromFile();
-      const IdExist = this.products.find((p) => p.Id === Id);
+      const IdExist = this.products.find((p) => p.Id === productId);
       if (IdExist) {
         return IdExist;
       } else {
-        throw new Error(`El producto con Id: ${Id} no existe`);
+        throw new Error(`El producto con Id: ${productId} no existe`);
       }
     } catch (error) {
-      throw new Error(error.message);
+      console.log(error.message);
+      throw new Error("No se pudo obtener el producto.");
     }
   }
 
-  async deleteProductById(Id) {
+  ///////////////////////////////////////////////////////////////////
+
+  async updateProductById(productId, productUpdated) {
     try {
-      const productIndex = this.products.findIndex((p) => p.Id === Id);
+      await this.loadProductsFromFile();
+      const idExist = this.products.find((p) => p.Id === productId);
+      if (idExist) {
+        const productChanged = {
+          ...idExist,
+          ...productUpdated,
+          Id: productId.Id,
+        };
+        const newArray = this.products.filter((p) => p.Id !== productId);
+        newArray.push(productChanged),
+          await fs.promises.writeFile(
+            this.filePath,
+            JSON.stringify(newArray, null, 2),
+            "utf-8"
+          );
+      } else {
+        throw new Error(`El producto con Id: ${productId} no existe`);
+      }
+    } catch (error) {
+      console.log(error.message);
+      throw new Error("No se pudo actualizar el producto.");
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
+  async deleteProductById(productId) {
+    try {
+      const productIndex = this.products.findIndex((p) => p.Id === productId);
       if (productIndex !== -1) {
         await this.products.splice(productIndex, 1);
         await this.saveProductsToFile();
@@ -112,32 +160,8 @@ export class ProductsManagerFs {
         console.log("Error: Producto no encontrado");
       }
     } catch (error) {
-      throw new Error(error.message);
-    }
-  }
-
-  async updateProduct(Id, productChanged) {
-    try {
-      await this.loadProductsFromFile();
-      const productId = this.products.find((p) => p.Id === Id);
-      if (productId) {
-        const productUpdated = {
-          ...productId,
-          ...productChanged,
-          Id: productId.Id,
-        };
-        const newArray = this.products.filter((p) => p.Id !== Id);
-        newArray.push(productUpdated),
-          await fs.promises.writeFile(
-            this.filePath,
-            JSON.stringify(newArray, null, 2),
-            "utf-8"
-          );
-      } else {
-        throw new Error(`El producto con Id: ${Id} no existe`);
-      }
-    } catch (error) {
-      throw new Error(error.message);
+      console.log(error.message);
+      throw new Error("No se pudo eliminar el producto.");
     }
   }
 }

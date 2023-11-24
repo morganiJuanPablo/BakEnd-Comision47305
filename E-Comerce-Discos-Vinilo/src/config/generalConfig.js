@@ -1,31 +1,17 @@
 //
-/* import path from "path";
+/* import path from "path"; */
 import dotenv from "dotenv";
-import { Command } from "commander";
-import { __dirname } from "../utils.js";
+/* import { __dirname } from "../utils.js"; */
 
-
-const program = new Command();
-
-program.option("--mode <modo>", "Modo de entorno de trabajo", "development");
-program.parse();
-
-const applicationArgs = program.opts();
-const applicationEnv = applicationArgs.mode;
-
-const pathEnv =
-  applicationEnv === "production"
-    ? path.join(__dirname,"../.env.production")
-    : path.join(__dirname,"../.env.development");
-
-dotenv.config({
+/* const pathEnv = path.join(__dirname,"../.env")
+ */
+dotenv.config(/* {
   path: pathEnv,
-}); */
-//
-import dotenv from "dotenv";
-dotenv.config();
-
+} */);
 export const generalConfig = {
+  server: {
+    port: process.env.PORT,
+  },
   mongo: {
     url: process.env.MONGO_URL,
   },
@@ -42,5 +28,7 @@ export const generalConfig = {
   tokenJWT: {
     tokenJWTkey: process.env.PRIVATE_KEY_TOKENS,
   },
+  environment: {
+    envWork: process.env.NODE_ENV,
+  },
 };
-console.log(generalConfig);
