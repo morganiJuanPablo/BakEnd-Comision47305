@@ -17,7 +17,7 @@ export const isValidated = (password, userInfo) => {
 export const generateToken = (user) => {
   const token = jwt.sign(
     {
-      name: user.first_name,
+      name: user.full_name,
       email: user.email,
       role: user.role,
       age: user.age,
@@ -27,4 +27,12 @@ export const generateToken = (user) => {
     { expiresIn: "1h" }
   );
   return token;
+};
+
+let role;
+export const roleClient = (userName) => {
+  userName === "adminCoder@coder.com"
+    ? (role = "Administrador")
+    : (role = "Usuario");
+  return role;
 };

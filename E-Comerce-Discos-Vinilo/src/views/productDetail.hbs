@@ -28,12 +28,22 @@
           <p class="productDetail--description">{{this.description}}</p>
           <p class="productDetail--price">{{this.price}} €</p>
         </div>
-        {{!         <div class="counterContainer">
-          <a class="counterElems">-</a>
-          <p class="counter">5</p>
-          <a class="counterElems">+</a>
-        </div> }}
       {{/each}}
+      <section class="quantitySelectContainer">
+        <span>Cantidad: </span>
+        <select id="quantity" name="quantity">
+          <option class="options" value="1">1</option>
+          <option class="options" value="2">2</option>
+          <option class="options" value="3">3</option>
+          <option class="options" value="4">4</option>
+          <option class="options" value="5">5</option>
+          <option class="options" value="6">6</option>
+          <option class="options" value="7">7</option>
+          <option class="options" value="8">8</option>
+          <option class="options" value="9">9</option>
+          <option class="options" value="10">10</option>
+        </select>
+      </section>
       <div class="btnsContainer">
         <button id="addToCartBtn">Agregar al carrito</button>
         <a class="btnInicio_Cart" href="/products/inicio">Volver al inicio</a>

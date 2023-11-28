@@ -1,16 +1,20 @@
 //
-/* import path from "path"; */
+import { Command } from "commander";
 import dotenv from "dotenv";
-/* import { __dirname } from "../utils.js"; */
 
-/* const pathEnv = path.join(__dirname,"../.env")
- */
-dotenv.config(/* {
-  path: pathEnv,
-} */);
+dotenv.config();
+const program = new Command();
+
+program.option("--mode <mode>", "Entorno de desarrollo", "development");
+program.option("--port <port>", "Puerto de ejecución", "3000");
+program.parse();
+
+const persistenceMode = program.opts().mode;
+const port = program.opts().port;
+
 export const generalConfig = {
   server: {
-    port: process.env.PORT,
+    port,
   },
   mongo: {
     url: process.env.MONGO_URL,
@@ -29,6 +33,6 @@ export const generalConfig = {
     tokenJWTkey: process.env.PRIVATE_KEY_TOKENS,
   },
   environment: {
-    envWork: process.env.NODE_ENV,
+    persistence: persistenceMode,
   },
 };

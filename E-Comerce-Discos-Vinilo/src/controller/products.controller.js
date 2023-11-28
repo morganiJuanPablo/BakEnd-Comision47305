@@ -1,5 +1,5 @@
 //
-import { ProductsService } from "../service/products.service.js";
+import { productsService } from "../repository/index.js";
 
 export class ProductsController {
   /////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ export class ProductsController {
             lean: true,
             sort /* sort: { price: 1 } */,
           };
-          products = await ProductsService.getProducts(category, options);
+          products = await productsService.getProducts(category, options);
 
           products.prevLink = products.hasPrevPage
             ? `http://localhost:8080/products/${category}?page=${products.prevPage}`
@@ -32,7 +32,7 @@ export class ProductsController {
             lean: true,
             sort /* sort: { price: 1 } */,
           };
-          products = await ProductsService.getProducts(category, options);
+          products = await productsService.getProducts(category, options);
 
           products.prevLink = products.hasPrevPage
             ? `http://localhost:8080/products/inicio?page=${products.prevPage}`
@@ -73,7 +73,7 @@ export class ProductsController {
         const cartId = req.user.cartId;
         const roleClient = req.user.role;
         const productId = req.params.productId;
-        const product = await ProductsService.getProductById(productId);
+        const product = await productsService.getProductById(productId);
         const sessionExist = req.user.email && true;
         const data = {
           sessionExist,

@@ -4,8 +4,8 @@ import localStrategy from "passport-local";
 import GithubStrategy from "passport-github2";
 import GoogleStrategy from "passport-google-oauth20";
 import jwt from "passport-jwt";
-import { createHashPass, isValidated } from "../utils.js";
-import { SessionsService } from "../service/sessions.service.js";
+import { createHashPass, isValidated, roleClient } from "../utils.js";
+import { sessionsService } from "../repository/index.js";
 import { generalConfig } from "./generalConfig.js";
 
 const JWTStrategy = jwt.Strategy;
@@ -24,7 +24,7 @@ export const passportInit = () => {
       async (req, username, password, done) => {
         const { first_name, last_name, age } = req.body;
         try {
-          const user = await SessionsService.getUser(username);
+          const user = await sessionsService.getUser(username);
           if (user) {
             return done(null, false);
           } else {
@@ -34,8 +34,9 @@ export const passportInit = () => {
               age,
               email: username,
               password: createHashPass(password),
+              role: roleClient(username),
             };
-            const userRegistered = await SessionsService.createUser(newUser);
+            const userRegistered = await sessionsService.createUser(newUser);            
             return done(null, userRegistered);
           }
         } catch (error) {
@@ -56,7 +57,7 @@ export const passportInit = () => {
       },
       async (username, password, done) => {
         try {
-          const user = await SessionsService.getUser(username);
+          const user = await sessionsService.getUser(username);
           if (!user) {
             return done(null, false);
           }
@@ -83,7 +84,7 @@ export const passportInit = () => {
       },
       async (accesToken, refreshToken, profile, done) => {
         try {
-          const user = await SessionsService.getUser(profile.username);
+          const user = await sessionsService.getUser(profile.username);
           if (user) {
             return done(null, user);
           } else {
@@ -93,7 +94,7 @@ export const passportInit = () => {
               email: profile.username,
               password: createHashPass(profile.id),
             };
-            const userRegistered = await SessionsService.createUser(newUser);
+            const userRegistered = await sessionsService.createUser(newUser);
             return done(null, userRegistered);
           }
         } catch (error) {
@@ -119,7 +120,7 @@ export const passportInit = () => {
       },
       async (accesToken, refreshToken, profile, done) => {
         try {
-          const user = await SessionsService.getUser(profile._json.email);
+          const user = await sessionsService.getUser(profile._json.email);
           if (user) {
             return done(null, user);
           } else {
@@ -130,7 +131,7 @@ export const passportInit = () => {
               email: profile._json.email,
               password: createHashPass(profile.id),
             };
-            const userRegistered = await SessionsService.createUser(newUser);
+            const userRegistered = await sessionsService.createUser(newUser);
             return done(null, userRegistered);
           }
         } catch (error) {

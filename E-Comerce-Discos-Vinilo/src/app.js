@@ -6,8 +6,8 @@ import { engine } from "express-handlebars";
 import { Server } from "socket.io";
 import { __dirname } from "./utils.js";
 import path from "path";
-import { ProductsService } from "./service/products.service.js";
-import { ChatsService } from "./service/chats.service.js";
+import { productsService } from "./repository/index.js";
+import { chatsService } from "./repository/index.js";
 import { chatRouter } from "./routes/chats.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
 import { sessionsRouter } from "./routes/sessions.routes.js";
@@ -18,7 +18,6 @@ import { generalConfig } from "./config/generalConfig.js";
 
 const port = generalConfig.server.port;
 const app = express();
-
 //Middlewares
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/public")));
@@ -30,9 +29,8 @@ passportInit();
 app.use(passport.initialize());
 
 //Servidores
-const httpServer = app.listen(port, () => console.log("Servidor funcionando."));
+const httpServer = app.listen(port, () => console.log(`Servidor funcionando en el puerto ${port}.`));
 const socketServer = new Server(httpServer);
-
 
 //Handlebars Configuración
 app.engine(".hbs", engine({ extname: ".hbs" }));
@@ -49,37 +47,37 @@ app.use("/api/session", sessionsRouter);
 //Websockets
 socketServer.on("connection", async (socket) => {
   console.log("Cliente en linea");
-  const products = await ProductsService.getProducts();
+  const products = await productsService.getProducts();
   socket.emit("arrayProducts", products);
 
   socket.on("productJson", async (newProduct) => {
-    const result = await ProductsService.addProduct(newProduct);
-    const products = await ProductsService.getProducts();
+    const result = await productsService.addProduct(newProduct);
+    const products = await productsService.getProducts();
     socket.emit("arrayProducts", products);
   });
 
   socket.on("deleteProductById", async (idProduct) => {
-    await ProductsService.deleteProductById(idProduct);
-    const products = await ProductsService.getProducts();
+    await productsService.deleteProductById(idProduct);
+    const products = await productsService.getProducts();
     socket.emit("arrayProducts", products);
   });
 
   socket.on("productUpdatedJson", async (productUpdatedJson) => {
-    const result = await ProductsService.updateProductById(
+    const result = await productsService.updateProductById(
       productUpdatedJson.Id,
       productUpdatedJson
     );
-    const products = await ProductsService.getProducts();
+    const products = await productsService.getProducts();
     socket.emit("arrayProducts", products);
   });
 
   //Chat
   /* await ChatsService.emptyChat(); */ //Para eliminar las pruebas que fui haciendo
-  const historyChat = await ChatsService.getChat();
+  const historyChat = await chatsService.getChat();
   socket.emit("historyChat", historyChat);
   socket.on("messageChat", async (messageInfo) => {
-    const result = await ChatsService.updateChat(messageInfo);
-    const historyChat = await ChatsService.getChat();
+    const result = await chatsService.updateChat(messageInfo);
+    const historyChat = await chatsService.getChat();
     socketServer.emit("historyChat", historyChat);
   });
 });

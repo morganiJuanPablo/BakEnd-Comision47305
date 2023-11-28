@@ -6,7 +6,7 @@ import passport from "passport";
 
 export const onlyAdminAcess = () => {
   return (req, res, next) => {
-    if (req.user.role !== "administrador") {
+    if (req.user.role !== "Administrador") {
       return res.redirect("/api/session/unauthorized");
       /* .status(403)
           .json({ error: "No tienes los permisos para acceder." }); */
@@ -16,7 +16,7 @@ export const onlyAdminAcess = () => {
 };
 export const onlyUserAcess = () => {
   return (req, res, next) => {
-    if (req.user.role !== "usuario") {
+    if (req.user.role !== "Usuario") {
       return res.redirect("/api/session/unauthorized");
       /* .status(403)
           .json({ error: "No tienes los permisos para acceder." }); */

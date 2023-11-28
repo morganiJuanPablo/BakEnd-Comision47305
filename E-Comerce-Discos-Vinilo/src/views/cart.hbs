@@ -19,9 +19,9 @@
           <img src={{this.productId.thumbnail}} alt={{this.productId.title}} />
           <div class="infoCard">
             <p class="productTitle">{{this.productId.title}}</p>
-            <p class="productPrice">{{this.productId.price}}€</p>
-            <p class="productDescription">{{this.productId.description}}</p>
             <p class="productsQuantity">Cantidad: {{this.quantity}}</p>
+            <p class="productDescription">{{this.productId.description}}</p>
+            <p class="productPrice"><b>Subtotal:</b> {{this.subtotal}} €</p>
           </div>
           <div class="btnsContainer">
             <button
@@ -36,6 +36,10 @@
         </div>
       {{/each}}
     </div>
+    <footer id="totalPriceContainer" class="totalPriceContainer">
+      <p class="totalPrice"><b>Total:</b> {{totalPrice}} €</p>
+      <button id="btnPurchase" onclick="purchaseAction()">Comprar</button>
+    </footer>
     <button id="btnEmptyCart" class="btnEmptyCart" onclick="emptyCart()">Vaciar
       al carrito</button>
   </section>

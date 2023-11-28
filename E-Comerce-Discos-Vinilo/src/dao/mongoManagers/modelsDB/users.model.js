@@ -6,10 +6,6 @@ import { cartsDao } from "../../factory.js";
 const usersCollection = "users";
 
 const usersSchema = new mongoose.Schema({
-  full_name: {
-    type: String,
-    required: true,
-  },
   first_name: {
     type: String,
     required: true,
@@ -32,8 +28,8 @@ const usersSchema = new mongoose.Schema({
   role: {
     type: String,
     require: true,
-    enum: ["usuario", "administrador"],
-    default: "usuario",
+    enum: ["Usuario", "Administrador"],
+    default: "Usuario",
   },
   cart: {
     type: mongoose.Schema.Types.ObjectId,

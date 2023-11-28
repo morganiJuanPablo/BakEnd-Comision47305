@@ -37,7 +37,7 @@
   margin: 8rem auto 10rem auto;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 3rem;
 }
 .productContainer img {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
@@ -49,7 +49,7 @@
 }
 .productDetail--title {
   color: black;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
 }
 .productDetail--description {
@@ -58,29 +58,10 @@
 }
 .productDetail--price {
   color: black;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 700;
 }
-.counterContainer {
-  width: 21%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  gap: 2rem;
-  height: auto;
-  border: solid 1px white;
-}
-.counter {
-  color: white;
-  font-size: 2rem;
-  font-weight: 700;
-}
-.counterElems {
-  color: white;
-  font-size: 3rem;
-  font-weight: 700;
-}
+
 .btnsContainer {
   width: 100%;
   height: auto;
@@ -97,6 +78,23 @@
   text-decoration: none;
   cursor: pointer;
   padding: 1rem;
+}
+.quantitySelectContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.quantitySelectContainer span {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+#quantity {
+  width: 10%;
+  height: auto;
+  font-size: 2rem;
+}
+#quantity option {
+  font-size: 2rem;
 }
 .btnInicio_Cart {
   color: black;

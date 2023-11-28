@@ -49,9 +49,8 @@ export class CartsManagerMongo {
 
   ///////////////////////////////////////////////////////////////////
 
-  async addProduct(cartId, productId) {
+  async addProduct(cartId, productId, quantity) {
     try {
-      let quantity = 1;
       const cart = await this.cartModel.findById(cartId);
       if (cart) {
         const { products } = cart;
@@ -63,7 +62,7 @@ export class CartsManagerMongo {
               productId: productId,
               quantity: quantity,
             })
-          : product.quantity++;
+          : (product.quantity = quantity);
       }
       const cartUpdated = await this.cartModel.findByIdAndUpdate(cartId, cart, {
         new: true,
@@ -96,6 +95,29 @@ export class CartsManagerMongo {
       const cartUpdated = await this.cartModel.findByIdAndUpdate(cartId, cart, {
         new: true,
       });
+      return cartUpdated;
+    } catch (error) {
+      console.log(error.message);
+      throw new Error(`El carrito con Id: ${cartId} no existe`);
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
+  async cartUpdated(cartId, newCart) {
+    try {
+      console.log(newCart);
+
+      const cartUpdated = await this.cartModel.findByIdAndUpdate(
+        cartId,
+        newCart ,
+        { new: true }
+      );
+
+      if (!cartUpdated) {
+        throw new Error(`El carrito con Id: ${cartId} no existe`);
+      }
+
       return cartUpdated;
     } catch (error) {
       console.log(error.message);

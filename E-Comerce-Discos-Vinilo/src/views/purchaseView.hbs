@@ -1,0 +1,40 @@
+<main class="purchaseContainer">
+  <section class="purchaseContainer--purchaseSection">
+
+    <h3 class="purchaseTitle">// Felicidades! Detalle de tu compra //</h3>
+    <div class="purchaseContainerCards" id="purchaseContainerCards">
+      {{#each productsSold}}
+        <div class="purchaseProductCard">
+          <img src={{this.productId.thumbnail}} alt={{this.productId.title}} />
+          <div class="infoCard">
+            <p class="productTitle">{{this.productId.title}}</p>
+            <p class="productsQuantity">Cantidad: {{this.quantity}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <footer class="purchaseDetail">
+      <p>El total de tu compra fue de
+        <b>{{ticketPurchase.amount}} €</b>
+        <br />Te hemos enviado al correo
+        <b>{{ticketPurchase.purchaser}}</b>
+        el siguiente código de resguardo:
+        <br /><b>{{ticketPurchase.code}}</b><br />
+        A disfrutar!</p>
+    </footer>
+    <h3 class="rejectedTitle">// Productos rechazados por falta de stock //</h3>
+    <div class="purchaseContainerCards" id="purchaseContainerCards">
+      {{#each productsRejected}}
+        <div class="purchaseProductCard">
+          <img src={{this.productId.thumbnail}} alt={{this.productId.title}} />
+          <div class="infoCard">
+            <p class="productTitle">{{this.productId.title}}</p>
+            <p class="productsQuantity">Cantidad: {{this.quantity}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <a class="btnHome" href="/products/inicio">// Ir a login //</a>
+  </section>
+</main>
+<script src="/js/cart.js"></script>
