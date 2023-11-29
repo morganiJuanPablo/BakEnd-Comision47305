@@ -20,16 +20,17 @@ export class CartsRepository {
         for (let i = 0; i < productsOk.length; i++) {
           let product = productsOk[i];
           let subtotal = product.quantity * product.productId.price;
-          product.subtotal = subtotal;
+          product.subtotal = subtotal
         }
         let totalPrice = productsOk.reduce((acc, elem) => {
-          return (acc += elem.subtotal);
+          return (acc += elem.subtotal)          
         }, 0);
 
-        productsOk.totalPrice = totalPrice /* .toFixed(2) */;
+        productsOk.totalPrice = totalPrice;
 
+        let code = uuidv4();
         const newTicket = {
-          code: uuidv4(),
+          code,
           purchase_date: new Date(),
           amount: productsOk.totalPrice,
         };
@@ -52,10 +53,6 @@ export class CartsRepository {
           product.productId.stock < product.quantity &&
             productsRejected.push(product);
         }
-  /*       for (let i = 0; i < productsRejected.length; i++) {
-          let product = productsRejected[i];
-          delete product.quantity;
-        } */
         return productsRejected;
       } else {
         res.json({ status: "error", message: "El carrito está vacío." });
@@ -64,11 +61,11 @@ export class CartsRepository {
   }
 
   /////////////////////////////////////////////////////
-  async cartUpdated(cartId, newCart) {
+  async updateCart(cartId, newCart) {
     try {
       const cart = await this.dao.getCartById(cartId);
       if (cart) {
-        const cartUpdated = await this.dao.cartUpdated(cartId, newCart);
+        const cartUpdated = await this.dao.updateCart(cartId, newCart);
         return cartUpdated;
       }
     } catch (error) {

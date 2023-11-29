@@ -1,5 +1,9 @@
 //
-import { cartsService } from "../repository/index.js";
+import {
+  cartsService,
+  productsService,
+  ticketService,
+} from "../repository/index.js";
 
 export class CartsController {
   /////////////////////////////////////////////////////
@@ -35,15 +39,33 @@ export class CartsController {
       const { cartId } = req.params;
       const productsOk = await cartsService.getProductsOk(cartId);
       const productsRejected = await cartsService.getProductsRejected(cartId);
-      productsOk.ticket.purchaser = req.user.email;
-      const data = {
-        style: "purchaseView.css",
-        ticketPurchase: productsOk.ticket,
-        productsSold: productsOk,
-        productsRejected,
-      };
-      console.log(data.ticketPurchase);
-      res.render("purchaseView", data);
+
+      if (productsOk || productsRejected) {
+        let purchaseExist;
+        if (productsOk.length) {
+          purchaseExist = true;
+        } else {
+          purchaseExist = false;
+        }
+        let rejectedExist;
+        if (productsRejected.length) {
+          rejectedExist = true;
+        } else {
+          rejectedExist = false;
+        }
+        productsOk.ticket.purchaser = req.user.email;
+        const data = {
+          style: "purchaseView.css",
+          ticketPurchase: productsOk.ticket,
+          productsSold: productsOk,
+          productsRejected,
+          purchaseExist,
+          rejectedExist,
+        };
+        res.render("purchaseView", data);
+      } else {
+        res.redirect("/products/inicio");
+      }
     } catch (error) {
       console.log(error.message);
       res.status(500).json({ message: error.message });
@@ -81,13 +103,31 @@ export class CartsController {
       const productsOk = await cartsService.getProductsOk(cartId);
       productsOk.ticket.purchaser = req.user.email;
 
-      console.log(productsRejected)
-    
       const productsRejectedToUpdate = productsRejected.map((item) => ({
         quantity: item.quantity,
         productId: { _id: item.productId._id },
       }));
-      await cartsService.cartUpdated(cartId, productsRejectedToUpdate);
+      const cartUpdated = await cartsService.updateCart(
+        cartId,
+        productsRejectedToUpdate
+      );
+
+      let productNewStock;
+      for (let i = 0; i < productsOk.length; i++) {
+        let product = productsOk[i];
+        let newStock = product.productId.stock - product.quantity;
+        product.productId.stock = newStock;
+        productNewStock = product.productId;
+      }
+
+      const cartNewStock = await productsService.updateProductById(
+        productNewStock._id,
+        productNewStock
+      );
+
+      const newTicket = await ticketService.createTicket(productsOk.ticket);
+
+      return cartUpdated, cartNewStock, newTicket;
     } catch (error) {
       console.log(error.message);
     }

@@ -17,7 +17,7 @@ export const isValidated = (password, userInfo) => {
 export const generateToken = (user) => {
   const token = jwt.sign(
     {
-      name: user.full_name,
+      name: user.first_name,
       email: user.email,
       role: user.role,
       age: user.age,

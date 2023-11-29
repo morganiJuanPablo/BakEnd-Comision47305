@@ -9,7 +9,7 @@ const ticketSchema = new mongoose.Schema({
     required: true,
   },
   purchase_date: {
-    type: date,
+    type: Date,
     required: true,
   },
   amount: {
@@ -18,7 +18,6 @@ const ticketSchema = new mongoose.Schema({
   },
   purchaser: {
     type: String,
-    
   },
 });
 

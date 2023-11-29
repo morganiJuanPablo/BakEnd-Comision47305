@@ -8,6 +8,7 @@ let productsDao;
 let chatsDao;
 let cartsDao;
 let usersDao;
+let ticketsDao;
 const environment = generalConfig.environment.persistence;
 
 switch (environment) {
@@ -41,6 +42,13 @@ switch (environment) {
     usersDao = new UsersManagerMongo(); */
     ////
     usersDao = new UsersManagerMongo();
+
+    ////TICKETS
+    const { TicketsManagerMongo } = await import(
+      "../dao/mongoManagers/TicketsManagerMongo.js"
+    );
+    ticketsDao = new TicketsManagerMongo();
+
     console.log("Estamos en el entorno de Producción.");
     break;
   }
@@ -66,4 +74,4 @@ switch (environment) {
   }
 }
 
-export { productsDao, cartsDao, chatsDao, usersDao };
+export { productsDao, cartsDao, chatsDao, usersDao, ticketsDao };

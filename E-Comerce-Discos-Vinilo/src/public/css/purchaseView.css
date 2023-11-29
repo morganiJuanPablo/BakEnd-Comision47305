@@ -58,6 +58,15 @@
   font-weight: 700;
   padding: 1rem;
 }
+.purchaseDetailFail p {
+  width: 40%;
+  margin: 0 auto 5rem auto;
+  border: solid 2px red;
+  font-size: 1.8rem;
+  padding: 2rem;
+  line-height: 3rem;
+  text-align: center;
+}
 .purchaseDetail p {
   width: 40%;
   margin: 0 auto 5rem auto;

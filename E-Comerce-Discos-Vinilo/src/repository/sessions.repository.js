@@ -1,5 +1,5 @@
 //
-import { CreateUsersDto, GetUsersDto } from "../dao/dto/users.dto.js";
+/* import { GetUsersDto } from "../dao/dto/users.dto.js"; */
 
 export class SessionsRepository {
   constructor(dao) {
@@ -8,13 +8,11 @@ export class SessionsRepository {
   /////////////////////////////////////////////////////
   async getUser(username) {
     const user = await this.dao.getUser(username);
-    const userDto = new GetUsersDto(user)   
-    return userDto;
+    return user;
   }
   /////////////////////////////////////////////////////
   async createUser(newUser) {
     const user = await this.dao.createUser(newUser);
-    const userDto = new CreateUsersDto(user)
-    return userDto; 
+    return user;
   }
 }

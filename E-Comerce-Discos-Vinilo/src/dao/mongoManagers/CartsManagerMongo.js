@@ -104,24 +104,27 @@ export class CartsManagerMongo {
 
   ///////////////////////////////////////////////////////////////////
 
-  async cartUpdated(cartId, newCart) {
+  async updateCart(cartId, newCart) {
     try {
-      console.log(newCart);
-
-      const cartUpdated = await this.cartModel.findByIdAndUpdate(
-        cartId,
-        newCart ,
-        { new: true }
-      );
-
-      if (!cartUpdated) {
-        throw new Error(`El carrito con Id: ${cartId} no existe`);
+      let cart;
+      cart = await this.cartModel.findById(cartId);
+      if (cart) {
+        cart.products = newCart;
+        const cartUpdated = await this.cartModel.findByIdAndUpdate(
+          cartId,
+          cart,
+          {
+            new: true,
+          }
+        );
+        if (!cartUpdated) {
+          throw new Error(`El carrito con Id: ${cartId} no existe`);
+        }
+        return cartUpdated;
       }
-
-      return cartUpdated;
     } catch (error) {
       console.log(error.message);
-      throw new Error(`El carrito con Id: ${cartId} no existe`);
+      throw new Error(`No se pudo actualizar el carrito con Id: ${cartId}`);
     }
   }
 
