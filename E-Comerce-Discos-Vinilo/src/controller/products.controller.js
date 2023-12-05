@@ -1,5 +1,6 @@
 //
 import { productsService } from "../repository/index.js";
+import { generateProduct } from "../helpers/mocks.js";
 
 export class ProductsController {
   /////////////////////////////////////////////////////
@@ -91,5 +92,16 @@ export class ProductsController {
       console.log(error.message);
       res.status(500).json({ message: error.message });
     }
+  };
+
+  /////////////////////////////////////////////////////
+  static getProductsMock = (req, res) => {
+    const cant = parseInt(req.query.cant) || 100;
+    let products = [];
+    for (let i = 0; i < cant; i++) {
+      const newProduct = generateProduct();
+      products.push(newProduct);
+    }
+    res.json({ status: "success", data: products });
   };
 }

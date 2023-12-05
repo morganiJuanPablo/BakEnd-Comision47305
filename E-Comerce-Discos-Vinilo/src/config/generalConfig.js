@@ -29,6 +29,10 @@ export const generalConfig = {
     clientId: process.env.GOOGLE_CLIENT_ID,
     clientKey: process.env.GOOGLE_CLIENT_KEY,
   },
+  gmail: {
+    account: process.env.GMAIL_ACCOUNT,
+    password: process.env.GMAIL_PASS,
+  },
   tokenJWT: {
     tokenJWTkey: process.env.PRIVATE_KEY_TOKENS,
   },

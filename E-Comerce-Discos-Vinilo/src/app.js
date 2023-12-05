@@ -16,6 +16,7 @@ import passport from "passport";
 import { passportInit } from "./config/passportConfig.js";
 import { generalConfig } from "./config/generalConfig.js";
 
+
 const port = generalConfig.server.port;
 const app = express();
 //Middlewares

@@ -4,6 +4,9 @@ import {
   productsService,
   ticketService,
 } from "../repository/index.js";
+import { transporterGmail } from "../config/gmailMailingConfig.js";
+import { generalConfig } from "../config/generalConfig.js";
+import { emailTemplate } from "../utils.js";
 
 export class CartsController {
   /////////////////////////////////////////////////////
@@ -62,6 +65,18 @@ export class CartsController {
           purchaseExist,
           rejectedExist,
         };
+
+        //enviamos el detalle de la compra por correo
+        const namePurchaser = req.user.first_name;
+
+        const purchaseByEmail = await transporterGmail.sendMail({
+          from: generalConfig.gmail.account,
+          to: productsOk.ticket.purchaser,
+          subject: "Detalle de tu compra. Foo Fighters Shop",
+          //propidad text cuando queremos que solo sea texto
+          html: emailTemplate("Juan"),
+        });
+
         res.render("purchaseView", data);
       } else {
         res.redirect("/products/inicio");

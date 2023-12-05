@@ -7,6 +7,9 @@ import jwt from "passport-jwt";
 import { createHashPass, isValidated, roleClient } from "../utils.js";
 import { sessionsService } from "../repository/index.js";
 import { generalConfig } from "./generalConfig.js";
+import { CustomError } from "../services/customError.service.js";
+import { EError } from "../Enums/EError.js";
+import { userCreateError } from "../Enums/userCreateError.service.js";
 
 const JWTStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
@@ -36,8 +39,22 @@ export const passportInit = () => {
               password: createHashPass(password),
               role: roleClient(username),
             };
-            const userRegistered = await sessionsService.createUser(newUser);            
-            return done(null, userRegistered);
+            if (
+              !newUser.first_name ||
+              !newUser.last_name ||
+              !newUser.email ||
+              !newUser.password
+            ) {
+              CustomError.createError({
+                name: "Create error user",
+                cause: userCreateError(newUser),
+                message: "Datos inválidos al crear el usuario",
+                errorCode: EError.INVALID_INFO_BODY,
+              });
+            } else {
+              const userRegistered = await sessionsService.createUser(newUser);
+              return done(null, userRegistered);
+            }
           }
         } catch (error) {
           return done(error);
