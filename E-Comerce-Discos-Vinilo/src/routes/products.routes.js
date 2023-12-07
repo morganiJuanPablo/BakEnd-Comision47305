@@ -11,7 +11,7 @@ const router = Router();
 router.get(
   "/products/:category",
   brotliConfig,
-  tokenAuth,
+  /* tokenAuth, */
   ProductsController.getProducts
 );
 
@@ -19,10 +19,10 @@ router.get(
 router.get("/item/:productId", tokenAuth, ProductsController.getProductsById);
 
 ///////////////////////////////////////////////////////////////////
-router.get(
+router.post(
   "/mockingproducts",
   brotliConfig,
-  /* tokenAuth,  */ ProductsController.getProductsMock
+  /* tokenAuth,  */ ProductsController.postProductsMock
 );
 
 //POST

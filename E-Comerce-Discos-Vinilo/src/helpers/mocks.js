@@ -13,6 +13,7 @@ export const generateProduct = () => {
     code: random.alphaNumeric(6),
     stock: +random.numeric(2),
     category: datatype.boolean() ? "TopVentas" : "EdicionesEspeciales",
+    status: datatype.boolean()
   };
 };
 /* console.log(generateProduct()); */

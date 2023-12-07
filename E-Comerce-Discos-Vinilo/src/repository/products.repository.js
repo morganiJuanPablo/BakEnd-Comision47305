@@ -4,6 +4,12 @@ export class ProductsRepository {
     this.dao = dao;
   }
   /////////////////////////////////////////////////////
+  async addManyProducts(products) {
+    const productsToMock = await this.dao.addManyProducts(products);
+    return productsToMock;
+  }
+
+  /////////////////////////////////////////////////////
   async getProductById(productId) {
     const product = await this.dao.getProductById(productId);
     return product;

@@ -89,9 +89,22 @@ export class ProductsManagerFs {
 
   ///////////////////////////////////////////////////////////////////
 
+  async addManyProducts(products) {
+    try {
+      await this.loadProductsFromFile();
+      this.products = products;
+      await this.saveProductsToFile();
+      return this.products;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
   async getProducts(category, options) {
     try {
-      if (!category && !options) {
+      if (!category || !options) {
         if (this.fileExist()) {
           await this.loadProductsFromFile();
         }

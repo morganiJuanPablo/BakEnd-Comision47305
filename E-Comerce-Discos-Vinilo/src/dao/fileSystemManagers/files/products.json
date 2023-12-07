@@ -1,142 +1,35 @@
 [
   {
-    "title": "The Colour And The Shape",
-    "description": "The Colour and the Shape es el segundo álbum de la banda Foo Fighters. Fue lanzado al mercado el 20 de mayo de 1997 por Capitol a través del sello Roswell.",
-    "price": 26.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511123/ProyectoBackEnd/0884977570328_600_enkx1l.jpg",
-    "code": "foo130",
-    "stock": 12,
+    "id": "3ba44febc7bbdce6326f9d45",
+    "title": "Table",
+    "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+    "price": 988,
+    "thumbnail": "https://loremflickr.com/640/480",
+    "code": "t0q0wx",
+    "stock": 91,
     "category": "TopVentas",
-    "status": true,
-    "Id": "AhcDIs"
+    "status": true
   },
   {
-    "title": "In Your Honor",
-    "description": "In Your Honor es el quinto álbum de Foo Fighters, editado el 13 de junio de 2005 en el Reino Unido y un día después en los Estados Unidos.",
-    "price": 26.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/0828767967257_600_hldjjy.jpg",
-    "code": "foo131",
-    "stock": 12,
-    "category": "TopVentas",
-    "status": true,
-    "Id": "kEIioT"
-  },
-  {
-    "title": "Foo Fighters",
-    "description": "Foo Fighters es un grupo de rock estadounidense formada en la ciudad de Seattle en 1994 por el exbaterista de Nirvana, Dave Grohl. Este es su disco lanzamiento.",
-    "price": 16.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/0828765549622_600_b94vjr.jpg",
-    "code": "foo133",
-    "stock": 22,
-    "category": "TopVentas",
-    "status": true,
-    "Id": "kf8itT"
-  },
-  {
-    "title": "Medicine At Midnight",
-    "description": "'Medicine at Midnight' Es el nuevo álbum de Foo Fighters, y contiene nueve canciones nuevas con una duración total de 37 minutos.",
-    "price": 11.59,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/91Zzm1Zus7L._SL1500__jlspkc.jpg",
-    "code": "foo126",
-    "stock": 18,
+    "id": "dd5f3ee69104ecbbc433369f",
+    "title": "Table",
+    "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+    "price": 556,
+    "thumbnail": "https://loremflickr.com/640/480",
+    "code": "br0umd",
+    "stock": 86,
     "category": "EdicionesEspeciales",
-    "status": true,
-    "Id": "UwAiDS"
+    "status": false
   },
   {
-    "title": "The Essential Foo Fighters",
-    "description": "Nuevo recopilatorio de Foo Fighters con lo mejor de una de las bandas más grandes de rock de los últimos tiempos.",
-    "price": 16.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/g6jii1a6op6oa_600_harjg7.jpg",
-    "code": "foo129",
-    "stock": 12,
+    "id": "d94ea3d14a6c16c7c13cbd39",
+    "title": "Keyboard",
+    "description": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+    "price": 794,
+    "thumbnail": "https://loremflickr.com/640/480",
+    "code": "l0rc8o",
+    "stock": 38,
     "category": "EdicionesEspeciales",
-    "status": true,
-    "Id": "3ulurK"
-  },
-  {
-    "title": "But Here We Are",
-    "description": "Dave Grohl siempre ha preferido procesar los traumas enfocándose en su trabajo, por lo cual no debería sorprender a nadie que But Here We Are haga su aparición apenas un año después de la inesperada muerte de Taylor Hawkins.",
-    "price": 46.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/ddlzduftslhhb_600_t0n6on.jpg",
-    "code": "foo140",
-    "stock": 50,
-    "category": "EdicionesEspeciales",
-    "status": true,
-    "Id": "gitkhJ"
-  },
-  {
-    "title": "Dee Gees",
-    "description": "Hail Satin es un álbum bajo el nombre Dee Gees, conmemorando el Record Store Day.",
-    "price": 32.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/wunk0syfoaqjb_600_jbl6jy.jpg",
-    "code": "foo132",
-    "stock": 18,
-    "category": "EdicionesEspeciales",
-    "status": true,
-    "Id": "378hhT"
-  },
-  {
-    "title": "Geatest hits",
-    "description": "Recopilación esencial de sus éxitos más icónicos, que abarcan su impresionante carrera y demuestran su habilidad para crear himnos rockeros atemporales.",
-    "price": 12.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/81YbEgRXarL._SL1500__v4y9aj.jpg",
-    "code": "foo150",
-    "stock": 36,
-    "category": "EdicionesEspeciales",
-    "status": true,
-    "Id": "kfjwtT"
-  },
-  {
-    "title": "One By One",
-    "description": "Destaca por su intensidad y emotivas letras, reflejando una fase de la banda marcada por la introspección y la experimentación musical. Este disco sigue siendo un favorito de los fanáticos.",
-    "price": 21.55,
-    "stock": 41,
-    "category": "TopVentas",
-    "code": "Foo160",
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1695136182/ProyectoBackEnd/0828765555524_600_us9bxe.jpg",
-    "Id": "7Em3Kt"
-  },
-  {
-    "title": "There Is Nothing Left To Lose",
-    "description": "Muestra la madurez y la evolución de la banda, con un enfoque en canciones melódicas y emotivas. Este disco representa un punto de inflexión en la carrera de Foo Fighters.",
-    "price": 21.99,
-    "stock": 7,
-    "category": "EdicionesEspeciales",
-    "code": "Foo162",
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1695136554/0888880335630_600_f67ct1.jpg",
-    "Id": "QOOFsf"
-  },
-  {
-    "title": "Echoes, Silence, Patience & Grace",
-    "description": "En este disco, the Foos alternan con toda naturalidad lo acústico con lo eléctrico, el delicado folk de guitarra de púa con el potente hard rock que viene definiendo al grupo.",
-    "price": 10.59,
-    "stock": 127,
-    "category": "10",
-    "code": "TopVentas",
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/71Hq8BJMGqL._UF894_1000_QL80__ineqof.jpg",
-    "Id": "2TdIuJ"
-  },
-  {
-    "title": "Sonic Highways",
-    "description": "El álbum en formato vinilo viene con nueve portadas diferentes en las que incluyen ocho variantes, cada una de ellas presentando las ciudades donde se grabó el álbum: Austin, Chicago, Los Angeles, Nashville, New Orleans, New York, Seattle, y Washington, D.C.",
-    "price": 26.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/81Ebxjui1qL._SL1500__hqjqpl.jpg",
-    "code": "foo124",
-    "stock": "5",
-    "category": "EdicionesEspeciales",
-    "status": true,
-    "Id": "ffid88"
-  },
-  {
-    "title": "Concrete and gold",
-    "description": "Concrete and Gold es el noveno disco de Foo Fighters, banda creada en Seattle en 1994 por Dave Grohl. Este trabajo presenta una interesante fusión entre el hard rock y la sensibilidad del pop.",
-    "price": 28.99,
-    "thumbnail": "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/81T4_-KbjSL._SL1500__gy7xti.jpg",
-    "code": "foo151",
-    "stock": "4",
-    "category": "TopVentas",
-    "status": true,
-    "Id": "7fl9ez"
+    "status": true
   }
 ]

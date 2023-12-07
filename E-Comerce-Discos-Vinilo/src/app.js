@@ -15,7 +15,10 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import { passportInit } from "./config/passportConfig.js";
 import { generalConfig } from "./config/generalConfig.js";
-
+import { CustomError } from "./errors/services/customError.service.js";
+import { EError } from "./errors/Enums/EError.js";
+import { getProductError } from "./errors/services/productsError.service.js";
+import { errorHandler } from "./errors/errorHandler.js";
 
 const port = generalConfig.server.port;
 const app = express();
@@ -30,7 +33,9 @@ passportInit();
 app.use(passport.initialize());
 
 //Servidores
-const httpServer = app.listen(port, () => console.log(`Servidor funcionando en el puerto ${port}.`));
+const httpServer = app.listen(port, () =>
+  console.log(`Servidor funcionando en el puerto ${port}.`)
+);
 const socketServer = new Server(httpServer);
 
 //Handlebars Configuración
@@ -49,6 +54,15 @@ app.use("/api/session", sessionsRouter);
 socketServer.on("connection", async (socket) => {
   console.log("Cliente en linea");
   const products = await productsService.getProducts();
+  if (!products) {
+    const error = CustomError.createError({
+      name: "Data Base error",
+      cause: getProductError(),
+      message: "Error en la base de datos",
+      errorCode: EError.DATABASE_Error,
+    });
+    return console.log(error);
+  }
   socket.emit("arrayProducts", products);
 
   socket.on("productJson", async (newProduct) => {
@@ -82,3 +96,6 @@ socketServer.on("connection", async (socket) => {
     socketServer.emit("historyChat", historyChat);
   });
 });
+
+//Manejo de errores
+app.use(errorHandler);

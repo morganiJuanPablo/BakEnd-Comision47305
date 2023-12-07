@@ -7,9 +7,12 @@ import jwt from "passport-jwt";
 import { createHashPass, isValidated, roleClient } from "../utils.js";
 import { sessionsService } from "../repository/index.js";
 import { generalConfig } from "./generalConfig.js";
-import { CustomError } from "../services/customError.service.js";
-import { EError } from "../Enums/EError.js";
-import { userCreateError } from "../Enums/userCreateError.service.js";
+import { CustomError } from "../errors/services/customError.service.js";
+import { EError } from "../errors/Enums/EError.js";
+import {
+  loginUserCreateError,
+  newUserCreateError,
+} from "../errors/services/userCreateError.service.js";
 
 const JWTStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
@@ -25,8 +28,22 @@ export const passportInit = () => {
         usernameField: "email",
       },
       async (req, username, password, done) => {
-        const { first_name, last_name, age } = req.body;
         try {
+          const { first_name, last_name, age } = req.body;
+            if (
+            first_name === undefined ||
+            last_name === undefined ||
+            username === undefined ||
+            password === undefined
+          ) {
+            CustomError.createError({
+              name: "User´s register error",
+              cause: newUserCreateError(req.body),
+              message: "Datos inválidos al crear el usuario",
+              errorCode: EError.INVALID_INFO_BODY,
+            });
+           /*  return console.log("Hola") */
+          }
           const user = await sessionsService.getUser(username);
           if (user) {
             return done(null, false);
@@ -39,22 +56,8 @@ export const passportInit = () => {
               password: createHashPass(password),
               role: roleClient(username),
             };
-            if (
-              !newUser.first_name ||
-              !newUser.last_name ||
-              !newUser.email ||
-              !newUser.password
-            ) {
-              CustomError.createError({
-                name: "Create error user",
-                cause: userCreateError(newUser),
-                message: "Datos inválidos al crear el usuario",
-                errorCode: EError.INVALID_INFO_BODY,
-              });
-            } else {
-              const userRegistered = await sessionsService.createUser(newUser);
-              return done(null, userRegistered);
-            }
+            const userRegistered = await sessionsService.createUser(newUser);
+            return done(null, userRegistered);
           }
         } catch (error) {
           return done(error);
@@ -81,7 +84,16 @@ export const passportInit = () => {
           if (!isValidated(password, user)) {
             return done(null, false);
           }
-          return done(null, user);
+          if (username && password) {
+            return done(null, user);
+          } else {
+            CustomError.createError({
+              name: "User´s login error",
+              cause: loginUserCreateError(user),
+              message: "Datos inválidos al loguear el usuario",
+              errorCode: EError.INVALID_INFO_BODY,
+            });
+          }
         } catch (error) {
           return done(error);
         }

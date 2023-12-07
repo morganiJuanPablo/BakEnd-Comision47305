@@ -59,7 +59,7 @@ switch (environment) {
       "../dao/fileSystemManagers/ProductsManager-FS.js"
     );
     productsDao = new ProductsManagerFs(
-      path.join(__dirname, "dao/files/products.json")
+      path.join(__dirname, "./dao/fileSystemManagers/files/products.json")
     );
 
     ////CARTS

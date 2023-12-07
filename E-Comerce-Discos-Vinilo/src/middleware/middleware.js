@@ -2,10 +2,9 @@
 
 import passport from "passport";
 import compression from "express-compression";
-import { EError } from "../Enums/EError.js";
+import { EError } from "../errors/Enums/EError.js";
 
-export const errorHandler = (error, req,res,next)=>{
-    console.log(error.code);
+export const errorHandler = (error, req,res,next)=>{    
     switch (error.code) {
         case EError.DATABASE_Error:
             res.json({status:"error", error:error.cause});
@@ -59,8 +58,9 @@ export const tokenAuth = passport.authenticate("jwtAuth", {
 export const authRegisterPassport = passport.authenticate(
   "localRegisterStrategy",
   {
-    failureRedirect: "/api/session/new_user_fail",
+    failureRedirect: "/api/session/new_user",
     session: false,
+    failureFlash: true
   }
 );
 

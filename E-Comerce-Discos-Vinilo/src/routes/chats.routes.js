@@ -8,7 +8,7 @@ const router = Router();
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get("/chat", tokenAuth, /* onlyUserAcess(), */ ChatsController.getChats);
+router.get("/chat", tokenAuth, onlyUserAcess(), ChatsController.getChats);
 
 ///////////////////////////////////////////////////////////////////
 
