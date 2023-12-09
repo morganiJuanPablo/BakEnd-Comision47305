@@ -19,6 +19,7 @@ import { CustomError } from "./errors/services/customError.service.js";
 import { EError } from "./errors/Enums/EError.js";
 import { getProductError } from "./errors/services/productsError.service.js";
 import { errorHandler } from "./errors/errorHandler.js";
+import { logger } from "./helpers/logger.js";
 
 const port = generalConfig.server.port;
 const app = express();
@@ -34,7 +35,7 @@ app.use(passport.initialize());
 
 //Servidores
 const httpServer = app.listen(port, () =>
-  console.log(`Servidor funcionando en el puerto ${port}.`)
+  logger.info(`Servidor funcionando en el puerto ${port}.`)
 );
 const socketServer = new Server(httpServer);
 

@@ -1,13 +1,14 @@
 //
 import { generalConfig } from "./generalConfig.js";
 import mongoose from "mongoose";
+import { logger } from "../helpers/logger.js";
 
 export class DbConnection {
   static #instance;
 
-   static async #getConnection() {
+  static async #getConnection() {
     const connection = await mongoose.connect(generalConfig.mongo.url);
-    console.log("Conectado con la base de datos.");
+    logger.info("Conectado con la base de datos.");    
     return connection;
   }
   static async getInstance() {

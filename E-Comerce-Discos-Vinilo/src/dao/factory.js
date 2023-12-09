@@ -2,7 +2,7 @@
 import { generalConfig } from "../config/generalConfig.js";
 import { __dirname } from "../utils.js";
 import path from "path";
-
+import { logger } from "../helpers/logger.js";
 
 let productsDao;
 let chatsDao;
@@ -49,7 +49,7 @@ switch (environment) {
     );
     ticketsDao = new TicketsManagerMongo();
 
-    console.log("Estamos en el entorno de Producción.");
+    logger.info("Estamos en el entorno de Producción.");
     break;
   }
   ////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ switch (environment) {
     );
 
     ////
-    console.log("Estamos en el entorno de Desarrollo.");
+    logger.info("Estamos en el entorno de Desarrollo.");
     break;
   }
 }

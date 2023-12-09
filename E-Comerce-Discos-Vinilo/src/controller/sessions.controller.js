@@ -1,5 +1,6 @@
 //
 import { generateToken } from "../utils.js";
+import { logger } from "../helpers/logger.js";
 
 export class SessionsController {
   /////////////////////////////////////////////////////
@@ -10,7 +11,7 @@ export class SessionsController {
       };
       res.render("login", data);
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -24,7 +25,7 @@ export class SessionsController {
       };
       res.render("login", data);
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -37,7 +38,7 @@ export class SessionsController {
       };
       res.render("loginNewUser", data);
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -51,7 +52,7 @@ export class SessionsController {
       };
       res.render("loginNewUser", data);
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -74,7 +75,7 @@ export class SessionsController {
         res.render("profile", data);
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -84,7 +85,7 @@ export class SessionsController {
     try {
       res.render("sessionDestroyed", { style: "sessionDestroyed.css" });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
       res.redirect("/api/session/login");
     }
@@ -95,7 +96,7 @@ export class SessionsController {
     try {
       res.render("unauthorized", { style: "unauthorized.css" });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -109,7 +110,7 @@ export class SessionsController {
       };
       res.render("login", data);
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -127,25 +128,44 @@ export class SessionsController {
         error: "No se pudo iniciar la sesión",
       };
       res.render("login", data);
-      /*       console.log(error.message);
+      logger.error(error.message);
+      /*       
     res.status(500).json({ message: error.message }); */
     }
   };
 
   /////////////////////////////////////////////////////
   static newSessionGitHub = async (req, res) => {
-    const user = req.user;
-    const token = generateToken(user);
-    res.cookie("authLoginFoo", token, { maxAge: 3600000, httpOnly: true });
-    res.redirect("/products/inicio");
+    try {
+      const user = req.user;
+      const token = await generateToken(user);
+      res.cookie("authLoginFoo", token, { maxAge: 3600000, httpOnly: true });
+      res.redirect("/products/inicio");
+    } catch (error) {
+      const data = {
+        style: "login.css",
+        error: "No se pudo iniciar la sesión",
+      };
+      res.render("login", data);
+      logger.error(error.message);
+    }
   };
 
   /////////////////////////////////////////////////////
-  static newSessionGoogle = (req, res) => {
-    const user = req.user;
-    const token = generateToken(user);
-    res.cookie("authLoginFoo", token, { maxAge: 3600000, httpOnly: true });
-    res.redirect("/products/inicio");
+  static newSessionGoogle = async (req, res) => {
+    try {
+      const user = req.user;
+      const token = await generateToken(user);
+      res.cookie("authLoginFoo", token, { maxAge: 3600000, httpOnly: true });
+      res.redirect("/products/inicio");
+    } catch (error) {
+      const data = {
+        style: "login.css",
+        error: "No se pudo iniciar la sesión",
+      };
+      res.render("login", data);
+      logger.error(error.message);
+    }
   };
 
   /////////////////////////////////////////////////////
@@ -154,7 +174,7 @@ export class SessionsController {
       res.clearCookie("authLoginFoo");
       res.redirect("/api/session/login");
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
