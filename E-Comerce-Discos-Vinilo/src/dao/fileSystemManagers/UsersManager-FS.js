@@ -1,15 +1,15 @@
 //
 import fs from "fs";
 
-export class ProductsManagerFs {
+export class UsersManagerFs {
   constructor(path) {
-    this.products = [];
+    this.users = [];
     this.filePath = path;
   }
 
   ///////////////////////////////////////////////////////////////////
 
-  #fileExist() {
+  fileExist() {
     return fs.existsSync(this.filePath);
   }
 
@@ -19,7 +19,7 @@ export class ProductsManagerFs {
     try {
       let caracters = "AbCcDdEeFfGgHhIiJjKkLlMmOoPpQqRrSsTtUuVvWwZz0123456789";
       let newId = "";
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < 12; i++) {
         let indicesAleatorios = Math.floor(Math.random() * 53);
         newId += caracters[indicesAleatorios];
       }
@@ -31,10 +31,10 @@ export class ProductsManagerFs {
 
   ///////////////////////////////////////////////////////////////////
 
-  async #loadProductsFromFile() {
+  async #loadUsersFromFile() {
     try {
       const data = await fs.promises.readFile(this.filePath, "utf-8");
-      return (this.products = JSON.parse(data));
+      return (this.users = JSON.parse(data));
     } catch (error) {
       throw new Error(error.message);
     }
@@ -42,11 +42,11 @@ export class ProductsManagerFs {
 
   ///////////////////////////////////////////////////////////////////
 
-  async #saveProductsToFile() {
+  async #saveUsersToFile() {
     try {
       await fs.promises.writeFile(
         this.filePath,
-        JSON.stringify(this.products, null, 2),
+        JSON.stringify(this.users, null, 2),
         "utf-8"
       );
     } catch (error) {
@@ -56,63 +56,31 @@ export class ProductsManagerFs {
 
   ///////////////////////////////////////////////////////////////////
 
-  async addProduct(product) {
+  async createUser(user) {
     try {
-      await this.#loadProductsFromFile();
-      const { title, description, price, code, stock, /* status, */ category } =
-        product;
-      if (
-        !title ||
-        !description ||
-        !price ||
-        !code ||
-        !stock ||
-        /* !status || */
-        !category
-      ) {
-        throw new Error("Todos los campos son obligatorios.");
-      } else {
-        const Id = await this.#getId();
-        product.Id = Id;
-        const codeExist = this.products.find((elem) => elem.code === code);
-        if (codeExist) {
-          throw new Error("Producto con ese código ya existe.");
-        } else {
-          this.products.push(product);
-          await this.#saveProductsToFile();
-        }
-      }
+      user._id = await this.#getId();
+      await this.#loadUsersFromFile();
+      this.users.push(user);
+      await this.#saveUsersToFile();
+      return user;
     } catch (error) {
-      throw new Error(error.message);
+      console.log(error.message);
+      throw new Error("No se pudo crear el nuevo usuario");
     }
   }
 
   ///////////////////////////////////////////////////////////////////
 
-  async addManyProducts(products) {
+  async getUser(email) {
     try {
-      await this.#loadProductsFromFile();
-      this.products = products;
-      await this.#saveProductsToFile();
-      return this.products;
-    } catch (error) {
-      throw new Error(error.message);
-    }
-  }
-
-  ///////////////////////////////////////////////////////////////////
-
-  async getProducts(category, options) {
-    try {
-      if (!category || !options) {
-        if (this.#fileExist()) {
-          await this.#loadProductsFromFile();
-        }
-        return this.products;
+      if (this.fileExist()) {
+        await this.#loadUsersFromFile();
+        const user = await this.users.find((u) => u.email === email);
+        return user;
       }
     } catch (error) {
       console.log(error.message);
-      throw new Error("No se pudo obtener los productos.");
+      throw new Error(`El usuario solicitado no existe en nuestros registros`);
     }
   }
 
@@ -120,7 +88,7 @@ export class ProductsManagerFs {
 
   async getProductById(productId) {
     try {
-      await this.#loadProductsFromFile();
+      await this.#loadUsersFromFile();
       const IdExist = this.products.find((p) => p.Id === productId);
       if (IdExist) {
         return IdExist;
@@ -137,7 +105,7 @@ export class ProductsManagerFs {
 
   async updateProductById(productId, productUpdated) {
     try {
-      await this.#loadProductsFromFile();
+      await this.#loadUsersFromFile();
       const idExist = this.products.find((p) => p.Id === productId);
       if (idExist) {
         const productChanged = {
@@ -168,7 +136,7 @@ export class ProductsManagerFs {
       const productIndex = this.products.findIndex((p) => p.Id === productId);
       if (productIndex !== -1) {
         await this.products.splice(productIndex, 1);
-        await this.#saveProductsToFile();
+        await this.#saveUsersToFile();
       } else {
         console.log("Error: Producto no encontrado");
       }

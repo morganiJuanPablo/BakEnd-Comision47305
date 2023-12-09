@@ -2,7 +2,7 @@
 import { generalConfig } from "../config/generalConfig.js";
 import { __dirname } from "../utils.js";
 import path from "path";
-import { UsersManagerMongo } from "./mongoManagers/UsersManagerMongo.js";
+
 
 let productsDao;
 let chatsDao;
@@ -36,12 +36,12 @@ switch (environment) {
     );
     chatsDao = new ChatManagerMongo();
     ////USERS
-    /*     const { UsersManagerMongo } = await import(
+    const { UsersManagerMongo } = await import(
       "../dao/mongoManagers/UsersManagerMongo.js"
     );
-    usersDao = new UsersManagerMongo(); */
-    ////
     usersDao = new UsersManagerMongo();
+    ////
+    /* usersDao = new UsersManagerMongo(); */
 
     ////TICKETS
     const { TicketsManagerMongo } = await import(
@@ -64,9 +64,19 @@ switch (environment) {
 
     ////CARTS
     const { CartsManagerFs } = await import(
-      "../dao/fileSystemManagers/CartsManagerFs.js"
+      "../dao/fileSystemManagers/CartsManager-FS.js"
     );
-    cartsDao = new CartsManagerFs((__dirname, "dao/files/carts.json"));
+    cartsDao = new CartsManagerFs(
+      path.join(__dirname, "./dao/fileSystemManagers/files/carts.json")
+    );
+
+    ////USERS
+    const { UsersManagerFs } = await import(
+      "../dao/fileSystemManagers/UsersManager-FS.js"
+    );
+    usersDao = new UsersManagerFs(
+      path.join(__dirname, "./dao/fileSystemManagers/files/users.json")
+    );
 
     ////
     console.log("Estamos en el entorno de Desarrollo.");

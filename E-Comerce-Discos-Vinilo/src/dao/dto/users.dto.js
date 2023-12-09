@@ -1,8 +1,7 @@
 //
 
 export class GetUsersDto {
-  constructor(userInfo) {
-    console.log(userInfo)
+  constructor(userInfo) {    
     this.full_name = `${userInfo.first_name} ${userInfo.last_name}`;
     (this.email = userInfo.email),
       (this.age = userInfo.age),

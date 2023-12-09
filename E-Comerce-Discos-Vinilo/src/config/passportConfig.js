@@ -30,7 +30,8 @@ export const passportInit = () => {
       async (req, username, password, done) => {
         try {
           const { first_name, last_name, age } = req.body;
-            if (
+          console.log(req.body)          
+          /*           if (
             first_name === undefined ||
             last_name === undefined ||
             username === undefined ||
@@ -43,8 +44,8 @@ export const passportInit = () => {
               errorCode: EError.INVALID_INFO_BODY,
             });
            /*  return console.log("Hola") */
-          }
-          const user = await sessionsService.getUser(username);
+
+          const user = await sessionsService.getUser(username);          
           if (user) {
             return done(null, false);
           } else {
@@ -84,16 +85,16 @@ export const passportInit = () => {
           if (!isValidated(password, user)) {
             return done(null, false);
           }
-          if (username && password) {
+          /* if (username && password) { */
             return done(null, user);
-          } else {
+/*           } else {
             CustomError.createError({
               name: "User´s login error",
               cause: loginUserCreateError(user),
               message: "Datos inválidos al loguear el usuario",
               errorCode: EError.INVALID_INFO_BODY,
             });
-          }
+          } */
         } catch (error) {
           return done(error);
         }

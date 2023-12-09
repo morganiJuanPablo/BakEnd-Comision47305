@@ -1,0 +1,20 @@
+[
+  {
+    "first_name": "Juan Pablo",
+    "last_name": "Morgani",
+    "age": "37",
+    "email": "morgani.jpg@gmail.com",
+    "password": "$2b$10$/VZg7pWwIlW.uxb5kUiAN.o154l5Q7EaAu9CiJ3JFMSAajbWg5/fW",
+    "role": "Usuario",
+    "_id": "ElFetvPQtD4s"
+  },
+  {
+    "first_name": "Jocito",
+    "last_name": "Gonzalez",
+    "age": "36",
+    "email": "jocito@gmail.com",
+    "password": "$2b$10$lOr33I/RhJStKS4AhF7Q9usTXzjpDBtRf3utDh9tLPaLB3YIQ5D8C",
+    "role": "Usuario",
+    "_id": "Apbhl8hVLzVQ"
+  }
+]

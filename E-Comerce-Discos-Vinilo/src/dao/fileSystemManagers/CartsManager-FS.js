@@ -7,8 +7,8 @@ export class CartsManagerFs {
     this.filePath = path;
   }
 
-  fileExist() {
-    return fs.existsSync(this.filePath);
+  fileExist(path) {
+    return fs.existsSync(path);
   }
 
   async getId() {
