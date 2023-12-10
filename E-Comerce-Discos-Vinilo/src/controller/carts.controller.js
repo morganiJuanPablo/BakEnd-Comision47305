@@ -7,6 +7,7 @@ import {
 import { transporterGmail } from "../config/gmailMailingConfig.js";
 import { generalConfig } from "../config/generalConfig.js";
 /* import { emailTemplate } from "../utils.js"; */
+import { logger } from "../helpers/logger.js";
 
 export class CartsController {
   /////////////////////////////////////////////////////
@@ -31,7 +32,7 @@ export class CartsController {
         res.redirect("/session_destroyed");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -82,7 +83,7 @@ export class CartsController {
         res.redirect("/products/inicio");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -104,7 +105,7 @@ export class CartsController {
         data: newCart,
       });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -144,7 +145,7 @@ export class CartsController {
 
       return cartUpdated, cartNewStock, newTicket;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
     }
   };
 
@@ -160,7 +161,7 @@ export class CartsController {
         data: cart,
       });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -176,7 +177,7 @@ export class CartsController {
         data: cart,
       });
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };

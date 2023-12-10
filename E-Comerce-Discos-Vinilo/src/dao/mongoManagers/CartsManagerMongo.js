@@ -1,5 +1,6 @@
 //
 import { cartModel } from "./modelsDB/carts.model.js";
+import { logger } from "../../helpers/logger.js";
 
 export class CartsManagerMongo {
   constructor() {
@@ -15,7 +16,7 @@ export class CartsManagerMongo {
       });
       return newCart;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo crear el carrito.");
     }
   }
@@ -27,7 +28,7 @@ export class CartsManagerMongo {
       const carts = await this.cartModel.find().lean();
       return carts;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener los carritos.");
     }
   }
@@ -42,7 +43,7 @@ export class CartsManagerMongo {
         .populate("products.productId");
       return cartById;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El carrito con Id: ${cartId} no existe`);
     }
   }
@@ -69,7 +70,7 @@ export class CartsManagerMongo {
       });
       return cartUpdated;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El carrito con Id: ${cartId} no existe`);
     }
   }
@@ -97,7 +98,7 @@ export class CartsManagerMongo {
       });
       return cartUpdated;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El carrito con Id: ${cartId} no existe`);
     }
   }
@@ -123,7 +124,7 @@ export class CartsManagerMongo {
         return cartUpdated;
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`No se pudo actualizar el carrito con Id: ${cartId}`);
     }
   }
@@ -135,7 +136,7 @@ export class CartsManagerMongo {
       const cartDeleted = await this.cartModel.deleteOne({ _id: cartId });
       return cartDeleted;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El carrito con Id: ${cartId} no existe`);
     }
   }
@@ -165,7 +166,7 @@ export class CartsManagerMongo {
         throw new Error(`El carrito con Id: ${cartId} no existe`);
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo eliminar el producto.");
     }
   }
@@ -185,7 +186,7 @@ export class CartsManagerMongo {
       );
       return newCart;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo eliminar el producto.");
     }
   }
@@ -205,7 +206,7 @@ export class CartsManagerMongo {
         throw new Error(`El carrito con Id: ${cartId} no existe`);
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo vacias el carrito.");
     }
   }

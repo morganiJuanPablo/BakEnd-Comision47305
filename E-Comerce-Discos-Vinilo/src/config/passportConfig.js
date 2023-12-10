@@ -29,8 +29,7 @@ export const passportInit = () => {
       },
       async (req, username, password, done) => {
         try {
-          const { first_name, last_name, age } = req.body;
-          console.log(req.body)          
+          const { first_name, last_name, age } = req.body;                 
           /*           if (
             first_name === undefined ||
             last_name === undefined ||
@@ -42,8 +41,7 @@ export const passportInit = () => {
               cause: newUserCreateError(req.body),
               message: "Datos inválidos al crear el usuario",
               errorCode: EError.INVALID_INFO_BODY,
-            });
-           /*  return console.log("Hola") */
+            });         
 
           const user = await sessionsService.getUser(username);          
           if (user) {

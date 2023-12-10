@@ -53,7 +53,7 @@ app.use("/api/session", sessionsRouter);
 
 //Websockets
 socketServer.on("connection", async (socket) => {
-  console.log("Cliente en linea");
+  logger.info("Cliente en linea");
   const products = await productsService.getProducts();
   if (!products) {
     const error = CustomError.createError({
@@ -62,7 +62,7 @@ socketServer.on("connection", async (socket) => {
       message: "Error en la base de datos",
       errorCode: EError.DATABASE_Error,
     });
-    return console.log(error);
+    return logger.error(error);
   }
   socket.emit("arrayProducts", products);
 

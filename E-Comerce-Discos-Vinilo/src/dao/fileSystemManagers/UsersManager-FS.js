@@ -1,5 +1,6 @@
 //
 import fs from "fs";
+import { logger } from "../../helpers/logger.js";
 
 export class UsersManagerFs {
   constructor(path) {
@@ -64,7 +65,7 @@ export class UsersManagerFs {
       await this.#saveUsersToFile();
       return user;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo crear el nuevo usuario");
     }
   }
@@ -79,7 +80,7 @@ export class UsersManagerFs {
         return user;
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El usuario solicitado no existe en nuestros registros`);
     }
   }
@@ -96,7 +97,7 @@ export class UsersManagerFs {
         throw new Error(`El producto con Id: ${productId} no existe`);
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener el producto.");
     }
   }
@@ -124,7 +125,7 @@ export class UsersManagerFs {
         throw new Error(`El producto con Id: ${productId} no existe`);
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo actualizar el producto.");
     }
   }
@@ -138,10 +139,10 @@ export class UsersManagerFs {
         await this.products.splice(productIndex, 1);
         await this.#saveUsersToFile();
       } else {
-        console.log("Error: Producto no encontrado");
+        logger.error("Error: Producto no encontrado");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo eliminar el producto.");
     }
   }

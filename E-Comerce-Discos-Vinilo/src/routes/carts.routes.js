@@ -19,11 +19,7 @@ router.get(
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get(
-  "/cart/:cartId/purchase",
-  tokenAuth,  
-  CartsController.getPurchase
-);
+router.get("/cart/:cartId/purchase", tokenAuth, CartsController.getPurchase);
 
 ///////////////////////////////////////////////////////////////////
 
@@ -53,8 +49,7 @@ router.put("/cart/:cartId/product/:productId", async (req, res) => {
       data: cart,
     });
   } catch (error) {
-    console.log(error.message);
-    res.status(500).json({ message: error.message });
+       res.statusx(500).json({ message: error.message });
   }
 }); */
 

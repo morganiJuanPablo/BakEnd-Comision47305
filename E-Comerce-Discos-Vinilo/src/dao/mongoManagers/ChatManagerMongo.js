@@ -1,5 +1,6 @@
 //
 import { chatModel } from "./modelsDB/chat.model.js";
+import { logger } from "../../helpers/logger.js";
 
 export class ChatManagerMongo {
   constructor() {
@@ -13,7 +14,7 @@ export class ChatManagerMongo {
       const chat = await this.chatModel.create();
       return chat;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo crear el chat.");
     }
   }
@@ -25,7 +26,7 @@ export class ChatManagerMongo {
       const chat = await chatModel.find().lean();
       return chat;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener el chat.");
     }
   }
@@ -37,7 +38,7 @@ export class ChatManagerMongo {
       const result = await this.chatModel.create(newMessage);
       return result;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo cargar el nuevo mensaje.");
     }
   }
@@ -49,7 +50,7 @@ export class ChatManagerMongo {
       const emptyCart = await this.chatModel.deleteMany({});
       return emptyCart;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo vaciar el chat.");
     }
   }

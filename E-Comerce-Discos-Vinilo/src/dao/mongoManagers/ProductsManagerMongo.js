@@ -1,5 +1,6 @@
 //
 import { productModel } from "./modelsDB/products.model.js";
+import { logger } from "../../helpers/logger.js";
 
 export class ProductsManagerMongo {
   constructor() {
@@ -13,7 +14,7 @@ export class ProductsManagerMongo {
       const newProduct = await this.model.create(product);
       return newProduct;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo crear el producto.");
     }
   }
@@ -36,7 +37,7 @@ export class ProductsManagerMongo {
         return products;
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener los productos.");
     }
   }
@@ -48,7 +49,7 @@ export class ProductsManagerMongo {
       const product = await this.model.find({ _id: productId }).lean();
       return product;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener el producto.");
     }
   }
@@ -60,7 +61,7 @@ export class ProductsManagerMongo {
       const products = await this.model.find({ category: category }).lean();
       return products;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener los productos.");
     }
   }
@@ -81,7 +82,7 @@ export class ProductsManagerMongo {
       }
       return product;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo actualizar el producto.");
     }
   }
@@ -96,7 +97,7 @@ export class ProductsManagerMongo {
       }
       return product;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo eliminar el producto.");
     }
   }

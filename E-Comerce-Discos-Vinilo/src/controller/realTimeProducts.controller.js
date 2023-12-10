@@ -1,4 +1,6 @@
 //
+import { logger } from "../helpers/logger.js";
+
 export class realTimeProductsController {
   /////////////////////////////////////////////////////
   static renderRealTimeProductsView = async (req, res) => {
@@ -16,7 +18,7 @@ export class realTimeProductsController {
         res.redirect("/api/session/session_destroyed");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };

@@ -1,5 +1,6 @@
 //
 import fs from "fs";
+import { logger } from "../../helpers/logger.js";
 
 export class ProductsManagerFs {
   constructor(path) {
@@ -111,7 +112,7 @@ export class ProductsManagerFs {
         return this.products;
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener los productos.");
     }
   }
@@ -128,7 +129,7 @@ export class ProductsManagerFs {
         throw new Error(`El producto con Id: ${productId} no existe`);
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo obtener el producto.");
     }
   }
@@ -156,7 +157,7 @@ export class ProductsManagerFs {
         throw new Error(`El producto con Id: ${productId} no existe`);
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo actualizar el producto.");
     }
   }
@@ -170,10 +171,10 @@ export class ProductsManagerFs {
         await this.products.splice(productIndex, 1);
         await this.#saveProductsToFile();
       } else {
-        console.log("Error: Producto no encontrado");
+        logger.error("Error: Producto no encontrado");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo eliminar el producto.");
     }
   }

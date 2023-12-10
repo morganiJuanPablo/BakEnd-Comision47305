@@ -13,10 +13,9 @@ export const generateProduct = () => {
     code: random.alphaNumeric(6),
     stock: +random.numeric(2),
     category: datatype.boolean() ? "TopVentas" : "EdicionesEspeciales",
-    status: datatype.boolean()
+    status: datatype.boolean(),
   };
 };
-/* console.log(generateProduct()); */
 
 //funcion para generar un usuario
 /* export const generateUser = () => {
@@ -38,7 +37,3 @@ export const generateProduct = () => {
     cart: products,
   };
 }; */
-
-/* console.log(generateUser()); */
-
-

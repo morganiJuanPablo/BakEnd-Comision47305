@@ -1,6 +1,7 @@
 //
 import { productsService } from "../repository/index.js";
 import { generateProduct } from "../helpers/mocks.js";
+import { logger } from "../helpers/logger.js";
 
 export class ProductsController {
   /////////////////////////////////////////////////////
@@ -62,7 +63,7 @@ export class ProductsController {
         res.redirect("/api/session/session_destroyed");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };
@@ -88,7 +89,7 @@ export class ProductsController {
         res.redirect("/session_destroyed");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };

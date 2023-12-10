@@ -1,5 +1,6 @@
 //
 import { ticketModel } from "./modelsDB/tickets.model.js";
+import { logger } from "../../helpers/logger.js";
 
 export class TicketsManagerMongo {
   constructor() {
@@ -13,7 +14,7 @@ export class TicketsManagerMongo {
       const ticket = await this.ticketModel.create(newTicket);
       return ticket;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo crear el nuevo ticket");
     }
   }
@@ -25,7 +26,7 @@ export class TicketsManagerMongo {
       const ticket = await this.ticketModel.findById(ticketId);
       return ticket;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El ticket solicitado no existe en nuestros registros`);
     }
   }
@@ -37,7 +38,7 @@ export class TicketsManagerMongo {
       const tickets = await this.ticketModel.find();
       return tickets;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`No se pudieron obtener los tickets`);
     }
   }

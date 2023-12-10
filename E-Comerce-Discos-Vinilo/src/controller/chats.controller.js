@@ -1,4 +1,6 @@
 //
+import { logger } from "../helpers/logger.js";
+
 export class ChatsController {
   /////////////////////////////////////////////////////
   static getChats = async (req, res) => {
@@ -15,7 +17,7 @@ export class ChatsController {
         res.redirect("/session_destroyed");
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       res.status(500).json({ message: error.message });
     }
   };

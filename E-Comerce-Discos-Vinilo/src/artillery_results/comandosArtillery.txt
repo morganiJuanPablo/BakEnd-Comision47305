@@ -1,0 +1,5 @@
+artillery quick --count 40 -n 50 "http://localhost:8080/api/session/login" -o results_responses.json
+quick una sola peticion a una ruta
+count el numero de usuarios
+50 la cantidad de peticiones que hace cada usuario Luego entre comillas colocamos la ruta de la petición.
+> es para guardar el informe

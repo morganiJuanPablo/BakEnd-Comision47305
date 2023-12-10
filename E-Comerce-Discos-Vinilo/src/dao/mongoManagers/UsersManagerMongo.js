@@ -1,5 +1,6 @@
 //
 import { userModel } from "./modelsDB/users.model.js";
+import { logger } from "../../helpers/logger.js";
 
 export class UsersManagerMongo {
   constructor() {
@@ -13,7 +14,7 @@ export class UsersManagerMongo {
       const newUser = await this.userModel.create(newUserInfo);
       return newUser;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error("No se pudo crear el nuevo usuario");
     }
   }
@@ -25,7 +26,7 @@ export class UsersManagerMongo {
       const user = await this.userModel.findOne({ email: userEmail });
       return user;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El usuario solicitado no existe en nuestros registros`);
     }
   }
@@ -37,7 +38,7 @@ export class UsersManagerMongo {
       const user = await this.userModel.findById(userId);
       return user;
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
       throw new Error(`El usuario solicitado no existe en nuestros registros`);
     }
   }

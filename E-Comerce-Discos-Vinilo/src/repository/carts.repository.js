@@ -1,5 +1,6 @@
 //
 import { v4 as uuidv4 } from "uuid";
+import { logger } from "../helpers/logger.js";
 
 export class CartsRepository {
   constructor(dao) {
@@ -69,7 +70,7 @@ export class CartsRepository {
         return cartUpdated;
       }
     } catch (error) {
-      console.log(error.message);
+      logger.error(error.message);
     }
   }
 
