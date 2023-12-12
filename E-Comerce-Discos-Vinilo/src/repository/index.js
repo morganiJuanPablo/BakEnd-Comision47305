@@ -17,4 +17,3 @@ export const chatsService = new ChatsRepository(chatsDao);
 export const productsService = new ProductsRepository(productsDao);
 export const sessionsService = new SessionsRepository(usersDao);
 export const ticketService = new TicketsRepository(ticketsDao);
-

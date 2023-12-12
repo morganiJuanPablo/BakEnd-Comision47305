@@ -6,7 +6,7 @@ import { logger } from "../helpers/logger.js";
 export class ProductsController {
   /////////////////////////////////////////////////////
   static getProducts = async (req, res) => {
-    try {
+    try {      
       if (req.user?.email) {
         const category = req.params.category;
         const page = +req.query.page || 1;

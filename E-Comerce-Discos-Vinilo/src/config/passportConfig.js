@@ -28,22 +28,9 @@ export const passportInit = () => {
         usernameField: "email",
       },
       async (req, username, password, done) => {
+        const { first_name, last_name, age } = req.body;
         try {
-          const { first_name, last_name, age } = req.body;                 
-          /*           if (
-            first_name === undefined ||
-            last_name === undefined ||
-            username === undefined ||
-            password === undefined
-          ) {
-            CustomError.createError({
-              name: "User´s register error",
-              cause: newUserCreateError(req.body),
-              message: "Datos inválidos al crear el usuario",
-              errorCode: EError.INVALID_INFO_BODY,
-            });         
-
-          const user = await sessionsService.getUser(username);          
+          const user = await sessionsService.getUser(username);
           if (user) {
             return done(null, false);
           } else {
@@ -53,13 +40,21 @@ export const passportInit = () => {
               age,
               email: username,
               password: createHashPass(password),
-              role: roleClient(username),
             };
-            const userRegistered = await sessionsService.createUser(newUser);
-            return done(null, userRegistered);
+            if (!newUser.first_name) {
+              CustomError.createError({
+                name: "User´s login error",
+                cause: newUserCreateError(newUser),
+                message: "Datos inválidos al loguear el usuario",
+                errorCode: EError.INVALID_INFO_BODY,
+              });
+            } else {
+              const userRegistered = await sessionsService.createUser(newUser);
+              return done(null, userRegistered);
+            }
           }
         } catch (error) {
-          return done(error);
+          done(error);
         }
       }
     )
@@ -83,16 +78,7 @@ export const passportInit = () => {
           if (!isValidated(password, user)) {
             return done(null, false);
           }
-          /* if (username && password) { */
-            return done(null, user);
-/*           } else {
-            CustomError.createError({
-              name: "User´s login error",
-              cause: loginUserCreateError(user),
-              message: "Datos inválidos al loguear el usuario",
-              errorCode: EError.INVALID_INFO_BODY,
-            });
-          } */
+          return done(null, user);
         } catch (error) {
           return done(error);
         }

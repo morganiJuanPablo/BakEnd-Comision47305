@@ -3,15 +3,37 @@ import winston from "winston";
 import { __dirname } from "../utils.js";
 import path from "path";
 import { generalConfig } from "../config/generalConfig.js";
+import chalk from "chalk";
 
-//Logger para el entorno de desarrollo
+// Función para colorear los niveles de registro
+const colorizeLevel = winston.format((info) => {
+  const { level } = info;
+  switch (level) {
+    case "info":
+      info.level = chalk.yellow(level);
+      break;
+    case "warn":
+      info.level = chalk.orange(level);
+      break;
+    case "error":
+      info.level = chalk.red(level);
+      break;
+    default:
+      break;
+  }
+  return info;
+});
+
+// Logger para el entorno de desarrollo
 const loggerDev = winston.createLogger({
+  format: winston.format.combine(colorizeLevel(), winston.format.simple()),
   transports: [new winston.transports.Console({ level: "debug" })],
 });
 
-//Logger para el entorno de producción
+// Logger para el entorno de producción
 const loggerProd = winston.createLogger({
-  //Definimos el sistema de almacenamiento de los logs
+  format: winston.format.combine(colorizeLevel(), winston.format.simple()),
+  // Definimos el sistema de almacenamiento de los logs
   transports: [
     new winston.transports.Console({ level: "info" }),
     new winston.transports.File({

@@ -23,7 +23,7 @@ router.get("/loggerTest", (req, res) => {
 router.get(
   "/products/:category",
   brotliConfig,
-  /* tokenAuth, */
+  tokenAuth,
   ProductsController.getProducts
 );
 

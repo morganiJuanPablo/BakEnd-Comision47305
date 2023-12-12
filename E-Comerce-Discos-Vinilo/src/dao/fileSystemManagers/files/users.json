@@ -16,5 +16,13 @@
     "password": "$2b$10$lOr33I/RhJStKS4AhF7Q9usTXzjpDBtRf3utDh9tLPaLB3YIQ5D8C",
     "role": "Usuario",
     "_id": "Apbhl8hVLzVQ"
+  },
+  {
+    "first_name": "Paula",
+    "last_name": "Benitez",
+    "age": "45",
+    "email": "benitezpaula@hotmail.com.ar",
+    "password": "$2b$10$XeXgOSobbsCIt9Gztqv1e.WdUPknp7.F8XJA.gcTG.WrDlGHd76D.",
+    "_id": "rsk5mb7sovvQ"
   }
 ]
