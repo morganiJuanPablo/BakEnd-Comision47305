@@ -39,15 +39,3 @@ export const roleClient = (userName) => {
 
 
 
-//Template para enviar al usuario cuando realiza una compra
-
-/* export const emailTemplate = (productsSold) => {
-  let productsElms = "";
-
-  `  <head>
-  <link rel="stylesheet" type="text/css" href="./public/css/templateEmail.css">
-</head><div>
-<h1>GRACIAS POR TU COMPRA ${namePurchaser}!!</h1>
-<a href="http://localhost:8080/api/session/login">Ir al sitio</a>
-</div>`;
-}; */

@@ -70,6 +70,7 @@ export class ProductsController {
   /////////////////////////////////////////////////////
   static getProductsById = async (req, res) => {
     try {
+      
       if (req.user?.email) {
         const cartId = req.user.cartId;
         const roleClient = req.user.role;

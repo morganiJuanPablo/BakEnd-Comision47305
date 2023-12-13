@@ -10,7 +10,7 @@ const colorizeLevel = winston.format((info) => {
   const { level } = info;
   switch (level) {
     case "info":
-      info.level = chalk.yellow(level);
+      info.level = chalk.cyan(level);
       break;
     case "warn":
       info.level = chalk.orange(level);

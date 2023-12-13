@@ -6,7 +6,7 @@ import {
 } from "../repository/index.js";
 import { transporterGmail } from "../config/gmailMailingConfig.js";
 import { generalConfig } from "../config/generalConfig.js";
-/* import { emailTemplate } from "../utils.js"; */
+import { emailTemplate } from "../config/gmailMailingConfig.js";
 import { logger } from "../helpers/logger.js";
 
 export class CartsController {
@@ -57,7 +57,7 @@ export class CartsController {
         } else {
           rejectedExist = false;
         }
-        productsOk.ticket.purchaser = req.user.email;
+        productsOk.ticket.purchaser = req.user.email;        
         const data = {
           style: "purchaseView.css",
           ticketPurchase: productsOk.ticket,
@@ -66,17 +66,15 @@ export class CartsController {
           purchaseExist,
           rejectedExist,
         };
+        
 
-        //enviamos el detalle de la compra por correo
-        const namePurchaser = req.user.first_name;
-
-/*         const purchaseByEmail = await transporterGmail.sendMail({
+        const purchaseByEmail = await transporterGmail.sendMail({
           from: generalConfig.gmail.account,
           to: productsOk.ticket.purchaser,
           subject: "Detalle de tu compra. Foo Fighters Shop",
           //propidad text cuando queremos que solo sea texto
-          html: emailTemplate("Juan"),
-        }); */
+          html: emailTemplate(37),
+        });
 
         res.render("purchaseView", data);
       } else {

@@ -20,6 +20,8 @@ import { EError } from "./errors/Enums/EError.js";
 import { getProductError } from "./errors/services/productsError.service.js";
 import { errorHandler } from "./errors/errorHandler.js";
 import { logger } from "./helpers/logger.js";
+import cluster from "cluster";
+import os from "os";
 
 const port = generalConfig.server.port;
 const app = express();
@@ -33,70 +35,84 @@ app.use(express.urlencoded({ extended: true }));
 passportInit();
 app.use(passport.initialize());
 
-//Servidores
-const httpServer = app.listen(port, () =>
-  logger.info(`Servidor funcionando en el puerto ${port}.`)
-);
-const socketServer = new Server(httpServer);
+//Configuramos nuestro servidor para que utilice todos los núcleos de este ordenador
+const cores = os.cpus().length;
 
-//Handlebars Configuración
-app.engine(".hbs", engine({ extname: ".hbs" }));
-app.set("view engine", ".hbs");
-app.set("views", path.join(__dirname, "/views"));
-
-//Routes
-app.use("/", productsRouter);
-app.use("/", realTimeProducts);
-app.use("/", chatRouter);
-app.use("/", cartsRouter);
-app.use("/api/session", sessionsRouter);
-
-//Websockets
-socketServer.on("connection", async (socket) => {
-  logger.info("Cliente en linea");
-  const products = await productsService.getProducts();
-  if (!products) {
-    const error = CustomError.createError({
-      name: "Data Base error",
-      cause: getProductError(),
-      message: "Error en la base de datos",
-      errorCode: EError.DATABASE_Error,
-    });
-    return logger.error(error);
+if (cluster.isPrimary) {
+  for (let i = 0; i < cores; i++) {
+    cluster.fork(); //creamos los nodos para cada núcleo
   }
-  socket.emit("arrayProducts", products);
-
-  socket.on("productJson", async (newProduct) => {
-    const result = await productsService.addProduct(newProduct);
-    const products = await productsService.getProducts();
-    socket.emit("arrayProducts", products);
+  cluster.on("exit",(worker)=>{
+    logger.error (`El proceso ${worker.process.pid} ha fallado.`)
   });
+} else {
+  //Servidores
+  const httpServer = app.listen(port, () =>
+    logger.info(
+      `Servidor funcionando en el puerto ${port}. Proceso ${process.pid}`
+    )
+  );
+  const socketServer = new Server(httpServer);
 
-  socket.on("deleteProductById", async (idProduct) => {
-    await productsService.deleteProductById(idProduct);
+  //Websockets
+  socketServer.on("connection", async (socket) => {
+    logger.info("Cliente en linea");
     const products = await productsService.getProducts();
+    if (!products) {
+      const error = CustomError.createError({
+        name: "Data Base error",
+        cause: getProductError(),
+        message: "Error en la base de datos",
+        errorCode: EError.DATABASE_Error,
+      });
+      return logger.error(error);
+    }
     socket.emit("arrayProducts", products);
-  });
 
-  socket.on("productUpdatedJson", async (productUpdatedJson) => {
-    const result = await productsService.updateProductById(
-      productUpdatedJson.Id,
-      productUpdatedJson
-    );
-    const products = await productsService.getProducts();
-    socket.emit("arrayProducts", products);
-  });
+    socket.on("productJson", async (newProduct) => {
+      const result = await productsService.addProduct(newProduct);
+      const products = await productsService.getProducts();
+      socket.emit("arrayProducts", products);
+    });
 
-  //Chat
-  /* await ChatsService.emptyChat(); */ //Para eliminar las pruebas que fui haciendo
-  const historyChat = await chatsService.getChat();
-  socket.emit("historyChat", historyChat);
-  socket.on("messageChat", async (messageInfo) => {
-    const result = await chatsService.updateChat(messageInfo);
+    socket.on("deleteProductById", async (idProduct) => {
+      await productsService.deleteProductById(idProduct);
+      const products = await productsService.getProducts();
+      socket.emit("arrayProducts", products);
+    });
+
+    socket.on("productUpdatedJson", async (productUpdatedJson) => {
+      const result = await productsService.updateProductById(
+        productUpdatedJson.Id,
+        productUpdatedJson
+      );
+      const products = await productsService.getProducts();
+      socket.emit("arrayProducts", products);
+    });
+
+    //Chat
+    /* await ChatsService.emptyChat(); */ //Para eliminar las pruebas que fui haciendo
     const historyChat = await chatsService.getChat();
-    socketServer.emit("historyChat", historyChat);
+    socket.emit("historyChat", historyChat);
+    socket.on("messageChat", async (messageInfo) => {
+      const result = await chatsService.updateChat(messageInfo);
+      const historyChat = await chatsService.getChat();
+      socketServer.emit("historyChat", historyChat);
+    });
   });
-});
 
-//Manejo de errores
-app.use(errorHandler);
+  //Handlebars Configuración
+  app.engine(".hbs", engine({ extname: ".hbs" }));
+  app.set("view engine", ".hbs");
+  app.set("views", path.join(__dirname, "/views"));
+
+  //Routes
+  app.use("/", productsRouter);
+  app.use("/", realTimeProducts);
+  app.use("/", chatRouter);
+  app.use("/", cartsRouter);
+  app.use("/api/session", sessionsRouter);
+
+  //Manejo de errores
+  app.use(errorHandler);
+}
