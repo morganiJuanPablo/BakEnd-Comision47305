@@ -6,7 +6,7 @@ import { logger } from "../helpers/logger.js";
 export class ProductsController {
   /////////////////////////////////////////////////////
   static getProducts = async (req, res) => {
-    try {      
+    try {
       if (req.user?.email) {
         const category = req.params.category;
         const page = +req.query.page || 1;
@@ -70,7 +70,6 @@ export class ProductsController {
   /////////////////////////////////////////////////////
   static getProductsById = async (req, res) => {
     try {
-      
       if (req.user?.email) {
         const cartId = req.user.cartId;
         const roleClient = req.user.role;
@@ -98,12 +97,12 @@ export class ProductsController {
   /////////////////////////////////////////////////////
   static postProductsMock = async (req, res) => {
     const cant = parseInt(req.query.cant) || 20;
-    const products = await productsService.getProducts();    
+    const products = await productsService.getProducts();
     for (let i = 0; i < cant; i++) {
       const newProduct = generateProduct();
       products.push(newProduct);
     }
-    await productsService.addManyProducts(products);    
+    await productsService.addManyProducts(products);
     res.json({ status: "success", data: products });
   };
 }

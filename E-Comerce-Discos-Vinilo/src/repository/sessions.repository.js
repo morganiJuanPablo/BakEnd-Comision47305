@@ -15,4 +15,9 @@ export class SessionsRepository {
     const user = await this.dao.createUser(newUser);
     return user;
   }
+  /////////////////////////////////////////////////////
+  async updateUser(id, user) {
+    const userUpdated = await this.dao.updateUser(id, user);
+    return userUpdated;
+  }
 }

@@ -1,0 +1,42 @@
+<main class="newUserPassContainer">
+  <div class="loaderBackground">// CARGANDO... //</div>
+  {{#if passwordWrong}}
+    <p class="errorMessagePass">Las contraseñas no coinciden.</p>
+  {{/if}}
+  {{#if invalidPassword}}
+    <p class="errorMessagePass">La contraseña no es válida.</p>
+  {{/if}}
+  {{#if tokenLost}}
+    <p class="errorMessageToken">Ha expirado el tiempo para reestablecer la
+      contraseña.<a href="/api/session/link_new_password">Volver a enviar el
+        correo.</a></p>
+  {{/if}}
+  <section class="newUserPassContainer--newUserPassSection">
+    <form
+      id="formNewPass"
+      method="post"
+      action="/api/session/generate_new_password?token={{token}}"
+    >
+      <h3 class="formTitle">Reestablece tu contraseña</h3>
+      <input
+        type="password"
+        name="newPassword"
+        placeholder="Nueva contraseña"
+      />
+      <input
+        type="password"
+        name="newPasswordRepeat"
+        placeholder="Repite la nueva contraseña"
+      />
+      <button class="submitBtns" id="">// Reestablecer //</button>
+    </form>
+  </section>
+  <aside>
+    <img
+      src="https://res.cloudinary.com/dqykftyy6/image/upload/v1697662110/ProyectoBackEnd/MV5BZjRmNzhhNDUtMWE1Zi00ZjM5LWEzYjYtZThmMTkwNDU5YjcyXkEyXkFqcGdeQXVyNjc1OTk4NjA_._V1__bvpfdc.jpg"
+      alt="Reestablece tu contraseña"
+    />
+  </aside>
+</main>
+<script src="/js/newUserPass.js"></script>
+<script src="/js/loaderBackground.js"></script>

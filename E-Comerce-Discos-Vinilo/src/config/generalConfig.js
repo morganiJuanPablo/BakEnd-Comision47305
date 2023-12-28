@@ -32,6 +32,7 @@ export const generalConfig = {
   gmail: {
     account: process.env.GMAIL_ACCOUNT,
     password: process.env.GMAIL_PASS,
+    tokenPass: process.env.GMAIL_TOKEN_PASS
   },
   tokenJWT: {
     tokenJWTkey: process.env.PRIVATE_KEY_TOKENS,

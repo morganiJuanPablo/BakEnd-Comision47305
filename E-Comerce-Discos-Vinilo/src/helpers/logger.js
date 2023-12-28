@@ -13,10 +13,19 @@ const colorizeLevel = winston.format((info) => {
       info.level = chalk.cyan(level);
       break;
     case "warn":
-      info.level = chalk.orange(level);
+      info.level = chalk.yellow(level);
       break;
     case "error":
-      info.level = chalk.red(level);
+      info.level = chalk.bgRedBright(level);
+      break;
+    case "http":
+      info.level = chalk.magentaBright(level);
+      break;
+    case "verbose":
+      info.level = chalk.yellowBright(level);
+      break;
+    case "debug":
+      info.level = chalk.blueBright(level);
       break;
     default:
       break;

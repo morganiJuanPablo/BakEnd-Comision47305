@@ -1,8 +1,7 @@
 //
 import { Router } from "express";
 import { CartsController } from "../controller/carts.controller.js";
-import { tokenAuth } from "../middleware/middleware.js";
-import { onlyUserAcess } from "../middleware/middleware.js";
+import { tokenAuth, checkRole } from "../middleware/middleware.js";
 
 const router = Router();
 
@@ -12,7 +11,7 @@ const router = Router();
 router.get(
   "/cart/:cartId",
   tokenAuth,
-  onlyUserAcess(),
+  checkRole(["Usuario"]),
   CartsController.getCartById
 );
 

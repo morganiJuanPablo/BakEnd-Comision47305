@@ -24,26 +24,15 @@ export const errorHandler = (error, req,res,next)=>{
 };
 
 //funciones para manejar la autorización según el rol del cliente en el RealTimeProducts, chat y carritos
-
-export const onlyAdminAcess = () => {
-  return (req, res, next) => {
-    if (req.user.role !== "Administrador") {
-      return res.redirect("/api/session/unauthorized");
-      /* .status(403)
-          .json({ error: "No tienes los permisos para acceder." }); */
-    }
-    next();
-  };
-};
-export const onlyUserAcess = () => {
-  return (req, res, next) => {
-    if (req.user.role !== "Usuario") {
-      return res.redirect("/api/session/unauthorized");
-      /* .status(403)
-          .json({ error: "No tienes los permisos para acceder." }); */
-    }
-    next();
-  };
+export const checkRole = (roles)=>{
+  return (req,res,next)=>{      
+      if(!roles.includes(req.user.role)){
+        return res.redirect("/api/session/unauthorized");
+          /* res.json({status:"error", message:"No tienes accesso"}); */
+      } else {
+          next();
+      }
+  }
 };
 
 ///////////////////////////////////////////////////////////////////////

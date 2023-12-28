@@ -13,25 +13,34 @@ const router = Router();
 
 ////GET
 ///////////////////////////////////////////////////////////////////
-router.get("/login", SessionsController.renderLoginView);
+router.get("/login", SessionsController.loginView);
 
 ///////////////////////////////////////////////////////////////////
-router.get("/login_fail", SessionsController.renderLoginfailView);
+router.get("/login_fail", SessionsController.loginFailView);
 
 ///////////////////////////////////////////////////////////////////
-router.get("/new_user", SessionsController.renderNewUserView);
+router.get("/new_user", SessionsController.newUserView);
 
 ///////////////////////////////////////////////////////////////////
-router.get("/new_user_fail", SessionsController.renderNewUserFailView);
+router.get(
+  "/generate_new_password",
+  SessionsController.generateNewPasswordView
+);
 
 ///////////////////////////////////////////////////////////////////
-router.get("/profile", tokenAuth, SessionsController.renderProfileView);
+router.get("/link_new_password", SessionsController.linkNewPasswordView);
 
 ///////////////////////////////////////////////////////////////////
-router.get("/session_destroyed", SessionsController.renderSessionDestroyedView);
+router.get("/new_user_fail", SessionsController.newUserFailView);
 
 ///////////////////////////////////////////////////////////////////
-router.get("/unauthorized", SessionsController.renderUnauthorizedView);
+router.get("/profile", tokenAuth, SessionsController.profileView);
+
+///////////////////////////////////////////////////////////////////
+router.get("/session_destroyed", SessionsController.sessionDestroyedView);
+
+///////////////////////////////////////////////////////////////////
+router.get("/unauthorized", SessionsController.unauthorizedView);
 
 ///////////////////////////////////////////////////////////////////
 router.get("/logout", SessionsController.logout);
@@ -63,10 +72,20 @@ router.get(
 router.post(
   "/new_user",
   authRegisterPassport,
-  SessionsController.redirectLoginNewUser
-),
-  ///////////////////////////////////////////////////////////////////
-  router.post("/login", authLoginPassport, SessionsController.newSessionUser);
+  SessionsController.generateNewUser
+);
+
+///////////////////////////////////////////////////////////////////
+router.post("/login", authLoginPassport, SessionsController.loginUser);
+
+///////////////////////////////////////////////////////////////////
+router.post("/link_new_password", SessionsController.linkNewPassword);
+
+///////////////////////////////////////////////////////////////////
+router.post(
+  "/generate_new_password",
+  SessionsController.generateNewPassword
+);
 
 ///////////////////////////////////////////////////////////////////
 

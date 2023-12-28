@@ -17,6 +17,7 @@ socketClient.on("arrayProducts", (dataProducts) => {
       stock,
       _id,
       status,
+      owner,
     } = p;
     productsElms += ` <div class="cardProductAdmin">
     <div class="imgAndDeleteBtn">
@@ -39,6 +40,8 @@ socketClient.on("arrayProducts", (dataProducts) => {
         </span>'${status}'</p>
     <p class="id"><span class="titlesInfo">Id:
       </span>'${_id}'</p>      
+    <p class="id"><span class="titlesInfo">Creado por:
+      </span>'${owner}'</p>      
     </div>
     </div>`;
   });

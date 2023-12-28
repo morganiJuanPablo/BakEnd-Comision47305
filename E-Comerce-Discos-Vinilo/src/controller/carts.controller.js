@@ -6,7 +6,7 @@ import {
 } from "../repository/index.js";
 import { transporterGmail } from "../config/gmailMailingConfig.js";
 import { generalConfig } from "../config/generalConfig.js";
-import { emailTemplate } from "../config/gmailMailingConfig.js";
+import { emailToSendPurchaseDetail } from "../helpers/gmail.js";
 import { logger } from "../helpers/logger.js";
 
 export class CartsController {
@@ -57,7 +57,7 @@ export class CartsController {
         } else {
           rejectedExist = false;
         }
-        productsOk.ticket.purchaser = req.user.email;        
+        productsOk.ticket.purchaser = req.user.email;
         const data = {
           style: "purchaseView.css",
           ticketPurchase: productsOk.ticket,
@@ -66,16 +66,6 @@ export class CartsController {
           purchaseExist,
           rejectedExist,
         };
-        
-
-        const purchaseByEmail = await transporterGmail.sendMail({
-          from: generalConfig.gmail.account,
-          to: productsOk.ticket.purchaser,
-          subject: "Detalle de tu compra. Foo Fighters Shop",
-          //propidad text cuando queremos que solo sea texto
-          html: emailTemplate(37),
-        });
-
         res.render("purchaseView", data);
       } else {
         res.redirect("/products/inicio");
@@ -140,6 +130,8 @@ export class CartsController {
       );
 
       const newTicket = await ticketService.createTicket(productsOk.ticket);
+
+      emailToSendPurchaseDetail(productsOk, productsOk.ticket);
 
       return cartUpdated, cartNewStock, newTicket;
     } catch (error) {

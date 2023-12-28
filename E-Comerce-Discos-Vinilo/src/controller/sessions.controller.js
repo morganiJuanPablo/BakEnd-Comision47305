@@ -1,10 +1,16 @@
 //
-import { generateToken } from "../utils.js";
+import { generateToken, isValidated, createHashPass } from "../utils.js";
 import { logger } from "../helpers/logger.js";
+import { sessionsService } from "../repository/index.js";
+import {
+  createEmailToken,
+  emailToSendNewPass,
+  emailTokenValidation,
+} from "../helpers/gmail.js";
 
 export class SessionsController {
   /////////////////////////////////////////////////////
-  static renderLoginView = async (req, res) => {
+  static loginView = async (req, res) => {
     try {
       const data = {
         style: "login.css",
@@ -17,7 +23,7 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static renderLoginfailView = async (req, res) => {
+  static loginFailView = async (req, res) => {
     try {
       const data = {
         style: "login.css",
@@ -31,7 +37,7 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static renderNewUserView = async (req, res) => {
+  static newUserView = async (req, res) => {
     try {
       const data = {
         style: "login_newUser.css",
@@ -44,7 +50,116 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static renderNewUserFailView = async (req, res) => {
+  static linkNewPasswordView = async (req, res) => {
+    try {
+      const data = {
+        style: "linkNewPassword.css",
+      };
+      res.render("linkNewPassword", data);
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
+  static linkNewPassword = async (req, res) => {
+    try {
+      const { email } = req.body;
+      const user = await sessionsService.getUser(email);
+      if (user) {
+        const emailToken = createEmailToken(email, 300);
+        await emailToSendNewPass(req, email, emailToken);
+        const successMessage = user && true;
+        const data = {
+          style: "linkNewPassword.css",
+          successMessage,
+        };
+        res.render("linkNewPassword", data);
+      } else {
+        const errorMessage = !user && true;
+        const data = {
+          style: "linkNewPassword.css",
+          errorMessage,
+        };
+        res.render("linkNewPassword", data);
+        /* res.json({status:"error", message: `El usuario ${email} no existe en nuestros registros`}) */
+      }
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
+  static generateNewPasswordView = async (req, res) => {
+    try {
+      const token = req.query.token;
+      const data = {
+        style: "newUserPass.css",
+        token,
+      };
+      return res.render("newUserPass", data);
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
+  static generateNewPassword = async (req, res) => {
+    try {
+      let passwordWrong;
+      let tokenLost;
+      let invalidPassword;
+      const token = req.query.token;
+      const { newPassword, newPasswordRepeat } = req.body;
+
+      if (newPassword !== newPasswordRepeat) {
+        passwordWrong = true;
+        const data = {
+          style: "newUserPass.css",
+          passwordWrong,
+        };
+        return res.render("newUserPass", { ...data, token });
+      }
+      const tokenOk = await emailTokenValidation(token);
+      if (!tokenOk) {
+        tokenLost = true;
+        const data = {
+          style: "newUserPass.css",
+          tokenLost,
+        };
+        return res.render("newUserPass", { ...data, token });
+      }
+      const user = await sessionsService.getUser(tokenOk.email);
+      if (isValidated(newPassword, user)) {
+        invalidPassword = true;
+        const data = {
+          style: "newUserPass.css",
+          invalidPassword,
+        };
+        return res.render("newUserPass", { ...data, token });
+      }
+      let passwordReseted = true;
+      const newInfoUser = {
+        ...user,
+        password: createHashPass(newPassword),
+      };
+      await sessionsService.updateUser(user._id, newInfoUser);
+      const data = {
+        style: "login.css",
+        passwordReseted,
+      };
+      return res.render("login", data);
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
+  static newUserFailView = async (req, res) => {
     try {
       const data = {
         style: "login_newUser.css",
@@ -58,7 +173,7 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static renderProfileView = async (req, res) => {
+  static profileView = async (req, res) => {
     try {
       if (req.user?.email) {
         const ageExist = req.user.age && true;
@@ -81,7 +196,7 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static renderSessionDestroyedView = async (req, res) => {
+  static sessionDestroyedView = async (req, res) => {
     try {
       res.render("sessionDestroyed", { style: "sessionDestroyed.css" });
     } catch (error) {
@@ -92,7 +207,7 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static renderUnauthorizedView = async (req, res) => {
+  static unauthorizedView = async (req, res) => {
     try {
       res.render("unauthorized", { style: "unauthorized.css" });
     } catch (error) {
@@ -102,7 +217,7 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static redirectLoginNewUser = async (req, res) => {
+  static generateNewUser = async (req, res) => {
     try {
       const data = {
         style: "login.css",
@@ -116,7 +231,7 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static newSessionUser = async (req, res) => {
+  static loginUser = async (req, res) => {
     try {
       const user = req.user;
       const token = generateToken(user);

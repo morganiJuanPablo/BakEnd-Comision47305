@@ -1,14 +1,5 @@
 [
   {
-    "first_name": "Juan Pablo",
-    "last_name": "Morgani",
-    "age": "37",
-    "email": "morgani.jpg@gmail.com",
-    "password": "$2b$10$/VZg7pWwIlW.uxb5kUiAN.o154l5Q7EaAu9CiJ3JFMSAajbWg5/fW",
-    "role": "Usuario",
-    "_id": "ElFetvPQtD4s"
-  },
-  {
     "first_name": "Jocito",
     "last_name": "Gonzalez",
     "age": "36",
@@ -24,5 +15,13 @@
     "email": "benitezpaula@hotmail.com.ar",
     "password": "$2b$10$XeXgOSobbsCIt9Gztqv1e.WdUPknp7.F8XJA.gcTG.WrDlGHd76D.",
     "_id": "rsk5mb7sovvQ"
+  },
+  {
+    "first_name": "Jocito",
+    "last_name": "Hernandez",
+    "age": "23",
+    "email": "jocito@hernandez.com",
+    "password": "$2b$10$5xQwGNhnxZoovX0Tj4a/cuSlXT1teHqIvXabX75OLFSNKqq01/1b.",
+    "_id": "obAomZIMq1fE"
   }
 ]

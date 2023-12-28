@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import mongoosePaginate from "mongoose-paginate-v2";
 import { CartsManagerMongo } from "../CartsManagerMongo.js";
 
+const objectToCreateCart = new CartsManagerMongo();
 const usersCollection = "users";
 
 const usersSchema = new mongoose.Schema({
@@ -28,7 +29,7 @@ const usersSchema = new mongoose.Schema({
   role: {
     type: String,
     require: true,
-    enum: ["Usuario", "Administrador"],
+    enum: ["Usuario", "Administrador", "Premium"],
     default: "Usuario",
   },
   cart: {
@@ -41,7 +42,7 @@ usersSchema.plugin(mongoosePaginate);
 
 usersSchema.pre("save", async function (next) {
   try {
-    const newCart = await CartsManagerMongo.createCart();
+    const newCart = await objectToCreateCart.createCart();
     this.cart = newCart._id;
   } catch (error) {
     next(error);

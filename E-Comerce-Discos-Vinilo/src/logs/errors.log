@@ -1,0 +1,99 @@
+[31merror[39m: chalk.orange is not a function
+[31merror[39m: Error fatal
+[101merror[49m: Error fatal
+[101merror[49m: console.log(...) is not a function
+[101merror[49m: Cannot read properties of undefined (reading '_id')
+[101merror[49m: console.log(...) is not a function
+[101merror[49m: console.log(...) is not a function
+[101merror[49m: console.log(...) is not a function
+[101merror[49m: El usuario no existe
+[101merror[49m: else doesn't match if - 15:5
+[101merror[49m: passwordValidate is not defined
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: Failed to lookup view "generateNewPass" in views directory "C:\Users\Juan Pablo\Desktop\BackEnd-Coder\Entregables\Proyecto-final\E-Comerce-Discos-Vinilo\src\views"
+[101merror[49m: emailTokenValidation is not defined
+[101merror[49m: oldPassword is not defined
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: first is not defined
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Invalid status code: {
+  style: 'newUserPass.css',
+  token: '',
+  passwordWrong: true,
+  tokenLost: undefined,
+  invalidPassword: undefined
+}
+[101merror[49m: token is not defined
+[101merror[49m: token is not defined
+[101merror[49m: passwordWrong is not defined
+[101merror[49m: Invalid status code: { style: 'newUserPass.css', passwordWrong: true, token: '' }
+[101merror[49m: Invalid status code: { style: 'newUserPass.css', passwordWrong: true, token: '' }
+[101merror[49m: Cast to string failed for value "{ email: 'morgani.jpg@gmail.com', iat: 1703585883, exp: 1703586183 }" (type Object) at path "email" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to string failed for value "{ email: 'morgani.jpg@gmail.com', iat: 1703585883, exp: 1703586183 }" (type Object) at path "email" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to string failed for value "{ email: 'morgani.jpg@gmail.com', iat: 1703585883, exp: 1703586183 }" (type Object) at path "email" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: CartsManagerMongo.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: CartsManagerMongo.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: Cannot read properties of undefined (reading 'create')
+[101merror[49m: No se pudo crear el carrito.
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: CartsManagerMongo.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: CartsManagerMongo.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: CartsManagerMongo.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: Cannot read properties of undefined (reading 'create')
+[101merror[49m: No se pudo crear el carrito.
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: Cannot read properties of undefined (reading 'create')
+[101merror[49m: No se pudo crear el carrito.
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: Cannot read properties of undefined (reading 'create')
+[101merror[49m: No se pudo crear el carrito.
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: CartsManagerMongo.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: CartsManagerMongo.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: Cannot read properties of undefined (reading 'create')
+[101merror[49m: No se pudo crear el carrito.
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: objectToCreateCart.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: objectToCreateCart.createCart is not a function
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: products validation failed: status: Path `status` is required., category: Path `category` is required., stock: Path `stock` is required., code: Path `code` is required., thumbnail: Path `thumbnail` is required., price: Path `price` is required., description: Path `description` is required., title: Path `title` is required.
+[101merror[49m: products validation failed: status: Path `status` is required., category: Path `category` is required., stock: Path `stock` is required., code: Path `code` is required., thumbnail: Path `thumbnail` is required., price: Path `price` is required., description: Path `description` is required., title: Path `title` is required.
+[101merror[49m: products validation failed: status: Path `status` is required., category: Path `category` is required., stock: Path `stock` is required., code: Path `code` is required., thumbnail: Path `thumbnail` is required., price: Path `price` is required., description: Path `description` is required., title: Path `title` is required.
+[101merror[49m: products validation failed: status: Path `status` is required., category: Path `category` is required., stock: Path `stock` is required., code: Path `code` is required., thumbnail: Path `thumbnail` is required., price: Path `price` is required., description: Path `description` is required., title: Path `title` is required.
+[101merror[49m: products validation failed: status: Path `status` is required., category: Path `category` is required., stock: Path `stock` is required., code: Path `code` is required., thumbnail: Path `thumbnail` is required., price: Path `price` is required., description: Path `description` is required., title: Path `title` is required.
+[101merror[49m: products validation failed: owner: Cast to ObjectId failed for value "Hola" (type string) at path "owner" because of "BSONError"
+[101merror[49m: products validation failed: owner: Cast to ObjectId failed for value "Hola" (type string) at path "owner" because of "BSONError"
+[101merror[49m: products validation failed: owner: Cast to ObjectId failed for value "Hola" (type string) at path "owner" because of "BSONError"
+[101merror[49m: products validation failed: owner: Cast to ObjectId failed for value "516s51fsdf5sdf" (type string) at path "owner" because of "BSONError"
+[101merror[49m: products validation failed: owner: Cast to ObjectId failed for value "37" (type number) at path "owner" because of "BSONError"
+[101merror[49m: products validation failed: owner: Cast to ObjectId failed for value "51141dfs4fSdfsf" (type string) at path "owner" because of "BSONError"
+[101merror[49m: products validation failed: owner: Cast to ObjectId failed for value "jdfsfkf54654fsdfsfdsf" (type string) at path "owner" because of "BSONError"
+[101merror[49m: Cannot read properties of undefined (reading 'email')
+[101merror[49m: Cannot read properties of undefined (reading 'email')
+[101merror[49m: Cannot read properties of undefined (reading 'age')
+[101merror[49m: Cannot read properties of undefined (reading 'id')
+[101merror[49m: Cannot read properties of undefined (reading 'id')
+[101merror[49m: Cannot read properties of undefined (reading 'id')
+[101merror[49m: Cannot read properties of undefined (reading 'emal')
+[101merror[49m: Cannot read properties of undefined (reading 'id')
+[101merror[49m: userId is not defined
+[101merror[49m: bla is not defined

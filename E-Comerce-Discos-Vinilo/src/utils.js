@@ -17,6 +17,7 @@ export const isValidated = (password, userInfo) => {
 export const generateToken = (user) => {
   const token = jwt.sign(
     {
+      id: user._id,
       name: user.first_name,
       email: user.email,
       role: user.role,
@@ -37,5 +38,18 @@ export const roleClient = (userName) => {
   return role;
 };
 
+//Funcion para obtener el id del usuario que está activo y poder asignarle el mismo a la popiedad owner en la creacion de algun producto
+
+let userIdOwner;
+export const saveUserIdOwner = (id) => {
+  userIdOwner = id;  
+  /* console.log(userIdOwner) */
+};
+saveUserIdOwner()
+
+
+export const getUserIdOwner = () => {
+  return userIdOwner;
+};
 
 

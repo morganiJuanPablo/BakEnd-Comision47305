@@ -10,6 +10,12 @@ export class ProductsRepository {
   }
 
   /////////////////////////////////////////////////////
+  async addProduct(product) {
+    const newProduct = await this.dao.addProduct(product);    
+    return newProduct;
+  }
+
+  /////////////////////////////////////////////////////
   async getProductById(productId) {
     const product = await this.dao.getProductById(productId);
     return product;

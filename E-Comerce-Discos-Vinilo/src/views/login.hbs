@@ -10,6 +10,9 @@
     {{#if message}}
       <p class="welcomeMessage">{{message}}</p>
     {{/if}}
+    {{#if passwordReseted}}
+      <p class="welcomeMessage">Contraseña reestablecida.</p>
+    {{/if}}
     {{#if error}}
       <p class="errorMessage">{{error}}</p>
     {{/if}}
@@ -33,8 +36,11 @@
           alt="Google Icon"
         /></a>
     </section>
-    <footer class="footerForm">Si no tienes cuenta<a href="/api/session/new_user">
-        registrate</a></footer>
+    <footer class="footerForm">
+      <a href="/api/session/link_new_password">// He olvidado mi contraseña //</a>
+      <p>Si no tienes cuenta<a href="/api/session/new_user">
+          registrate</a></p>
+    </footer>
   </form>
 </main>
 <script src="/js/loaderBackground.js"></script>

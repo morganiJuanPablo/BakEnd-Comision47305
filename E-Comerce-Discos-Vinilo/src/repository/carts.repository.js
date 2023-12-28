@@ -8,6 +8,12 @@ export class CartsRepository {
   }
 
   /////////////////////////////////////////////////////
+  async createCart() {
+    const cart = await this.dao.createCart();
+    return cart;
+  }
+
+  /////////////////////////////////////////////////////
   async getProductsOk(cartId) {
     const cart = await this.dao.getCartById(cartId);
     if (cart.products.length) {
@@ -21,10 +27,10 @@ export class CartsRepository {
         for (let i = 0; i < productsOk.length; i++) {
           let product = productsOk[i];
           let subtotal = product.quantity * product.productId.price;
-          product.subtotal = subtotal
+          product.subtotal = subtotal;
         }
         let totalPrice = productsOk.reduce((acc, elem) => {
-          return (acc += elem.subtotal)          
+          return (acc += elem.subtotal);
         }, 0);
 
         productsOk.totalPrice = totalPrice;

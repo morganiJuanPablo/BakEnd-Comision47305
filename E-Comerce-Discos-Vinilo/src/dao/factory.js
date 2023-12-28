@@ -39,9 +39,7 @@ switch (environment) {
     const { UsersManagerMongo } = await import(
       "../dao/mongoManagers/UsersManagerMongo.js"
     );
-    usersDao = new UsersManagerMongo();
-    ////
-    /* usersDao = new UsersManagerMongo(); */
+    usersDao = new UsersManagerMongo(); 
 
     ////TICKETS
     const { TicketsManagerMongo } = await import(

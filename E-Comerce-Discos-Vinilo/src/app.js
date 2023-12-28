@@ -20,6 +20,10 @@ import { EError } from "./errors/Enums/EError.js";
 import { getProductError } from "./errors/services/productsError.service.js";
 import { errorHandler } from "./errors/errorHandler.js";
 import { logger } from "./helpers/logger.js";
+import { swaggerSpecs } from "./config/swagger.config.js";
+import swaggerUI from "swagger-ui-express";
+import { tokenAuth } from "./middleware/middleware.js";
+let idProductOwner;
 
 const port = generalConfig.server.port;
 const app = express();
@@ -33,6 +37,14 @@ app.use(express.urlencoded({ extended: true }));
 passportInit();
 app.use(passport.initialize());
 
+/* app.use(tokenAuth, (req, res, next) => {
+  if (req.user.email) {
+    idProductOwner = req.user.id;
+    next()
+  }
+  next();
+}); */
+
 //Servidores
 const httpServer = app.listen(port, () =>
   logger.info(
@@ -44,6 +56,7 @@ const socketServer = new Server(httpServer);
 //Websockets
 socketServer.on("connection", async (socket) => {
   logger.info("Cliente en linea");
+  const id = idProductOwner;
   const products = await productsService.getProducts();
   if (!products) {
     const error = CustomError.createError({
@@ -57,6 +70,7 @@ socketServer.on("connection", async (socket) => {
   socket.emit("arrayProducts", products);
 
   socket.on("productJson", async (newProduct) => {
+    newProduct.owner = id;
     const result = await productsService.addProduct(newProduct);
     const products = await productsService.getProducts();
     socket.emit("arrayProducts", products);
@@ -99,6 +113,12 @@ app.use("/", realTimeProducts);
 app.use("/", chatRouter);
 app.use("/", cartsRouter);
 app.use("/api/session", sessionsRouter);
+app.use(
+  "/api/docs",
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerSpecs),
+  apiDocsRouter
+);
 
 //Manejo de errores
 app.use(errorHandler);
