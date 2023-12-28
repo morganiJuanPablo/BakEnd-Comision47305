@@ -13,7 +13,7 @@ const swaggerOptions = {
         "Definición de endpoints para la API e-commerce vinilos de Foo Fighters",
     },
   },
-  apis: [`${path.join(__dirname, "../docs/**/*.yaml")}`], //archivos que contienen la documentación de las rutas
+  apis: [`${path.join(__dirname, "/docs/**/*.yaml")}`], //archivos que contienen la documentación de las rutas
 };
 
 //crear una variable que interpreta las opciones para trabajar con swagger

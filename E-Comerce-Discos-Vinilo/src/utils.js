@@ -42,14 +42,11 @@ export const roleClient = (userName) => {
 
 let userIdOwner;
 export const saveUserIdOwner = (id) => {
-  userIdOwner = id;  
+  userIdOwner = id;
   /* console.log(userIdOwner) */
 };
-saveUserIdOwner()
-
+saveUserIdOwner();
 
 export const getUserIdOwner = () => {
   return userIdOwner;
 };
-
-

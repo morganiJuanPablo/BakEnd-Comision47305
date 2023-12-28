@@ -11,6 +11,7 @@ import { chatsService } from "./repository/index.js";
 import { chatRouter } from "./routes/chats.routes.js";
 import { cartsRouter } from "./routes/carts.routes.js";
 import { sessionsRouter } from "./routes/sessions.routes.js";
+import { apiDocsRouter } from "./routes/docs.routes.js";
 import cookieParser from "cookie-parser";
 import passport from "passport";
 import { passportInit } from "./config/passportConfig.js";
