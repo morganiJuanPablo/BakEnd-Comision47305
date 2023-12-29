@@ -13,6 +13,7 @@ import {
   loginUserCreateError,
   newUserCreateError,
 } from "../errors/services/userCreateError.service.js";
+import { logger } from "../helpers/logger.js";
 
 const JWTStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
@@ -49,6 +50,8 @@ export const passportInit = () => {
                 errorCode: EError.INVALID_INFO_BODY,
               });
             } else {
+              const role = roleClient(newUser.email);
+              newUser.role = role;
               const userRegistered = await sessionsService.createUser(newUser);
               return done(null, userRegistered);
             }

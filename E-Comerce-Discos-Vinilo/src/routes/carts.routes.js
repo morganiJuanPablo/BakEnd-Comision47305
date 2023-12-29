@@ -9,6 +9,16 @@ const router = Router();
 
 //GET
 router.get(
+  "/carts",
+  tokenAuth,
+  checkRole(["Administrador"]),
+  CartsController.getCarts
+);
+
+///////////////////////////////////////////////////////////////////
+
+//GET
+router.get(
   "/cart/:cartId",
   tokenAuth,
   checkRole(["Usuario"]),
@@ -19,6 +29,11 @@ router.get(
 
 //GET
 router.get("/cart/:cartId/purchase", tokenAuth, CartsController.getPurchase);
+
+///////////////////////////////////////////////////////////////////
+
+//POST
+router.post("/carts", CartsController.createCart);
 
 ///////////////////////////////////////////////////////////////////
 

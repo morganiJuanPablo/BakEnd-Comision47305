@@ -44,9 +44,6 @@ const productsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
-  facu: {
-    type: Number,
-  },
 });
 
 productsSchema.plugin(mongoosePaginate);

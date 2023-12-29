@@ -11,7 +11,7 @@ export class ProductsRepository {
 
   /////////////////////////////////////////////////////
   async addProduct(product) {
-    const newProduct = await this.dao.addProduct(product);    
+    const newProduct = await this.dao.addProduct(product);
     return newProduct;
   }
 

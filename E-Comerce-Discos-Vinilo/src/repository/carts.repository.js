@@ -14,6 +14,12 @@ export class CartsRepository {
   }
 
   /////////////////////////////////////////////////////
+  async getCarts() {
+    const carts = await this.dao.getCarts();
+    return carts;
+  }
+
+  /////////////////////////////////////////////////////
   async getProductsOk(cartId) {
     const cart = await this.dao.getCartById(cartId);
     if (cart.products.length) {

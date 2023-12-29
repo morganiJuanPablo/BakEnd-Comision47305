@@ -37,16 +37,3 @@ export const roleClient = (userName) => {
     : (role = "Usuario");
   return role;
 };
-
-//Funcion para obtener el id del usuario que está activo y poder asignarle el mismo a la popiedad owner en la creacion de algun producto
-
-let userIdOwner;
-export const saveUserIdOwner = (id) => {
-  userIdOwner = id;
-  /* console.log(userIdOwner) */
-};
-saveUserIdOwner();
-
-export const getUserIdOwner = () => {
-  return userIdOwner;
-};

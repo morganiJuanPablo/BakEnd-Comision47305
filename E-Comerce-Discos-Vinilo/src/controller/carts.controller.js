@@ -11,6 +11,18 @@ import { logger } from "../helpers/logger.js";
 
 export class CartsController {
   /////////////////////////////////////////////////////
+  static getCarts = async (req, res) => {
+    try {
+      const carts = await cartsService.getCarts();
+      console.log(carts);
+      res.json({ data: carts });
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
   static getCartById = async (req, res) => {
     try {
       if (req.user?.email) {
@@ -100,6 +112,17 @@ export class CartsController {
 
   /////////////////////////////////////////////////////
   //POST
+  static createCart = async (req, res) => {
+    try {
+      const newCart = await cartsService.createCart();
+      res.status(200).json({ data: newCart });
+    } catch {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
   static purchaseCart = async (req, res) => {
     try {
       const { cartId } = req.params;

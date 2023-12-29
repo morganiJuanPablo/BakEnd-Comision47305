@@ -1,13 +1,11 @@
 //
 import { logger } from "../helpers/logger.js";
-import { saveUserIdOwner } from "../utils.js";
 
 export class realTimeProductsController {
   /////////////////////////////////////////////////////
   static renderRealTimeProductsView = async (req, res) => {
     try {
       if (req.user?.email) {
-        saveUserIdOwner(req.user.id);
         const sessionExist = req.user.email && true;
         const data = {
           sessionExist,

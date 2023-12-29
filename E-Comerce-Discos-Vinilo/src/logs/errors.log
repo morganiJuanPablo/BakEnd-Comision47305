@@ -97,3 +97,6 @@
 [101merror[49m: Cannot read properties of undefined (reading 'id')
 [101merror[49m: userId is not defined
 [101merror[49m: bla is not defined
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'role')

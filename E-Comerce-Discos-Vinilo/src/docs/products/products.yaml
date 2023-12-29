@@ -1,0 +1,210 @@
+paths:
+  /products/{category}:
+    get:
+      summary: Obtener los productos según la categoria a la que pertenecen
+      tags:
+        - Products
+      security:
+        - jwt: ["Usuario", "Administrador", "Premium"]
+      parameters:
+        - name: category
+          in: path
+          required: true
+          description: Categoría de los productos en venta ("Inicio", "TopVentas", "EdicionesEspeciales")
+          schema:
+            $type: string
+      responses:
+        "200":
+          description: Los productos se obtuvieron de manera exitosa
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Products"
+            text/html:
+              schema:
+                type: string
+                example: "<html><body><h1>Respuesta Renderizada</h1><p>Contenido HTML</p></body></html>"
+        "500":
+          description: Error en el servidor al hacer la consulta
+
+  /item/{productId}:
+    get:
+      summary: Obtener un producto mediante su id
+      tags:
+        - Products
+      security:
+        - jwt: ["Usuario", "Administrador", "Premium"]
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: El Id de producto a consultar
+          schema:
+            $type: string
+      responses:
+        "200":
+          description: Se obtuvo el producto de manera exitosa
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Products"
+            text/html:
+              schema:
+                type: string
+                example: "<html><body><h1>Respuesta Renderizada</h1><p>Contenido HTML</p></body></html>"
+        "500":
+          description: Error en el servidor al hacer la consulta
+
+  Crear, actualizar o eliminar un producto:
+    post:
+      summary: Crear un producto nuevo. Se realiza con el protocolo websocket en tiempo real y directamente conectando el front end con el back end, se hace uso de la capa de servicio para ejecutar la acción según la persistencia con la que se esté trabajando. No utilizamos el protocolo http para esta instrucción
+      tags:
+        - Products
+      security:
+        - jwt: ["Administrador", "Premium"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/createUpdateProduct"
+      responses:
+        "200":
+          description: El producto se creó de manera exitosa
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: Error en la información enviada por el cliente (Incompleta o errónea)
+        "500":
+          description: Error en el servidor al hacer la consulta
+
+    put:
+      summary: Actualizar un producto. Se realiza con el protocolo websocket en tiempo real y directamente conectando el front end con el back end, se hace uso de la capa de servicio para ejecutar la acción según la persistencia con la que se esté trabajando. No utilizamos el protocolo http para esta instrucción
+      tags:
+        - Products
+      security:
+        - jwt: ["Administrador", "Premium"]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#components/requestBodies/createUpdateProduct"
+      responses:
+        "200":
+          description: El producto se actualizó de manera exitosa
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        "400":
+          description: Error en la información enviada por el cliente (Incompleta o errónea)
+        "500":
+          description: Error en el servidor al hacer la consulta
+
+    delete:
+      summary: Eliminar un producto. Se realiza con el protocolo websocket en tiempo real y directamente conectando el front end con el back end, se hace uso de la capa de servicio para ejecutar la acción según la persistencia con la que se esté trabajando. No utilizamos el protocolo http para esta instrucción
+      tags:
+        - Products
+      security:
+        - jwt: ["Administrador", "Premium"]
+      responses:
+        "200":
+          description: El producto se eliminó de manera exitosa
+        "400":
+          description: Error en la información enviada por el cliente (Incompleta o errónea)
+        "500":
+          description: Error en el servidor al hacer la consulta
+
+# Componentes se detalla su estructura
+# Ya sea de los objetos o del body de la petición que quiere hacer el cliente
+
+components:
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id generado por MongoDB
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripción del producto
+        price:
+          type: number
+          description: Precio del producto
+        thumbnail:
+          type: string
+          description: Imagen del producto
+        code:
+          type: number
+          description: Código del producto
+        stock:
+          type: number
+          description: Stock del producto
+        category:
+          type: string
+          description: Categoría del producto
+        status:
+          type: boolean
+          description: Estado del producto
+        owner:
+          type: string
+          description: Id del usuario que creó el producto
+      example:
+        - _id: new ObjectId('651af04d09e91a7063714187')
+          title: "Geatest hits"
+          description: "Recopilación esencial de sus éxitos más icónicos, que abarcan su impresionante carrera y demuestran su habilidad para crear himnos rockeros atemporales."
+          price: 12.99
+          thumbnail: "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/81YbEgRXarL._SL1500__v4y9aj.jpg"
+          code: "Foo300"
+          stock: 5
+          category: "EdicionesEspeciales"
+          status: true
+          owner: "658c1a0d27225c9b73c639fd"
+
+  # Definir Body, que debe entregar el cliente en la petición
+  requestBodies:
+    createUpdateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Nombre del producto
+        description:
+          type: string
+          description: Descripción del producto
+        price:
+          type: number
+          description: Precio del producto
+        code:
+          type: number
+          description: Código del producto
+        category:
+          type: string
+          description: Categoría del producto
+        stock:
+          type: number
+          description: Stock del producto
+        thumbnail:
+          type: string
+          description: Imagen del producto
+        owner:
+          type: string
+          description: Propietario del producto
+      example:
+        - title: "Foo Fighters"
+          description: "Foo Fighters es un grupo de rock estadounidense formada en la ciudad de Seattleen 1994 por el ex baterista de Nirvana, Dave Grohl. Este es su disco lanzamiento."
+          price: 16.99
+          thumbnail: "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511121/ProyectoBackEnd/0828765549622_600_b94vjr.jpg"
+          code: "Foo171"
+          stock: 15
+          category: "TopVentas"
+          status: true

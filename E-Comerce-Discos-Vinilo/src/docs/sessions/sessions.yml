@@ -1,0 +1,67 @@
+paths:
+  /api/session/login:
+    post:
+      summary: Login de usuarios a la aplicación
+      description: Endpoint para llevar a cabo el logueo del usuario
+      tags:
+        - Sessions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Login"
+      responses:
+        "200":
+          description: Login exitoso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+        "400":
+          description: Error en la información enviada por el cliente (Incompleta o errónea)
+        "500":
+          description: Error en el servidor al hacer la consulta
+
+components:
+  schemas:
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email del usuario
+        password:
+          type: string
+          description: Password del usuario
+      example:
+        email: "foofighters@gmail.com"
+        password: "123456"
+
+    ErrorAuthorization:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+      example:
+        status: "error"
+        message: "Unauthorized"
+
+  requestBodies:
+    Login:
+      type: object
+      properties:
+        email:
+          type: string
+          description: Email del usuario
+        password:
+          type: string
+          description: Password del usuario
+      example:
+        email: "foofighters@gmail.com"
+        password: "123456"
