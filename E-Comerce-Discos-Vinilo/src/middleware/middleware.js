@@ -28,10 +28,23 @@ export const checkRole = (roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return res
-/*         .redirect("/api/session/unauthorized")
-        .status(401) */
+        .redirect("/api/session/unauthorized")
+        .status(401)
         .json({ message: "No tienes accesso" });
-      /* res.json({status:"error", message:"No tienes accesso"}); */
+    } else {
+      next();
+    }
+  };
+};
+
+//Función para obtener el id del usuario conectado y aplicarlo a la propiedad owner de los productos cuando se crea con el protocolo websocket
+export const getUserIdOwner = () => {
+  return (req, res, next) => {
+    if (req.user) {
+      return res
+        .redirect("/api/session/unauthorized")
+        .status(401)
+        .json({ message: "No tienes accesso" });
     } else {
       next();
     }
