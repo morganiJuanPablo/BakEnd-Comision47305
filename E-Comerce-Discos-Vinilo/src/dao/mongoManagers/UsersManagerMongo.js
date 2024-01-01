@@ -46,7 +46,13 @@ export class UsersManagerMongo {
 
   async updateUser(id, user) {
     try {
-      const userUpdated = await this.userModel.findOneAndUpdate(id, user);
+      const userUpdated = await this.userModel.findOneAndUpdate(
+        { _id: id },
+        user,
+        {
+          new: true,
+        }
+      );
       return userUpdated;
     } catch (error) {
       logger.error(error.message);

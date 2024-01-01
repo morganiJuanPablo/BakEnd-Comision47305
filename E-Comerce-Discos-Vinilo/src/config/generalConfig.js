@@ -40,4 +40,7 @@ export const generalConfig = {
   environment: {
     persistence: persistenceMode,
   },
+  managers: {
+    domainManagers: process.env.DOMAIN_EMAIL_MANAGERS,
+  },
 };

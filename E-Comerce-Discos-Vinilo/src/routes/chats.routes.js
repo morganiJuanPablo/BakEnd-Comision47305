@@ -7,7 +7,7 @@ const router = Router();
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get("/chat", tokenAuth, checkRole(["Usuario"]), ChatsController.getChats);
+router.get("/chat", tokenAuth, checkRole(["Usuario", "Premium"]), ChatsController.getChats);
 
 ///////////////////////////////////////////////////////////////////
 

@@ -236,7 +236,8 @@ export class SessionsController {
       const user = req.user;
       const token = generateToken(user);
       res.cookie("authLoginFoo", token, { maxAge: 3600000, httpOnly: true });
-      res.redirect("/products/inicio");
+      res.json({ status: "success", message: "Usuario logueado" });
+      /* res.redirect("/products/inicio"); */
     } catch (error) {
       const data = {
         style: "login.css",
@@ -291,6 +292,30 @@ export class SessionsController {
     } catch (error) {
       logger.error(error.message);
       res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
+  static modifyRoleUser = async (req, res) => {
+    try {
+      const { idUser } = req.body;
+      const user = await sessionsService.getUserById(idUser);
+      if (user) {
+        if (user.role === "Usuario") {
+          user.role = "Premium";
+        } else if (user.role === "Premium") {
+          user.role = "Usuario";
+        }
+      }
+      const userNewRole = await sessionsService.updateUser(idUser, user);
+      res.json({
+        status: "success",
+        data: userNewRole.role,
+      });
+      /* res.json({ status: "error", message: "El usuario ingresado no existe" }); */
+    } catch (error) {
+      logger.error(error.message);
+      res.json({ status: "error", message: error.message });
     }
   };
 }

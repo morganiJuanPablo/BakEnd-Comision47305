@@ -38,7 +38,11 @@ router.post("/carts", CartsController.createCart);
 ///////////////////////////////////////////////////////////////////
 
 //POST
-router.post("/cart/:cartId/product/:productId", CartsController.addProduct);
+router.post(
+  "/cart/:cartId/product/:productId",
+  tokenAuth,
+  CartsController.addProduct
+);
 
 ///////////////////////////////////////////////////////////////////
 //POST
@@ -72,6 +76,8 @@ router.put("/cart/:cartId/product/:productId", async (req, res) => {
 //DELETE
 router.delete(
   "/cart/:cartId/product/:productId",
+  tokenAuth,
+  checkRole(["Premium", "Usuario"]),
   CartsController.deleteProduct
 );
 

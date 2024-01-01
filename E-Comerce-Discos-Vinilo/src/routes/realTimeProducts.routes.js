@@ -10,7 +10,7 @@ const router = Router();
 router.get(
   "/realtimeproducts",
   tokenAuth,
-  checkRole(["Administrador", "Usuario"]),
+  checkRole(["Administrador", "Premium"]),
   realTimeProductsController.renderRealTimeProductsView
 );
 

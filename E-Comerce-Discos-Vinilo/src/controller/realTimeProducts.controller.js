@@ -15,8 +15,9 @@ export class realTimeProductsController {
           sessionExist,
           role: req.user.role,
           userFirstName: req.user.name,
-          style: "realTimeProducts.css",
-        };
+          userId: req.user.id,
+          style: "realTimeProducts.css",          
+        };        
         res.render("realTimeProducts", data);
       } else {
         res.redirect("/api/session/session_destroyed");

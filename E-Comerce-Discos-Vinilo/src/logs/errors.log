@@ -100,3 +100,67 @@
 [101merror[49m: Cannot read properties of undefined (reading 'status')
 [101merror[49m: Cannot read properties of undefined (reading 'status')
 [101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: newCart is not defined
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot read properties of null (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: user is not defined
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: Cannot read properties of undefined (reading 'role')
+[101merror[49m: user is not defined
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot read properties of null (reading 'role')
+[101merror[49m: Cannot read properties of null (reading 'role')
+[101merror[49m: Cannot read properties of null (reading 'role')
+[101merror[49m: Cannot read properties of null (reading 'role')
+[101merror[49m: Cannot read properties of null (reading 'role')
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot set headers after they are sent to the client
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Parameter "filter" to findOneAndUpdate() must be an object, got "658c1a0d27225c9b73c639fd" (type string)
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Parameter "filter" to findOneAndUpdate() must be an object, got "658c1a0d27225c9b73c639fd" (type string)
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Parameter "filter" to findOneAndUpdate() must be an object, got "658c1a0d27225c9b73c639fd" (type string)
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Parameter "filter" to findOneAndUpdate() must be an object, got "658c1a0d27225c9b73c639fd" (type string)
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Parameter "filter" to findOneAndUpdate() must be an object, got "658c1a0d27225c9b73c639fd" (type string)
+[101merror[49m: El usuario solicitado no existe en nuestros registros

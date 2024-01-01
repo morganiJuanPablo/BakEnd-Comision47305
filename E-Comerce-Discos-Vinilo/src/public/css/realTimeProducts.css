@@ -184,17 +184,6 @@
 
 /* Modales */
 
-.swal2-popup {
-  width: 30% !important;
-  height: auto !important;
-  min-height: 12rem;
-  padding: 2rem !important;
-}
-.swal2-title {
-  font-size: 1.6rem !important;
-  font-weight: 400 !important;
-  color: black !important;
-}
 .swal2-html-container {
   font-size: 1.8rem !important;
   font-weight: 400 !important;
@@ -227,6 +216,17 @@
   font-weight: 700;
   color: black;
   text-decoration: none;
-  padding:3rem;  
+  padding: 3rem;
   text-align: center;
+}
+.swal2-popup {
+  width: 30% !important;
+  height: auto !important;
+  min-height: 12rem;
+  padding: 2rem !important;
+}
+.swal2-title {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: black !important;
 }

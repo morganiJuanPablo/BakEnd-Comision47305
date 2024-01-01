@@ -32,7 +32,7 @@ export const generateToken = (user) => {
 
 let role;
 export const roleClient = (userName) => {
-  userName.includes("@ecommerceff.com")
+  userName.includes(generalConfig.managers.domainManagers)
     ? (role = "Administrador")
     : (role = "Usuario");
   return role;

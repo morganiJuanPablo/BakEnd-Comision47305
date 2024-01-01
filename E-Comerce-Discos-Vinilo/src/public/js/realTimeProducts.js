@@ -26,7 +26,7 @@ socketClient.on("arrayProducts", (dataProducts) => {
     src=${thumbnail}
     alt="Vinyl Cover"
     />
-    <button class="trashBtn" onclick= deleteProduct('${_id}') ><img src="https://res.cloudinary.com/dqykftyy6/image/upload/v1695040127/TrashIcon-01_hgtcmn.png" alt="Eliminar producto"></button>
+    <button class="trashBtn" onclick= deleteProduct('${_id}','${owner}','${userRole}') ><img src="https://res.cloudinary.com/dqykftyy6/image/upload/v1695040127/TrashIcon-01_hgtcmn.png" alt="Eliminar producto"></button>
     </div>
     <div class="productInfo">
     <h1 class="title">${title}</h1>
@@ -102,23 +102,32 @@ updateProductsForm.addEventListener("submit", (e) => {
   updateProductsForm.reset();
 });
 
-//Delete products By Id
-const deleteProduct = (productId) => {
-  const swalWithBootstrapButtons = Swal.mixin({
-    buttonsStyling: false,
-  });
-  swalWithBootstrapButtons
-    .fire({
-      title: `¿Estás seguro de eliminar el producto con Id: "${productId}"?`,
-      icon: false,
-      showCancelButton: true,
-      confirmButtonText: "Si",
-      cancelButtonText: "No",
-      reverseButtons: false,
-    })
-    .then((result) => {
-      if (result.isConfirmed) {
-        socketClient.emit("deleteProductById", productId);
-      }
+//Delete products ById
+//Aquí es en donde hacemos la validación para eliminar el producto, siempre y cuando el usuario conectado corresponda al owner del producto que se quiera eliminar. La variable userId las recuperamos con estiquetas script en la vista desde el controlador de la ruta que renderiza la misma. Pasamos en la siguiente función el id del producto y el productOwner que viene de owner en el forEach que se hace cuando websocket recibe los productos. La variable role también la pasamos desde el controlador de la ruta y la captamos con otra estiqueta srcipt en la vista. Lo hacemos para validar el rol del usuario ya que si es administrador puede borrar todos los productos sin importar que los haya generado el o un usuario premium
+const deleteProduct = (productId, productOwner, userRole) => {
+  if (productOwner === userId || userRole === "Administrador") {
+    const swalWithBootstrapButtons = Swal.mixin({
+      buttonsStyling: false,
     });
+    swalWithBootstrapButtons
+      .fire({
+        title: `¿Estás seguro de eliminar el producto con Id: "${productId}"?`,
+        icon: false,
+        showCancelButton: true,
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+        reverseButtons: false,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          socketClient.emit("deleteProductById", productId);
+        }
+      });
+  } else {
+    Swal.fire({
+      showConfirmButton: false,
+      title: `Producto creado por otro usuario. No puedes eliminarlo.`,
+      timer: 3000,
+    });
+  }
 };

@@ -5,7 +5,14 @@ const deleteProductCart = async (productId) => {
       method: "DELETE",
     });
     const result = await response.json();
-    location.reload();
+    Swal.fire({
+      showConfirmButton: false,
+      title: `${result.message}`,
+      timer: 2000,
+    });
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
   } catch (error) {
     console.error("Error de red:", error);
   }
@@ -39,15 +46,14 @@ emptyCartCheck();
 
 const purchaseAction = async () => {
   try {
-    window.location.href = `http://localhost:8080/cart/${cartId}/purchase`
+    window.location.href = `http://localhost:8080/cart/${cartId}/purchase`;
     const response = await fetch(`/cart/${cartId}/purchase`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     });
     const result = await response.json();
-    
   } catch (error) {
     console.error("Error de red:", error);
   }

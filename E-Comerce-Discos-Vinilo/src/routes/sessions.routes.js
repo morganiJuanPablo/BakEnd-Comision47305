@@ -7,6 +7,7 @@ import {
   tokenAuth,
   authRegisterPassport,
   authLoginPassport,
+  checkRole
 } from "../middleware/middleware.js";
 
 const router = Router();
@@ -82,9 +83,15 @@ router.post("/login", authLoginPassport, SessionsController.loginUser);
 router.post("/link_new_password", SessionsController.linkNewPassword);
 
 ///////////////////////////////////////////////////////////////////
-router.post(
-  "/generate_new_password",
-  SessionsController.generateNewPassword
+router.post("/generate_new_password", SessionsController.generateNewPassword);
+
+////PUT
+///////////////////////////////////////////////////////////////////
+router.put(
+  "/modifyRoleUser",
+  tokenAuth,
+  checkRole(["Administrador"]),
+  SessionsController.modifyRoleUser
 );
 
 ///////////////////////////////////////////////////////////////////

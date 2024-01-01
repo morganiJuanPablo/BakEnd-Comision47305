@@ -11,6 +11,11 @@ export class SessionsRepository {
     return user;
   }
   /////////////////////////////////////////////////////
+  async getUserById(userId) {
+    const user = await this.dao.getUserById(userId);
+    return user;
+  }
+  /////////////////////////////////////////////////////
   async createUser(newUser) {
     const user = await this.dao.createUser(newUser);
     return user;
