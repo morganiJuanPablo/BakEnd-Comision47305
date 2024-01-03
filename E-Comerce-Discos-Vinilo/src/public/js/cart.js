@@ -8,11 +8,11 @@ const deleteProductCart = async (productId) => {
     Swal.fire({
       showConfirmButton: false,
       title: `${result.message}`,
-      timer: 2000,
+      timer: 3500,
     });
     setTimeout(() => {
       location.reload();
-    }, 2000);
+    }, 3000);
   } catch (error) {
     console.error("Error de red:", error);
   }

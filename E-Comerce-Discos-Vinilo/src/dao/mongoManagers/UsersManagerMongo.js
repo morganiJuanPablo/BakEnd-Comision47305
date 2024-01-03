@@ -36,9 +36,13 @@ export class UsersManagerMongo {
   async getUserById(userId) {
     try {
       const user = await this.userModel.findById(userId).lean();
-      return user;
+      if (user) {
+        return user;
+      } else {
+        return logger.info("El usuario ingrado no existe");
+      }
     } catch (error) {
-      logger.error(error.message);
+      logger.warn(error.message);
       throw new Error(`El usuario solicitado no existe en nuestros registros`);
     }
   }

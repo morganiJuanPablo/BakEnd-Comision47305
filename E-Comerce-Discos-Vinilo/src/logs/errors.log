@@ -164,3 +164,1288 @@
 [101merror[49m: El usuario solicitado no existe en nuestros registros
 [101merror[49m: Parameter "filter" to findOneAndUpdate() must be an object, got "658c1a0d27225c9b73c639fd" (type string)
 [101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "dgddfgfdghgfhfg" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "5165d1fd6f5g1fdgdfg" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639gd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b753c639fd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cast to ObjectId failed for value "658c1a0d27225c9b73c639lfd" (type string) at path "_id" for model "users"
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: a circular reference in the update value, updateValue:
+{
+  _readableState: ReadableState {
+    objectMode: true,
+    highWaterMark: 16,
+    buffer: BufferList { head: null, tail: null, length: 0 },
+    length: 0,
+    pipes: [Array],
+    pipesCount: 2,
+    flowing: true,
+    ended: false,
+    endEmitted: false,
+    reading: true,
+    sync: false,
+    needReadable: true,
+    emittedReadable: false,
+    readableListening: false,
+    resumeScheduled: false,
+    paused: false,
+    emitClose: true,
+    autoDestroy: false,
+    destroyed: false,
+    defaultEncoding: 'utf8',
+    awaitDrain: 0,
+    readingMore: false,
+    decoder: null,
+    encoding: null
+  },
+  readable: true,
+  _events: { prefinish: [Function: prefinish], end: [Array], data: [Array] },
+  _eventsCount: 3,
+  _maxListeners: undefined,
+  _writableState: WritableState {
+    objectMode: true,
+    highWaterMark: 16,
+    finalCalled: false,
+    needDrain: false,
+    ending: false,
+    ended: false,
+    finished: false,
+    destroyed: false,
+    decodeStrings: true,
+    defaultEncoding: 'utf8',
+    length: 0,
+    writing: false,
+    corked: 0,
+    sync: false,
+    bufferProcessing: false,
+    onwrite: [Function (anonymous)],
+    writecb: null,
+    writelen: 0,
+    bufferedRequest: null,
+    lastBufferedRequest: null,
+    pendingcb: 0,
+    prefinished: false,
+    errorEmitted: false,
+    emitClose: true,
+    autoDestroy: false,
+    bufferedRequestCount: 0,
+    corkedRequestsFree: [CorkedRequest]
+  },
+  writable: true,
+  allowHalfOpen: true,
+  _transformState: {
+    afterTransform: [Function: bound afterTransform],
+    needTransform: true,
+    transforming: false,
+    writecb: null,
+    writechunk: null,
+    writeencoding: 'utf8'
+  },
+  silent: undefined,
+  format: Format { options: {}, Format: [Function: Format] },
+  defaultMeta: null,
+  levels: {
+    error: 0,
+    warn: 1,
+    info: 2,
+    http: 3,
+    verbose: 4,
+    debug: 5,
+    silly: 6
+  },
+  level: 'info',
+  exceptions: ExceptionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  rejections: RejectionHandler { logger: [DerivedLogger], handlers: Map(0) {} },
+  profilers: {},
+  exitOnError: true
+}
+updatePath: ''
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cast to ObjectId failed for value "alt=""" (type string) at path "_id" for model "products"
+[101merror[49m: No se pudo obtener el producto.
+[101merror[49m: Cast to ObjectId failed for value "alt=""" (type string) at path "_id" for model "products"
+[101merror[49m: No se pudo obtener el producto.
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: El producto con Id: 658ff4cc875cdd36826eb8b1 no existe
+[101merror[49m: No se pudo eliminar el producto.
+[101merror[49m: No se pudo eliminar el producto.
+[101merror[49m: Cannot read properties of undefined (reading 'status')

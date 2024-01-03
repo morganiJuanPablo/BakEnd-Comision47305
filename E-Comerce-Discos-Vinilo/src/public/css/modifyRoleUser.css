@@ -1,0 +1,192 @@
+.modifyRoleUserContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: white;
+}
+aside {
+  overflow: hidden;
+}
+aside img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  margin-top: 2rem;
+}
+.modifyRoleUserContainer--modifyRoleUserSection {
+  width: 65%;
+  background-color: white;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.formTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+}
+form {
+  height: auto;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+input {
+  width: 45rem;
+  height: 3.7rem;
+  padding: 1rem;
+  font-size: 1.7rem;
+}
+.submitBtns {
+  color: black;
+  background-color: transparent;
+  padding: 1rem;
+  font-size: 1.65rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.goBackBtn a {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+}
+.goBackBtn {
+  width: auto;
+  background-color: transparent;
+  margin: 0 auto 2rem auto;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.loaderBackground {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.859);
+  position: fixed;
+  filter: opacity(0);
+  pointer-events: none;
+  transition: 0.1s ease-in-out;
+}
+.loaderBackgroundOn {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.859);
+  position: fixed;
+  top: 0;
+  left: 0;
+  filter: opacity(1);
+  transition: 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+.loaderBackgroundOff {
+  display: none;
+}
+.userInfoContainer {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.userInfoText {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: black;
+}
+.userInfoTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  color: rgb(0, 171, 0);
+}
+.userEmail {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: black;
+}
+.userInfo {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  color: black;
+}
+.userInfo span {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: black;
+}
+.modifyUserRoleBtn {
+  width: auto;
+  display: flex;
+  color: black;
+  background-color: transparent;
+  padding: 1rem;
+  font-size: 1.65rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0 auto 2rem auto;
+}
+.messageError {
+  width: auto;
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 700;
+  padding: 1rem;
+  background-color: rgb(255, 3, 3);
+  margin: auto;
+}
+.off {
+  display: none;
+}
+.swal2-popup {
+  width: 25% !important;
+  height: auto !important;
+  min-height: 12rem;
+  padding: 2rem !important;
+}
+.swal2-title {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: black !important;
+}
+.swal2-confirm {
+  background-color: white !important;
+  border: solid 2px black !important;
+  width: 10rem !important;
+  height: auto !important;
+  color: black !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  margin-right: 0.5rem !important;
+  cursor: pointer;
+}
+.swal2-cancel {
+  background-color: white !important;
+  border: solid 2px black;
+  width: 10rem !important;
+  height: auto !important;
+  color: black !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  margin-left: 0.5rem !important;
+  cursor: pointer;
+}

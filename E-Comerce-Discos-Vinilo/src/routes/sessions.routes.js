@@ -7,7 +7,7 @@ import {
   tokenAuth,
   authRegisterPassport,
   authLoginPassport,
-  checkRole
+  checkRole,
 } from "../middleware/middleware.js";
 
 const router = Router();
@@ -36,6 +36,14 @@ router.get("/new_user_fail", SessionsController.newUserFailView);
 
 ///////////////////////////////////////////////////////////////////
 router.get("/profile", tokenAuth, SessionsController.profileView);
+
+///////////////////////////////////////////////////////////////////
+router.get(
+  "/modify_role_user",
+  tokenAuth,
+  checkRole(["Administrador"]),
+  SessionsController.modifyRoleUserView
+);
 
 ///////////////////////////////////////////////////////////////////
 router.get("/session_destroyed", SessionsController.sessionDestroyedView);
@@ -85,10 +93,13 @@ router.post("/link_new_password", SessionsController.linkNewPassword);
 ///////////////////////////////////////////////////////////////////
 router.post("/generate_new_password", SessionsController.generateNewPassword);
 
+///////////////////////////////////////////////////////////////////
+router.post("/get_user_by_id", SessionsController.getUserById);
+
 ////PUT
 ///////////////////////////////////////////////////////////////////
 router.put(
-  "/modifyRoleUser",
+  "/modify_role_user",
   tokenAuth,
   checkRole(["Administrador"]),
   SessionsController.modifyRoleUser

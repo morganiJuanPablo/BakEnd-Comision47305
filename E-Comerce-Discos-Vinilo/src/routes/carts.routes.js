@@ -21,7 +21,7 @@ router.get(
 router.get(
   "/cart/:cartId",
   tokenAuth,
-  checkRole(["Usuario"]),
+  checkRole(["Premium", "Usuario"]),
   CartsController.getCartById
 );
 

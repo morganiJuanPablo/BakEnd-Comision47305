@@ -63,6 +63,46 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
+  static modifyRoleUserView = async (req, res) => {
+    try {
+      const data = {
+        style: "modifyRoleUser.css",
+      };
+      res.render("modifyRoleUser", data);
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
+  static getUserById = async (req, res) => {
+    try {
+      const { userId } = req.body;
+      if (userId) {
+        const user = await sessionsService.getUserById(userId);
+        if (user) {
+          const data = {
+            email: user.email,
+            role: user.role,
+            status: "success",
+          };
+          return res.json(data);
+        }
+      } else {
+        const data = {
+          message: "No se ha ingresado ningún valor",
+          status: "error",
+        };
+        return res.json(data);
+      }
+    } catch (error) {
+      logger.error(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  /////////////////////////////////////////////////////
   static linkNewPassword = async (req, res) => {
     try {
       const { email } = req.body;
@@ -236,8 +276,8 @@ export class SessionsController {
       const user = req.user;
       const token = generateToken(user);
       res.cookie("authLoginFoo", token, { maxAge: 3600000, httpOnly: true });
-      res.json({ status: "success", message: "Usuario logueado" });
-      /* res.redirect("/products/inicio"); */
+      /* res.json({ status: "success", message: "Usuario logueado" }); */
+      res.redirect("/products/inicio");
     } catch (error) {
       const data = {
         style: "login.css",
@@ -298,8 +338,9 @@ export class SessionsController {
   /////////////////////////////////////////////////////
   static modifyRoleUser = async (req, res) => {
     try {
-      const { idUser } = req.body;
-      const user = await sessionsService.getUserById(idUser);
+      const { userId } = req.body;
+      
+      const user = await sessionsService.getUserById(userId);
       if (user) {
         if (user.role === "Usuario") {
           user.role = "Premium";
@@ -307,7 +348,7 @@ export class SessionsController {
           user.role = "Usuario";
         }
       }
-      const userNewRole = await sessionsService.updateUser(idUser, user);
+      const userNewRole = await sessionsService.updateUser(userId, user);
       res.json({
         status: "success",
         data: userNewRole.role,

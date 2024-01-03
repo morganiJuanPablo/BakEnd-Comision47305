@@ -15,8 +15,7 @@ btnAddtoCart.addEventListener("click", async () => {
         "Content-Type": "application/json",
       },
     });
-    const result = await response.json()
-
+    const result = await response.json();
     Swal.fire({
       showConfirmButton: false,
       title: `${result.message}`,

@@ -94,26 +94,30 @@ export class CartsController {
       const cartId = req.params.cartId;
       const productId = req.params.productId;
       const product = await productsService.getProductById(productId);
-      if (
-        (req.user.role === "Premium" && product.owner === req.user.id) ||
-        req.user.role === "Administrador"
-      ) {
-        res.json({
+      const ownerId = product[0].owner.toString();
+
+      if (req.user.role === "Administrador") {
+        return res.json({
           status: "error",
-          message: "No puedes agregar este producto al carrito",
-        });
-      } else {
-        const newCart = await cartsService.addProduct(
-          cartId,
-          productId,
-          quantity
-        );
-        res.json({
-          status: "success",
-          message: "¡Producto agregado al carrito!",
-          data: newCart,
+          message: "El administrador no puede añadir productos al carrito.",
         });
       }
+      if (ownerId === req.user.id) {
+        return res.json({
+          status: "error",
+          message: "No puedes añadir al carrito productos que has creado.",
+        });
+      }
+      const newCart = await cartsService.addProduct(
+        cartId,
+        productId,
+        quantity
+      );
+      res.json({
+        status: "success",
+        message: "¡Producto agregado al carrito!",
+        data: newCart,
+      });
     } catch (error) {
       logger.error(error.message);
       res.status(500).json({ message: error.message });
