@@ -26,8 +26,16 @@ const messagesContainer = document.getElementById(
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
   const userMessage = { message: messageInput.value, user };
-  socketClient.emit("messageChat", userMessage);
-  messageInput.value = "";
+  if (userMessage.message) {
+    socketClient.emit("messageChat", userMessage);
+    messageInput.value = "";
+  } else {
+    Swal.fire({
+      showConfirmButton: false,
+      title: `No has escrito nada aún.`,
+      timer: 2500,
+    });
+  }
 });
 
 //Mensajes para ser pintados en el front

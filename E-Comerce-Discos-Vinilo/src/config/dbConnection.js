@@ -13,8 +13,7 @@ export class DbConnection {
   }
   static async getInstance() {
     if (this.#instance) {
-      logger.warn();
-      ("La conexión con la base de datos ya existe.");
+      logger.warn("La conexión con la base de datos ya existe.");
       return this.#instance;
     } else {
       this.#instance = await this.#getConnection();

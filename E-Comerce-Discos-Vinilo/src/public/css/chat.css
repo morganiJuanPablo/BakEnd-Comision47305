@@ -160,3 +160,14 @@
   margin: auto;
   display: flex;
 }
+.swal2-popup {
+  width: 20% !important;
+  height: auto !important;
+  min-height: 12rem;
+  padding: 2rem !important;
+}
+.swal2-title {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: black !important;
+}

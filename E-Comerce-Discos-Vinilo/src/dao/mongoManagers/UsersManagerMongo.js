@@ -21,6 +21,18 @@ export class UsersManagerMongo {
 
   ///////////////////////////////////////////////////////////////////
 
+  async getUsers() {
+    try {
+      const users = await this.userModel.find().lean();
+      return users;
+    } catch (error) {
+      logger.error(error.message);
+      throw new Error(`No se pudo obtener los usuarios.`);
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
   async getUser(userEmail) {
     try {
       const user = await this.userModel.findOne({ email: userEmail }).lean();
