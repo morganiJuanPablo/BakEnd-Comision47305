@@ -16,7 +16,7 @@ switch (environment) {
   case "production": {
     ////MONGO DB
     const { DbConnection } = await import("../config/dbConnection.js");
-    DbConnection.getInstance();
+    DbConnection.getInstance()
 
     ////PRODUCTS
     const { ProductsManagerMongo } = await import(
@@ -50,36 +50,47 @@ switch (environment) {
     logger.info("Estamos en el entorno de Producción.");
     break;
   }
+  
   ////////////////////////////////////////////////////////////
   case "development": {
+    ////MONGO DB PARA DESARROLLO Y PARA TESTS
+    const { DbConnectionDev } = await import("../config/dbConnection.js");
+    DbConnectionDev.getInstance();
+
     ////PRODUCTS
-    const { ProductsManagerFs } = await import(
-      "../dao/fileSystemManagers/ProductsManager-FS.js"
+    const { ProductsManagerMongo } = await import(
+      "../dao/mongoManagers/ProductsManagerMongo.js"
     );
-    productsDao = new ProductsManagerFs(
-      path.join(__dirname, "./dao/fileSystemManagers/files/products.json")
-    );
+    productsDao = new ProductsManagerMongo();
 
     ////CARTS
-    const { CartsManagerFs } = await import(
-      "../dao/fileSystemManagers/CartsManager-FS.js"
+    const { CartsManagerMongo } = await import(
+      "../dao/mongoManagers/CartsManagerMongo.js"
     );
-    cartsDao = new CartsManagerFs(
-      path.join(__dirname, "./dao/fileSystemManagers/files/carts.json")
-    );
+    cartsDao = new CartsManagerMongo();
 
+    ////CHATS
+    const { ChatManagerMongo } = await import(
+      "../dao/mongoManagers/ChatManagerMongo.js"
+    );
+    chatsDao = new ChatManagerMongo();
     ////USERS
-    const { UsersManagerFs } = await import(
-      "../dao/fileSystemManagers/UsersManager-FS.js"
+    const { UsersManagerMongo } = await import(
+      "../dao/mongoManagers/UsersManagerMongo.js"
     );
-    usersDao = new UsersManagerFs(
-      path.join(__dirname, "./dao/fileSystemManagers/files/users.json")
-    );
+    usersDao = new UsersManagerMongo(); 
 
-    ////
+    ////TICKETS
+    const { TicketsManagerMongo } = await import(
+      "../dao/mongoManagers/TicketsManagerMongo.js"
+    );
+    ticketsDao = new TicketsManagerMongo();
+
     logger.info("Estamos en el entorno de Desarrollo.");
     break;
   }
+  ////////////////////////////////////////////////////////////
+  
 }
 
 export { productsDao, cartsDao, chatsDao, usersDao, ticketsDao };

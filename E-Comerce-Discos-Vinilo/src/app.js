@@ -113,3 +113,5 @@ app.use(
 
 //Manejo de errores
 app.use(errorHandler);
+
+export { app }; //Exportamos nuestra aplicación para poder hacer las pruebas (Testing)

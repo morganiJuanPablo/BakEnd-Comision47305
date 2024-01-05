@@ -17,7 +17,8 @@ export const generalConfig = {
     port,
   },
   mongo: {
-    url: process.env.MONGO_URL,
+    urlProduction: process.env.MONGO_URL_PRODUCTION,
+    urlDevTest: process.env.MONGO_URL_DEV_TEST,
   },
   github: {
     callbackUrl: process.env.GITHUB_CALLBACK_URL,
