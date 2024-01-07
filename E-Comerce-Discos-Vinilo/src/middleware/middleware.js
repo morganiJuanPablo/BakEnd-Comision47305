@@ -37,20 +37,6 @@ export const checkRole = (roles) => {
   };
 };
 
-//Función para obtener el id del usuario conectado y aplicarlo a la propiedad owner de los productos cuando se crea con el protocolo websocket
-export const getUserIdOwner = () => {
-  return (req, res, next) => {
-    if (req.user) {
-      return res
-        .redirect("/api/session/unauthorized")
-        .status(401)
-        .json({ message: "No tienes accesso" });
-    } else {
-      next();
-    }
-  };
-};
-
 ///////////////////////////////////////////////////////////////////////
 //Middleware de passport y token
 export const tokenAuth = passport.authenticate("jwtAuth", {

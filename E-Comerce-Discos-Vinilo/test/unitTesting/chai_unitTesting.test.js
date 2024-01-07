@@ -1,11 +1,9 @@
 //
-import { UsersManagerMongo } from "../src/dao/mongoManagers/UsersManagerMongo.js";
+import { UsersManagerMongo } from "../../src/dao/mongoManagers/UsersManagerMongo.js";
 import mongoose from "mongoose";
-import { logger } from "../src/helpers/logger.js";
-import { userModel } from "../src/dao/mongoManagers/modelsDB/users.model.js";
+import { logger } from "../../src/helpers/logger.js";
+import { userModel } from "../../src/dao/mongoManagers/modelsDB/users.model.js";
 import { expect } from "chai";
-import supertest from "supertest";
-import { app } from "../src/app.js";
 
 try {
   await mongoose.connect(
@@ -29,7 +27,6 @@ describe("Testing módulo users DAO", () => {
 
   it("Obtener de manera correcta todos los usuarios en un arreglo", async function () {
     const result = await this.usersManager.getUsers();
-    console.log(result)
     //Vamos a comparar el valor actual con el valor esperado
     expect(result).to.be.deep.equal([]);
   });

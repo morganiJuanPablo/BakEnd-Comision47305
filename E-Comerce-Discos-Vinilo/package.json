@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha test/chai_usersDao.test.js",
+    "test": "mocha test/unitTesting/chai_sessionUnitTesting.test",
     "start-dev": "nodemon src/app.js --mode development --port 3000",
     "start-prod": "nodemon src/app.js --mode production --port 8080"
   },
