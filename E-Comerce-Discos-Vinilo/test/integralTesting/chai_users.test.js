@@ -35,5 +35,12 @@ describe("Pruebas app e-commerce FF", function () {
       expect(response.text).to.include(mockUser.first_name);
       expect(response.status).to.be.equal(200);
     });
+
+    it("Endpoint para loguear el usuario en la app. /api/session/login", async function () {
+      const response = await requester
+        .post("/api/session/login")
+        .send({ email: mockUser.email, password: mockUser.password });
+      expect(response.header.location).to.be.equal("/products/inicio"); //Corroboramos que luego de que el usuario se loguea, se redirija a esta ruta, lo que quiere decir que salió todo bien.
+    });
   });
 });
