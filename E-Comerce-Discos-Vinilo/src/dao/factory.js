@@ -55,7 +55,7 @@ switch (environment) {
   case "development": {
     ////MONGO DB PARA DESARROLLO Y PARA TESTS
     const { DbConnectionDev } = await import("../config/dbConnection.js");
-    DbConnectionDev.getInstance();
+    await DbConnectionDev.getInstance();
 
     ////PRODUCTS
     const { ProductsManagerMongo } = await import(

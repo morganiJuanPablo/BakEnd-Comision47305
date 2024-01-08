@@ -339,7 +339,7 @@ export class SessionsController {
   static modifyRoleUser = async (req, res) => {
     try {
       const { userId } = req.body;
-      
+
       const user = await sessionsService.getUserById(userId);
       if (user) {
         if (user.role === "Usuario") {
