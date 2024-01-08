@@ -48,11 +48,7 @@ export class UsersManagerMongo {
   async getUserById(userId) {
     try {
       const user = await this.userModel.findById(userId).lean();
-      if (user) {
-        return user;
-      } else {
-        return logger.info("El usuario ingrado no existe");
-      }
+      return user;
     } catch (error) {
       logger.warn(error.message);
       throw new Error(`El usuario solicitado no existe en nuestros registros`);
@@ -60,16 +56,27 @@ export class UsersManagerMongo {
   }
   ///////////////////////////////////////////////////////////////////
 
-  async updateUser(id, user) {
+  async updateUser(userId, user) {
     try {
       const userUpdated = await this.userModel.findOneAndUpdate(
-        { _id: id },
+        { _id: userId },
         user,
         {
           new: true,
         }
       );
       return userUpdated;
+    } catch (error) {
+      logger.error(error.message);
+      throw new Error(`El usuario solicitado no existe en nuestros registros`);
+    }
+  }
+
+  ///////////////////////////////////////////////////////////////////
+
+  async deleteUser(userId) {
+    try {
+      await this.userModel.deleteOne({ _id: userId });
     } catch (error) {
       logger.error(error.message);
       throw new Error(`El usuario solicitado no existe en nuestros registros`);

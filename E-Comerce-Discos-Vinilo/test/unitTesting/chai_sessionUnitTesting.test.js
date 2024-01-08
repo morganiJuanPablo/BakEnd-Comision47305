@@ -2,7 +2,6 @@
 import { UsersManagerMongo } from "../../src/dao/mongoManagers/UsersManagerMongo.js";
 import mongoose from "mongoose";
 import { logger } from "../../src/helpers/logger.js";
-import { userModel } from "../../src/dao/mongoManagers/modelsDB/users.model.js";
 import { expect } from "chai";
 import { roleClient } from "../../src/utils.js";
 import { generalConfig } from "../../src/config/generalConfig.js";
@@ -19,20 +18,14 @@ try {
 }
 
 describe("Testing funciones referidas a las sesiones y la entidad de los usuarios.", () => {
-  //Utilizamos el método before para que se ejecute antes de que se lleven a cabo las pruebas. Este método se ejecuta sólo una vez. Acá vamos a instanciar un objeto de la clase de UsersMongo para poder hacer las pruebas necesarias.
   before(async function () {
     this.usersManager = new UsersManagerMongo();
-  });
-
-  before(async function () {
-    await userModel.deleteMany();
   });
 
   let user; //Probamos los métodos del manager de usuarios creando una variable 'user'
 
   it("Obtener de manera correcta todos los usuarios en un arreglo.", async function () {
     const result = await this.usersManager.getUsers();
-    //Vamos a comparar el valor actual con el valor esperado
     expect(result).to.be.deep.equal([]);
   });
 
@@ -70,7 +63,13 @@ describe("Testing funciones referidas a las sesiones y la entidad de los usuario
     expect(newUserFromDb).to.be.an("object");
   });
 
-  it("Función para obtener el role del usuario según el dominio del correo con el que se registra", async function () {
+  it("Eliminamos un usuario através de su Id. Chequeamos luego no debería existir en la base de datos.", async function () {
+    await this.usersManager.deleteUser(user._id);
+    const userFromDb = await this.usersManager.getUserById(user._id);
+    expect(userFromDb).to.be.not.exist;
+  });
+
+  it("Función para obtener el role del usuario según el dominio del correo con el que se registra.", async function () {
     const result = roleClient(
       `username${generalConfig.managers.domainManagers}`
     );
@@ -84,5 +83,3 @@ describe("Testing funciones referidas a las sesiones y la entidad de los usuario
     expect(result).to.not.have.property("last_name");
   });
 });
-
-//Hacemos supertests

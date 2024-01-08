@@ -1,2 +1,3 @@
 node_modules/
 .env
+assert_chai_anotacionesTeoria.test.js
