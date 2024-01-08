@@ -26,7 +26,7 @@ describe("Pruebas app e-commerce FF", function () {
       await userModel.deleteMany({});
     });
 
-    it("Endpoint para registrar el usuario de manera correcta en la app. /api/session/new_user", async function () {
+    it("El endpoint /api/session/new_user registra el usuario de manera correcta en la app.", async function () {
       const response = await requester
         .post("/api/session/new_user")
         .send(mockUser);
@@ -36,11 +36,28 @@ describe("Pruebas app e-commerce FF", function () {
       expect(response.status).to.be.equal(200);
     });
 
-    it("Endpoint para loguear el usuario en la app. /api/session/login", async function () {
+    it("El endpoint /api/session/login loguea al usuario en la app. Al hacerlo de manera correcta, el controlador redirecciona a la vista del inicio con la sesión iniciada.", async function () {
       const response = await requester
         .post("/api/session/login")
         .send({ email: mockUser.email, password: mockUser.password });
       expect(response.header.location).to.be.equal("/products/inicio"); //Corroboramos que luego de que el usuario se loguea, se redirija a esta ruta, lo que quiere decir que salió todo bien.
+      const cookie = response.header["set-cookie"][0];
+      const cookieData = {
+        name: cookie.split("=")[0],
+        value: cookie.split("=")[1],
+      };
+      this.cookie = cookieData;
+      expect(this.cookie.name).to.be.equal("authLoginFoo");
+    });
+
+    it("El endpoint /api/session/profile obtiene el perfil del usuario con información no sensible.", async function () {
+      const response = await requester
+        .get("/api/session/profile")
+        .set("Cookie", [`${this.cookie.name}=${this.cookie.value}`]);
+      expect(isHTML(response.text)).to.be.equal(true);
+      expect(response.text).to.include(mockUser.email);
+      expect(response.text).to.not.include(mockUser.password);
+      expect(response.status).to.be.equal(200);
     });
   });
 });

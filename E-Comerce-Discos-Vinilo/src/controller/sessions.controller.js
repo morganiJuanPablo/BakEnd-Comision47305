@@ -228,6 +228,8 @@ export class SessionsController {
           sessionExist,
         };
         res.render("profile", data);
+      } else {
+        res.redirect("/api/session/session_destroyed");
       }
     } catch (error) {
       logger.error(error.message);
