@@ -261,11 +261,13 @@ export class SessionsController {
   /////////////////////////////////////////////////////
   static generateNewUser = async (req, res) => {
     try {
+      const user = req.user;
       const data = {
         style: "login.css",
         message: `🤟Felicidades ${req.user.first_name}, estás dentro🤟`,
+        payload: user,
       };
-      res.render("login", data);
+      res.render("login", data);      
     } catch (error) {
       logger.error(error.message);
       res.status(500).json({ message: error.message });

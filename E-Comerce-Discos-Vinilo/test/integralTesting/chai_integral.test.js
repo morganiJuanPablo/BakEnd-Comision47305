@@ -17,8 +17,7 @@ const requester = supertest(app);
 //Variables globales
 let cookieSesion;
 let mockProduct;
-let userConnected;
-let token;
+let mockUser;
 
 //FUNCION GENERAL TESTING
 describe("Pruebas app e-commerce FF", function () {
@@ -30,7 +29,7 @@ describe("Pruebas app e-commerce FF", function () {
   //SESIONES
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Sesiones", function () {
-    const mockUser = {
+    mockUser = {
       first_name: "Juan Pablo",
       last_name: "Morgani",
       email: "morgani.jpg@gmail.com",
@@ -97,7 +96,7 @@ describe("Pruebas app e-commerce FF", function () {
       mockProduct = await this.productManager.addProduct(newProduct);
       expect(mockProduct).to.have.property("_id");
     });
-    
+
     it("El endpoint /item/:productId obtiene el producto según su Id.", async function () {
       const productFromDb = await this.productManager.getProductById(
         mockProduct._id.toString()
@@ -106,6 +105,8 @@ describe("Pruebas app e-commerce FF", function () {
         .get(`/item/${productFromDb[0]._id}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
+      expect(response.text).to.include(mockUser.first_name);
+      expect(response.status).to.be.equal(200);
     });
   });
 });
