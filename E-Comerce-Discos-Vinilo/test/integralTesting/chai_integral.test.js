@@ -108,5 +108,21 @@ describe("Pruebas app e-commerce FF", function () {
       expect(response.text).to.include(mockUser.first_name);
       expect(response.status).to.be.equal(200);
     });
+
+    it("El endpoint /products/:category obtiene los producto según su la categoría del mismo. Si el parámetro `category` es `inicio` se traerán todos los productos", async function () {
+      const response = await requester
+        .get(`/products/inicio`)
+        .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+      expect(isHTML(response.text)).to.be.equal(true);
+      expect(response.text).to.include(mockProduct.title);
+      expect(response.status).to.be.equal(200);
+
+      const response2 = await requester
+        .get(`/products/${mockProduct.category}`)
+        .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+        expect(isHTML(response.text)).to.be.equal(true);
+        expect(response2.text).to.include(mockProduct.title);
+        expect(response2.status).to.be.equal(200);
+    });
   });
 });
