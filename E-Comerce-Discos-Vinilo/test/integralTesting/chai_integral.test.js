@@ -3,7 +3,9 @@ import { app } from "../../src/app.js";
 import { expect } from "chai";
 import supertest from "supertest";
 import { ProductsManagerMongo } from "../../src/dao/mongoManagers/ProductsManagerMongo.js";
+import { UsersManagerMongo } from "../../src/dao/mongoManagers/UsersManagerMongo.js";
 import { userModel } from "../../src/dao/mongoManagers/modelsDB/users.model.js";
+import { cartModel } from "../../src/dao/mongoManagers/modelsDB/carts.model.js";
 import { productModel } from "../../src/dao/mongoManagers/modelsDB/products.model.js";
 
 //con esta función evaluamos con expresiones regulares de html si el texto recibido es efectivamente un html
@@ -24,6 +26,9 @@ describe("Pruebas app e-commerce FF", function () {
   before(async function () {
     await userModel.deleteMany({});
     await productModel.deleteMany({});
+    await cartModel.deleteMany({});
+    this.productManager = new ProductsManagerMongo();
+    this.UsersManager = new UsersManagerMongo();
   });
 
   //SESIONES
@@ -37,10 +42,14 @@ describe("Pruebas app e-commerce FF", function () {
       password: "123456",
     };
 
-    it("El endpoint /api/session/new_user registra el usuario de manera correcta en la app.", async function () {
+    it("El endpoint /api/session/new_user registra el usuario de manera correcta en la app. Devuelve la vista login renderizada.", async function () {
       const response = await requester
         .post("/api/session/new_user")
         .send(mockUser);
+      const userFromDb = await this.UsersManager.getUser(mockUser.email);
+      expect(userFromDb.role).to.be.exist;
+      expect(userFromDb.role).to.be.equal("Usuario");
+      expect(userFromDb.cart).to.be.exist;
       //En la app no recibimos un json como respuesta sino que renderizamos una vista en el controlador si se logra registrar de manera exitosa el usuario, por lo que validamos de la siguiente manera. Corroboramos que exista en la respuesta en la propiedad text, un html que es la vista que se renderiza cuando el usuario se registra de manera correcta.
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.text).to.include(mockUser.first_name);
@@ -61,7 +70,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(cookieSesion.name).to.be.equal("authLoginFoo");
     });
 
-    it("El endpoint /api/session/profile obtiene el perfil del usuario con información no sensible.", async function () {
+    it("El endpoint /api/session/profile obtiene el perfil del usuario con información no sensible.Devuelve una vista renderizada.", async function () {
       const response = await requester
         .get("/api/session/profile")
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
@@ -75,9 +84,6 @@ describe("Pruebas app e-commerce FF", function () {
   //PRODUCTOS
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Productos", function () {
-    before(async function () {
-      this.productManager = new ProductsManagerMongo();
-    });
     const newProduct = {
       title: "The Colour And The Shape",
       description:
@@ -92,12 +98,30 @@ describe("Pruebas app e-commerce FF", function () {
     };
 
     it("Crear el producto en la base de datos", async function () {
-      /* newProduct.owner = userConected._id; */
+      const userFromDb = await this.UsersManager.getUser(mockUser.email);
+      newProduct.owner = userFromDb._id;
       mockProduct = await this.productManager.addProduct(newProduct);
+      //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crear productos, sólo pueden 'Premium' y 'Administrador'
+      userFromDb.role = "Administrador";
       expect(mockProduct).to.have.property("_id");
+      expect(userFromDb.role).to.be.not.equal("Usuario");
     });
 
-    it("El endpoint /item/:productId obtiene el producto según su Id.", async function () {
+    it("Actualizar el producto de la base de datos", async function () {
+      newProduct.price = 25.99;
+      newProduct.stock = 8;
+      await this.productManager.updateProductById(
+        mockProduct._id.toString(),
+        newProduct
+      );
+      const productFromDb = await this.productManager.getProductById(
+        mockProduct._id.toString()
+      );
+      expect(productFromDb[0].stock).to.be.equal(8);
+      expect(productFromDb[0].price).to.be.equal(25.99);
+    });
+
+    it("El endpoint /item/:productId obtiene el producto según su Id. Devuelve una vista renderizada.", async function () {
       const productFromDb = await this.productManager.getProductById(
         mockProduct._id.toString()
       );
@@ -109,7 +133,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(response.status).to.be.equal(200);
     });
 
-    it("El endpoint /products/:category obtiene los producto según su la categoría del mismo. Si el parámetro `category` es `inicio` se traerán todos los productos", async function () {
+    it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
       const response = await requester
         .get(`/products/inicio`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
@@ -120,9 +144,31 @@ describe("Pruebas app e-commerce FF", function () {
       const response2 = await requester
         .get(`/products/${mockProduct.category}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
-        expect(isHTML(response.text)).to.be.equal(true);
-        expect(response2.text).to.include(mockProduct.title);
-        expect(response2.status).to.be.equal(200);
+      expect(isHTML(response.text)).to.be.equal(true);
+      expect(response2.text).to.include(mockProduct.title);
+      expect(response2.status).to.be.equal(200);
+    });
+
+    it("Eliminar el producto de la base de datos", async function () {
+      await this.productManager.deleteProductById(mockProduct._id.toString());
+      const productFromDb = await this.productManager.getProductById(
+        mockProduct._id.toString()
+      );
+      expect(productFromDb).to.have.not.property("_id");
+    });
+  });
+
+  //CARRITOS
+  ///////////////////////////////////////////////////////////////////////////////////////
+  describe("Carritos", async function () {
+    it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
+      const userFromDb = await this.UsersManager.getUser(mockUser.email);
+      const cartId = userFromDb.cart.toString();
+      const response = await requester
+        .get(`/cart/${cartId}`)
+        .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+      expect(isHTML(response.text)).to.be.equal(true);
+      expect(response.status).to.be.equal(200);
     });
   });
 });

@@ -7,7 +7,7 @@ export class ProductsController {
   /////////////////////////////////////////////////////
   static getProducts = async (req, res) => {
     try {
-      if (req.user?.email) {
+      if (req.user?.email) {        
         const category = req.params.category;
         const page = +req.query.page || 1;
         const sort = req.query.sort || { price: 1 };
@@ -70,7 +70,7 @@ export class ProductsController {
   /////////////////////////////////////////////////////
   static getProductsById = async (req, res) => {
     try {
-      if (req.user?.email) {
+      if (req.user?.email) {        
         const cartId = req.user.cartId;
         const roleClient = req.user.role;
         const productId = req.params.productId;
