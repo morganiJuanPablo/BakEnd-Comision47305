@@ -21,6 +21,7 @@ let cookieSesion;
 let cookieSesionAdmin;
 let mockUser;
 let mockUserAdmin;
+let mockProductByAdmin;
 let mockProduct;
 
 //FUNCION GENERAL TESTING
@@ -129,7 +130,7 @@ describe("Pruebas app e-commerce FF", function () {
   //PRODUCTOS
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Productos", function () {
-    const newProduct = {
+    const newProductByAdmin = {
       title: "The Colour And The Shape",
       description:
         "The Colour and the Shape es el segundo álbum de la banda Foo Fighters. Fue lanzado al mercado el 20 de mayo de 1997 por Capitol a través del sello Roswell.",
@@ -142,31 +143,54 @@ describe("Pruebas app e-commerce FF", function () {
       status: true,
     };
 
-    /*     it("Crear el producto en la base de datos", async function () {
-      const userFromDb = await this.UsersManager.getUser(mockUser.email);
-      newProduct.owner = userFromDb._id;
-      mockProduct = await this.productManager.addProduct(newProduct);
-      //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crear productos, sólo pueden 'Premium' y 'Administrador'
-      userFromDb.role = "Administrador";
-      expect(mockProduct).to.have.property("_id");
-      expect(userFromDb.role).to.be.not.equal("Usuario");
-    }); */
+    const newProductByPremium = {
+      title: "Geatest hits",
+      description:
+        "Recopilación esencial de sus éxitos más icónicos, que abarcan su impresionante carrera y demuestran su habilidad para crear himnos rockeros atemporales.",
+      price: 14.99,
+      thumbnail:
+        "https://res.cloudinary.com/dqykftyy6/image/upload/v1694511122/ProyectoBackEnd/81YbEgRXarL._SL1500__v4y9aj.jpg",
+      code: "foo131",
+      stock: 17,
+      category: "EdicionesEspeciales",
+      status: false,
+    };
 
-    /*     it("Actualizar el producto de la base de datos", async function () {
-      newProduct.price = 25.99;
-      newProduct.stock = 8;
+    it("Crear el producto en la base de datos", async function () {
+      //El administrador crea un producto
+      const userFromDb = await this.UsersManager.getUser(mockUserAdmin.email);
+      newProductByAdmin.owner = userFromDb._id;
+      mockProductByAdmin = await this.productManager.addProduct(
+        newProductByAdmin
+      );
+      expect(mockProductByAdmin).to.have.property("_id");
+      expect(userFromDb.role).to.be.not.equal("Usuario");
+
+      //El usuario premium crea un producto
+      const userFromDb2 = await this.UsersManager.getUser(mockUser.email);
+      //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crear productos, sólo pueden 'Premium' y 'Administrador'. Si el rol es 'Usuario' la prueba no pasa.
+      userFromDb2.role = "Premium";
+      newProductByPremium.owner = userFromDb2._id;
+      mockProduct = await this.productManager.addProduct(newProductByPremium);
+      expect(mockProduct).to.have.property("_id");
+      expect(userFromDb2.role).to.be.not.equal("Usuario");
+    });
+
+    it("Actualizar el producto de la base de datos", async function () {
+      newProductByPremium.price = 25.99;
+      newProductByPremium.stock = 8;
       await this.productManager.updateProductById(
         mockProduct._id.toString(),
-        newProduct
+        newProductByPremium
       );
       const productFromDb = await this.productManager.getProductById(
         mockProduct._id.toString()
       );
       expect(productFromDb[0].stock).to.be.equal(8);
       expect(productFromDb[0].price).to.be.equal(25.99);
-    }); */
+    });
 
-    /*     it("El endpoint /item/:productId obtiene el producto según su Id. Devuelve una vista renderizada.", async function () {
+    it("El endpoint /item/:productId obtiene el producto según su Id. Devuelve una vista renderizada.", async function () {
       const productFromDb = await this.productManager.getProductById(
         mockProduct._id.toString()
       );
@@ -174,9 +198,9 @@ describe("Pruebas app e-commerce FF", function () {
         .get(`/item/${productFromDb[0]._id}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
-      expect(response.text).to.include(mockUser.first_name);
+      expect(response.text).to.include(mockProduct.title);
       expect(response.status).to.be.equal(200);
-    }); */
+    });
 
     /*     it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
       const response = await requester
