@@ -156,7 +156,7 @@ describe("Pruebas app e-commerce FF", function () {
       status: false,
     };
 
-    it("Crear el producto en la base de datos", async function () {
+    it("Crear un producto en la base de datos", async function () {
       //El administrador crea un producto
       const userFromDb = await this.UsersManager.getUser(mockUserAdmin.email);
       newProductByAdmin.owner = userFromDb._id;
@@ -168,7 +168,7 @@ describe("Pruebas app e-commerce FF", function () {
 
       //El usuario premium crea un producto
       const userFromDb2 = await this.UsersManager.getUser(mockUser.email);
-      //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crear productos, sólo pueden 'Premium' y 'Administrador'. Si el rol es 'Usuario' la prueba no pasa.
+      //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crearlos, sólo pueden 'Premium' y 'Administrador'. Si el rol es 'Usuario' la prueba no pasa.
       userFromDb2.role = "Premium";
       newProductByPremium.owner = userFromDb2._id;
       mockProduct = await this.productManager.addProduct(newProductByPremium);
@@ -176,7 +176,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(userFromDb2.role).to.be.not.equal("Usuario");
     });
 
-    it("Actualizar el producto de la base de datos", async function () {
+    it("Actualizar un producto de la base de datos", async function () {
       newProductByPremium.price = 25.99;
       newProductByPremium.stock = 8;
       await this.productManager.updateProductById(
@@ -194,29 +194,33 @@ describe("Pruebas app e-commerce FF", function () {
       const productFromDb = await this.productManager.getProductById(
         mockProduct._id.toString()
       );
+      const productId = productFromDb[0]._id;
       const response = await requester
-        .get(`/item/${productFromDb[0]._id}`)
+        .get(`/item/${productId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.text).to.include(mockProduct.title);
       expect(response.status).to.be.equal(200);
     });
 
-    /*     it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
+    it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
       const response = await requester
         .get(`/products/inicio`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
+      //Chequeamos que estén renderizándose todos los productos. Con diferentes categorías.
       expect(response.text).to.include(mockProduct.title);
+      expect(response.text).to.include(mockProductByAdmin.title);
       expect(response.status).to.be.equal(200);
 
+      const category = mockProduct.category;
       const response2 = await requester
-        .get(`/products/${mockProduct.category}`)
+        .get(`/products/${category}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response2.text).to.include(mockProduct.title);
       expect(response2.status).to.be.equal(200);
-    }); */
+    });
 
     /*     it("Eliminar el producto de la base de datos", async function () {
       await this.productManager.deleteProductById(mockProduct._id.toString());
@@ -230,7 +234,7 @@ describe("Pruebas app e-commerce FF", function () {
   //CARRITOS
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Carritos", async function () {
-    /*     it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
+    it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
       const userFromDb = await this.UsersManager.getUser(mockUser.email);
       const cartId = userFromDb.cart.toString();
       const response = await requester
@@ -238,7 +242,8 @@ describe("Pruebas app e-commerce FF", function () {
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.status).to.be.equal(200);
-    }); */
+    });
+
     /*     it("El endpoint /cart/:cartId/product/:productId agrega un producto según su Id al carrito asignado al usuario conectado.", async function () {
       const userFromDb = await this.UsersManager.getUser(mockUser.email);
       const productFromDb = await this.productManager.getProductById(
