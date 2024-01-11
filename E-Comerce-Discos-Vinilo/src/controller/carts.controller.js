@@ -97,13 +97,13 @@ export class CartsController {
       const ownerId = product[0].owner.toString();
 
       if (req.user.role === "Administrador") {
-        return res.json({
+        return res.send({
           status: "error",
           message: "El administrador no puede añadir productos al carrito.",
         });
       }
       if (ownerId === req.user.id) {
-        return res.json({
+        return res.send({
           status: "error",
           message: "No puedes añadir al carrito productos que has creado.",
         });
@@ -113,7 +113,7 @@ export class CartsController {
         productId,
         quantity
       );
-      res.json({
+      res.send({
         status: "success",
         message: "¡Producto agregado al carrito!",
         data: newCart,

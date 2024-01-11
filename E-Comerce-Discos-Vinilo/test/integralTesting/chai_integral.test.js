@@ -7,6 +7,7 @@ import { UsersManagerMongo } from "../../src/dao/mongoManagers/UsersManagerMongo
 import { userModel } from "../../src/dao/mongoManagers/modelsDB/users.model.js";
 import { cartModel } from "../../src/dao/mongoManagers/modelsDB/carts.model.js";
 import { productModel } from "../../src/dao/mongoManagers/modelsDB/products.model.js";
+import { CartsManagerMongo } from "../../src/dao/mongoManagers/CartsManagerMongo.js";
 
 //con esta función evaluamos con expresiones regulares de html si el texto recibido es efectivamente un html
 function isHTML(textContent) {
@@ -31,7 +32,8 @@ describe("Pruebas app e-commerce FF", function () {
     await productModel.deleteMany({});
     await cartModel.deleteMany({});
     this.productManager = new ProductsManagerMongo();
-    this.UsersManager = new UsersManagerMongo();
+    this.usersManager = new UsersManagerMongo();
+    this.cartsManager = new CartsManagerMongo();
   });
 
   //SESIONES
@@ -57,7 +59,7 @@ describe("Pruebas app e-commerce FF", function () {
       const response = await requester
         .post("/api/session/new_user")
         .send(mockUser);
-      const userFromDb = await this.UsersManager.getUser(mockUser.email);
+      const userFromDb = await this.usersManager.getUser(mockUser.email);
       expect(userFromDb.role).to.be.exist;
       expect(userFromDb.role).to.be.equal("Usuario");
       expect(userFromDb.cart).to.be.exist;
@@ -69,7 +71,7 @@ describe("Pruebas app e-commerce FF", function () {
       const response2 = await requester
         .post("/api/session/new_user")
         .send(mockUserAdmin);
-      const userAdminFromDb = await this.UsersManager.getUser(
+      const userAdminFromDb = await this.usersManager.getUser(
         mockUserAdmin.email
       );
       expect(userAdminFromDb.role).to.be.exist;
@@ -158,7 +160,7 @@ describe("Pruebas app e-commerce FF", function () {
 
     it("Crear un producto en la base de datos", async function () {
       //El administrador crea un producto
-      const userFromDb = await this.UsersManager.getUser(mockUserAdmin.email);
+      const userFromDb = await this.usersManager.getUser(mockUserAdmin.email);
       newProductByAdmin.owner = userFromDb._id;
       mockProductByAdmin = await this.productManager.addProduct(
         newProductByAdmin
@@ -167,7 +169,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(userFromDb.role).to.be.not.equal("Usuario");
 
       //El usuario premium crea un producto
-      const userFromDb2 = await this.UsersManager.getUser(mockUser.email);
+      const userFromDb2 = await this.usersManager.getUser(mockUser.email);
       //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crearlos, sólo pueden 'Premium' y 'Administrador'. Si el rol es 'Usuario' la prueba no pasa.
       userFromDb2.role = "Premium";
       newProductByPremium.owner = userFromDb2._id;
@@ -235,26 +237,31 @@ describe("Pruebas app e-commerce FF", function () {
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Carritos", async function () {
     it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
-      const userFromDb = await this.UsersManager.getUser(mockUser.email);
+      const userFromDb = await this.usersManager.getUser(mockUser.email);
       const cartId = userFromDb.cart.toString();
+      const userCart = await this.cartsManager.getCartById(cartId);
+
       const response = await requester
         .get(`/cart/${cartId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+
+      expect(Array.isArray(userCart.products)).to.be.equal(true);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.status).to.be.equal(200);
     });
 
-    /*     it("El endpoint /cart/:cartId/product/:productId agrega un producto según su Id al carrito asignado al usuario conectado.", async function () {
-      const userFromDb = await this.UsersManager.getUser(mockUser.email);
+    it("El endpoint /cart/:cartId/product/:productId agrega un producto, según su Id, al carrito asignado al usuario conectado.", async function () {
+      const userFromDb = await this.usersManager.getUser(mockUser.email);
       const productFromDb = await this.productManager.getProductById(
-        mockProduct._id.toString()
+        mockProductByAdmin._id.toString()
       );
       const cartId = userFromDb.cart;
       const productId = productFromDb[0]._id;
       const response = await requester
         .post(`/cart/${cartId}/product/${productId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
-      console.log(response);
-    }); */
+
+      console.log(response.body.status);
+    });
   });
 });
