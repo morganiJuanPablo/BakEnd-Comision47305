@@ -28,7 +28,6 @@ export class CartsController {
         const cartId = req.user.cartId;
         const sessionExist = req.user.email && true;
         const cart = await cartsService.getCartById(cartId);
-
         const data = {
           sessionExist,
           cartId,
@@ -181,23 +180,13 @@ export class CartsController {
     try {
       const cartId = req.params.cartId;
       const productId = req.params.productId;
-      const product = await productsService.getProductById(productId);
-      if (
-        (req.user.role !== "Premium" && product.owner === req.user.id) ||
-        req.user.role !== "Administrador"
-      ) {
-        const cart = await cartsService.deleteProduct(cartId, productId);
-        res.send({
-          status: "success",
-          message: "Producto eliminado del carrito",
-          data: cart,
-        });
-      } else {
-        res.send({
-          status: "error",
-          message: "No tienes permiso para eliminar el producto",
-        });
-      }
+
+      const cart = await cartsService.deleteProduct(cartId, productId);
+      res.send({
+        status: "success",
+        message: "Producto eliminado del carrito",
+        data: cart,
+      });
     } catch (error) {
       logger.error(error.message);
       res.status(500).json({ message: error.message });

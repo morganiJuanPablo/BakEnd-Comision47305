@@ -27,10 +27,7 @@ export const errorHandler = (error, req, res, next) => {
 export const checkRole = (roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      return res
-        .redirect("/api/session/unauthorized")
-        .status(401)
-        .json({ message: "No tienes accesso" });
+      return res.redirect("/api/session/unauthorized").status(401);
     } else {
       next();
     }

@@ -1455,3 +1455,8 @@ updatePath: ''
 [101merror[49m: chats validation failed: message: Path `message` is required.
 [101merror[49m: Cannot read properties of undefined (reading 'status')
 [101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
