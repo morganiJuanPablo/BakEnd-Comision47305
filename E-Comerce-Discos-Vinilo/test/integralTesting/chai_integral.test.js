@@ -261,10 +261,13 @@ describe("Pruebas app e-commerce FF", function () {
       const response2 = await requester
         .post(`/cart/${cartId}/product/${productAdminId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+
+      const userCart = await this.cartsManager.getCartById(cartId);
       expect(response2.body.status).to.be.equal("success");
       expect(response2.body.message).to.be.equal(
         "¡Producto agregado al carrito!"
       );
+      expect(userCart.products).to.not.be.empty;
     });
   });
 });
