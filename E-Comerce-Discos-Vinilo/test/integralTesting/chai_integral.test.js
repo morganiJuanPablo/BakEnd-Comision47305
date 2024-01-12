@@ -222,8 +222,7 @@ describe("Pruebas app e-commerce FF", function () {
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response2.text).to.include(mockProduct.title);
-      expect(response2.status).to.be.equal(200);
-      console.log(mockProduct, mockProductByAdmin, mockUser, mockUserAdmin);
+      expect(response2.status).to.be.equal(200);      
     });
 
     /*     it("Eliminar el producto de la base de datos", async function () {
