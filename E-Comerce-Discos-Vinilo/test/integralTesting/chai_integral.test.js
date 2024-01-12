@@ -28,12 +28,18 @@ let mockProduct;
 //FUNCION GENERAL TESTING
 describe("Pruebas app e-commerce FF", function () {
   before(async function () {
-    await userModel.deleteMany({});
-    await productModel.deleteMany({});
-    await cartModel.deleteMany({});
     this.productManager = new ProductsManagerMongo();
     this.usersManager = new UsersManagerMongo();
     this.cartsManager = new CartsManagerMongo();
+  });
+  after(async function () {
+    //Eliminamos sólo los productos y usuarios mockeados para este test
+    await userModel.deleteOne({ _id: mockUser._id });
+    await userModel.deleteOne({ _id: mockUserAdmin._id });
+    await productModel.deleteOne({ _id: mockProduct._id });
+    await productModel.deleteOne({ _id: mockProductByAdmin._id });
+    await cartModel.deleteOne({ _id: mockUser.cart });
+    await cartModel.deleteOne({ _id: mockUser.cart });
   });
 
   //SESIONES
@@ -217,6 +223,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response2.text).to.include(mockProduct.title);
       expect(response2.status).to.be.equal(200);
+      console.log(mockProduct, mockProductByAdmin, mockUser, mockUserAdmin);
     });
 
     /*     it("Eliminar el producto de la base de datos", async function () {
