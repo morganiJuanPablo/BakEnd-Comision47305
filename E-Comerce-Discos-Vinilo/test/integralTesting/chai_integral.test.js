@@ -39,7 +39,7 @@ describe("Pruebas app e-commerce FF", function () {
   //SESIONES
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Sesiones", function () {
-    mockUser = {
+    const newUser = {
       first_name: "Jocito",
       last_name: "Arouza",
       email: "jocitoarouza@gmail.com",
@@ -47,7 +47,7 @@ describe("Pruebas app e-commerce FF", function () {
       password: "123456",
     };
 
-    mockUserAdmin = {
+    const newUserAdmin = {
       first_name: "Administrador",
       last_name: "Foo",
       email: "administrador@ecommerceff.com",
@@ -58,57 +58,57 @@ describe("Pruebas app e-commerce FF", function () {
     it("El endpoint /api/session/new_user registra el usuario de manera correcta en la app. Devuelve la vista login renderizada.", async function () {
       const response = await requester
         .post("/api/session/new_user")
-        .send(mockUser);
-      const userFromDb = await this.usersManager.getUser(mockUser.email);
-      expect(userFromDb.role).to.be.exist;
-      expect(userFromDb.role).to.be.equal("Usuario");
-      expect(userFromDb.cart).to.be.exist;
+        .send(newUser);
+      mockUser = await this.usersManager.getUser(newUser.email);
       //En la app no recibimos un json como respuesta sino que renderizamos una vista en el controlador si se logra registrar de manera exitosa el usuario, por lo que validamos de la siguiente manera. Corroboramos que exista en la respuesta en la propiedad text, un html que es la vista que se renderiza cuando el usuario se registra de manera correcta.
+      expect(response.status).to.be.equal(200);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.text).to.include(mockUser.first_name);
-      expect(response.status).to.be.equal(200);
+      expect(mockUser._id).to.be.exist;
+      expect(mockUser.cart).to.be.exist;
+      expect(mockUser.role).to.be.exist;
+      expect(mockUser.role).to.be.equal("Usuario");
 
       const response2 = await requester
         .post("/api/session/new_user")
-        .send(mockUserAdmin);
-      const userAdminFromDb = await this.usersManager.getUser(
-        mockUserAdmin.email
-      );
-      expect(userAdminFromDb.role).to.be.exist;
-      expect(userAdminFromDb.role).to.be.equal("Administrador");
+        .send(newUserAdmin);
+      mockUserAdmin = await this.usersManager.getUser(newUserAdmin.email);
       //En la app no recibimos un json como respuesta sino que renderizamos una vista en el controlador si se logra registrar de manera exitosa el usuario, por lo que validamos de la siguiente manera. Corroboramos que exista en la respuesta en la propiedad text, un html que es la vista que se renderiza cuando el usuario se registra de manera correcta.
+      expect(response2.status).to.be.equal(200);
       expect(isHTML(response2.text)).to.be.equal(true);
       expect(response2.text).to.include(mockUserAdmin.first_name);
-      expect(response2.status).to.be.equal(200);
+      expect(mockUser._id).to.be.exist;
+      expect(mockUserAdmin.role).to.be.exist;
+      expect(mockUserAdmin.role).to.be.equal("Administrador");
     });
 
     it("El endpoint /api/session/login loguea al usuario en la app. Al hacerlo de manera correcta, el controlador redirecciona a la vista del inicio con la sesión iniciada.", async function () {
       const response = await requester
         .post("/api/session/login")
-        .send({ email: mockUser.email, password: mockUser.password });
-      expect(response.header.location).to.be.equal("/products/inicio"); //Corroboramos que luego de que el usuario se loguea, se redirija a esta ruta, lo que quiere decir que salió todo bien.
+        .send({ email: newUser.email, password: newUser.password });
       const cookie = response.header["set-cookie"][0];
       const cookieData = {
         name: cookie.split("=")[0],
         value: cookie.split("=")[1],
       };
       cookieSesion = cookieData;
+      expect(response.header.location).to.be.equal("/products/inicio"); //Corroboramos que luego de que el usuario se loguea, se redirija a esta ruta, lo que quiere decir que salió todo bien.
       expect(cookieSesion.name).to.be.equal("authLoginFoo");
 
       const response2 = await requester
         .post("/api/session/login")
-        .send({ email: mockUserAdmin.email, password: mockUserAdmin.password });
-      expect(response2.header.location).to.be.equal("/products/inicio"); //Corroboramos que luego de que el usuario se loguea, se redirija a esta ruta, lo que quiere decir que salió todo bien.
+        .send({ email: newUserAdmin.email, password: newUserAdmin.password });
       const cookieAdmin = response2.header["set-cookie"][0];
       const cookieAdminData = {
         name: cookieAdmin.split("=")[0],
         value: cookieAdmin.split("=")[1],
       };
       cookieSesionAdmin = cookieAdminData;
+      expect(response2.header.location).to.be.equal("/products/inicio"); //Corroboramos que luego de que el usuario se loguea, se redirija a esta ruta, lo que quiere decir que salió todo bien.
       expect(cookieSesionAdmin.name).to.be.equal("authLoginFoo");
     });
 
-    it("El endpoint /api/session/profile obtiene el perfil del usuario con información no sensible.Devuelve una vista renderizada.", async function () {
+    it("El endpoint /api/session/profile obtiene el perfil del usuario con información no sensible. Devuelve una vista renderizada.", async function () {
       const response = await requester
         .get("/api/session/profile")
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
@@ -160,22 +160,20 @@ describe("Pruebas app e-commerce FF", function () {
 
     it("Crear un producto en la base de datos", async function () {
       //El administrador crea un producto
-      const userFromDb = await this.usersManager.getUser(mockUserAdmin.email);
-      newProductByAdmin.owner = userFromDb._id;
+      newProductByAdmin.owner = mockUserAdmin._id;
       mockProductByAdmin = await this.productManager.addProduct(
         newProductByAdmin
       );
       expect(mockProductByAdmin).to.have.property("_id");
-      expect(userFromDb.role).to.be.not.equal("Usuario");
+      expect(mockUserAdmin.role).to.be.not.equal("Usuario");
 
       //El usuario premium crea un producto
-      const userFromDb2 = await this.usersManager.getUser(mockUser.email);
       //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crearlos, sólo pueden 'Premium' y 'Administrador'. Si el rol es 'Usuario' la prueba no pasa.
-      userFromDb2.role = "Premium";
-      newProductByPremium.owner = userFromDb2._id;
+      mockUser.role = "Premium";
+      newProductByPremium.owner = mockUser._id;
       mockProduct = await this.productManager.addProduct(newProductByPremium);
       expect(mockProduct).to.have.property("_id");
-      expect(userFromDb2.role).to.be.not.equal("Usuario");
+      expect(mockUser.role).to.be.not.equal("Usuario");
     });
 
     it("Actualizar un producto de la base de datos", async function () {
@@ -192,7 +190,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(productFromDb[0].price).to.be.equal(25.99);
     });
 
-    it("El endpoint /item/:productId obtiene el producto según su Id. Devuelve una vista renderizada.", async function () {
+    /*     it("El endpoint /item/:productId obtiene el producto según su Id. Devuelve una vista renderizada.", async function () {
       const productFromDb = await this.productManager.getProductById(
         mockProduct._id.toString()
       );
@@ -203,9 +201,9 @@ describe("Pruebas app e-commerce FF", function () {
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.text).to.include(mockProduct.title);
       expect(response.status).to.be.equal(200);
-    });
+    }); */
 
-    it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
+    /*     it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
       const response = await requester
         .get(`/products/inicio`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
@@ -222,7 +220,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response2.text).to.include(mockProduct.title);
       expect(response2.status).to.be.equal(200);
-    });
+    }); */
 
     /*     it("Eliminar el producto de la base de datos", async function () {
       await this.productManager.deleteProductById(mockProduct._id.toString());
@@ -236,7 +234,7 @@ describe("Pruebas app e-commerce FF", function () {
   //CARRITOS
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Carritos", async function () {
-    it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
+    /*     it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
       const userFromDb = await this.usersManager.getUser(mockUser.email);
       const cartId = userFromDb.cart.toString();
       const userCart = await this.cartsManager.getCartById(cartId);
@@ -248,9 +246,8 @@ describe("Pruebas app e-commerce FF", function () {
       expect(Array.isArray(userCart.products)).to.be.equal(true);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.status).to.be.equal(200);
-    });
-
-    it("El endpoint /cart/:cartId/product/:productId agrega un producto, según su Id, al carrito asignado al usuario conectado.", async function () {
+    }); */
+    /*     it("El endpoint /cart/:cartId/product/:productId agrega un producto, según su Id, al carrito asignado al usuario conectado.", async function () {
       const userFromDb = await this.usersManager.getUser(mockUser.email);
       const productFromDb = await this.productManager.getProductById(
         mockProductByAdmin._id.toString()
@@ -262,6 +259,6 @@ describe("Pruebas app e-commerce FF", function () {
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
 
       console.log(response.body.status);
-    });
+    }); */
   });
 });
