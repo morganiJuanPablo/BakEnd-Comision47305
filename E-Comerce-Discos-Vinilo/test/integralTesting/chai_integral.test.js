@@ -231,9 +231,8 @@ describe("Pruebas app e-commerce FF", function () {
   //CARRITOS
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Carritos", async function () {
-    /*     it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
-      const userFromDb = await this.usersManager.getUser(mockUser.email);
-      const cartId = userFromDb.cart.toString();
+    it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
+      const cartId = mockUser.cart.toString();
       const userCart = await this.cartsManager.getCartById(cartId);
 
       const response = await requester
@@ -243,19 +242,29 @@ describe("Pruebas app e-commerce FF", function () {
       expect(Array.isArray(userCart.products)).to.be.equal(true);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.status).to.be.equal(200);
-    }); */
-    /*     it("El endpoint /cart/:cartId/product/:productId agrega un producto, según su Id, al carrito asignado al usuario conectado.", async function () {
-      const userFromDb = await this.usersManager.getUser(mockUser.email);
-      const productFromDb = await this.productManager.getProductById(
-        mockProductByAdmin._id.toString()
-      );
-      const cartId = userFromDb.cart;
-      const productId = productFromDb[0]._id;
+    });
+
+    it("El endpoint /cart/:cartId/product/:productId agrega un producto, según su Id, al carrito asignado al usuario conectado.", async function () {
+      //Un usuario premium intenta añadir al carrito un producto añadido por él mismo.
+      const cartId = mockUser.cart.toString();
+      const productId = mockProduct._id.toString();
       const response = await requester
         .post(`/cart/${cartId}/product/${productId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+      expect(response.body.status).to.be.equal("error");
+      expect(response.body.message).to.be.equal(
+        "No puedes añadir al carrito productos que has creado."
+      );
 
-      console.log(response.body.status);
-    }); */
+      //Un usuario premium intenta añadir al carrito un producto creado por otro usuario, en este caso el producto creado por el administrador.
+      const productAdminId = mockProductByAdmin._id.toString();
+      const response2 = await requester
+        .post(`/cart/${cartId}/product/${productAdminId}`)
+        .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+      expect(response2.body.status).to.be.equal("success");
+      expect(response2.body.message).to.be.equal(
+        "¡Producto agregado al carrito!"
+      );
+    });
   });
 });
