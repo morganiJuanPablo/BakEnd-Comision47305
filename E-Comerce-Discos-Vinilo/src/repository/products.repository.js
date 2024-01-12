@@ -10,8 +10,8 @@ export class ProductsRepository {
   }
 
   /////////////////////////////////////////////////////
-  async addProduct(product) {
-    const newProduct = await this.dao.addProduct(product);
+  async createProduct(product) {
+    const newProduct = await this.dao.createProduct(product);
     return newProduct;
   }
 

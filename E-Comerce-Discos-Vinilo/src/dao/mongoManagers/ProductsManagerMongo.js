@@ -9,7 +9,7 @@ export class ProductsManagerMongo {
 
   ///////////////////////////////////////////////////////////////////
 
-  async addProduct(product) {
+  async createProduct(product) {
     try {
       const newProduct = await this.model.create(product);
       return newProduct;

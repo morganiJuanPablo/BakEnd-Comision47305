@@ -62,7 +62,7 @@ socketServer.on("connection", async (socket) => {
 
   socket.on("productJson", async (newProduct) => {
     newProduct.owner = ownerId;
-    const result = await productsService.addProduct(newProduct);
+    const result = await productsService.createProduct(newProduct);
     const products = await productsService.getProducts();
     socket.emit("arrayProducts", products);
   });

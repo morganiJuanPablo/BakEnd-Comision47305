@@ -28,12 +28,18 @@ let mockProduct;
 //FUNCION GENERAL TESTING
 describe("Pruebas app e-commerce FF", function () {
   before(async function () {
-    await userModel.deleteMany({});
-    await productModel.deleteMany({});
-    await cartModel.deleteMany({});
     this.productManager = new ProductsManagerMongo();
     this.usersManager = new UsersManagerMongo();
     this.cartsManager = new CartsManagerMongo();
+  });
+  after(async function () {
+    //Eliminamos sólo los productos y usuarios mockeados para este test
+    await userModel.deleteOne({ _id: mockUser._id });
+    await userModel.deleteOne({ _id: mockUserAdmin._id });
+    await productModel.deleteOne({ _id: mockProduct._id });
+    await productModel.deleteOne({ _id: mockProductByAdmin._id });
+    await cartModel.deleteOne({ _id: mockUser.cart });
+    await cartModel.deleteOne({ _id: mockUser.cart });
   });
 
   //SESIONES
@@ -274,7 +280,6 @@ describe("Pruebas app e-commerce FF", function () {
       const response3 = await requester
         .post(`/cart/${cartId}/product/${productAdminId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
-
       userCart = await this.cartsManager.getCartById(cartId);
       expect(response3.body.status).to.be.equal("success");
       expect(response3.body.message).to.be.equal(
