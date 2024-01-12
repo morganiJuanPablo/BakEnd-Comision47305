@@ -187,13 +187,13 @@ export class CartsController {
         req.user.role !== "Administrador"
       ) {
         const cart = await cartsService.deleteProduct(cartId, productId);
-        res.json({
+        res.send({
           status: "success",
           message: "Producto eliminado del carrito",
           data: cart,
         });
       } else {
-        res.json({
+        res.send({
           status: "error",
           message: "No tienes permiso para eliminar el producto",
         });

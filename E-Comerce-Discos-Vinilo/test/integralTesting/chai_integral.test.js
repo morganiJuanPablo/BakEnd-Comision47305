@@ -231,6 +231,8 @@ describe("Pruebas app e-commerce FF", function () {
   //CARRITOS
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Carritos", async function () {
+    let userCart;
+
     it("El endpoint /cart/:cartId obtiene el carrito según su Id. Devuelve una vista renderizada.", async function () {
       const cartId = mockUser.cart.toString();
       const userCart = await this.cartsManager.getCartById(cartId);
@@ -273,12 +275,28 @@ describe("Pruebas app e-commerce FF", function () {
         .post(`/cart/${cartId}/product/${productAdminId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
 
-      const userCart = await this.cartsManager.getCartById(cartId);
+      userCart = await this.cartsManager.getCartById(cartId);
       expect(response3.body.status).to.be.equal("success");
       expect(response3.body.message).to.be.equal(
         "¡Producto agregado al carrito!"
       );
       expect(userCart.products).to.not.be.empty;
+    });
+
+    it("El endpoint /cart/:cartId/product/:productId elimina un producto, según su Id, del carrito asignado al usuario conectado.", async function () {
+      const cartId = mockUser.cart.toString();
+      const productInCart = userCart.products[0].productId;
+      //El usuario conectado si es "Premium" o "Usuario" puede eliminar productos del carrito.
+      const response = await requester
+        .delete(`/cart/${cartId}/product/${productInCart._id}`)
+        .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+      expect(response.body.status).to.be.equal("success");
+      expect(response.body.message).to.be.equal(
+        "Producto eliminado del carrito"
+      );
+      expect(userCart.products[0]).to.not.deep.include({
+        _id: productInCart._id,
+      });
     });
   });
 });
