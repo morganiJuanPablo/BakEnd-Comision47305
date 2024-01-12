@@ -183,27 +183,24 @@ describe("Pruebas app e-commerce FF", function () {
         mockProduct._id.toString(),
         newProductByPremium
       );
-      const productFromDb = await this.productManager.getProductById(
+      const productUpdated = await this.productManager.getProductById(
         mockProduct._id.toString()
       );
-      expect(productFromDb[0].stock).to.be.equal(8);
-      expect(productFromDb[0].price).to.be.equal(25.99);
+      expect(productUpdated[0].stock).to.be.equal(8);
+      expect(productUpdated[0].price).to.be.equal(25.99);
     });
 
-    /*     it("El endpoint /item/:productId obtiene el producto según su Id. Devuelve una vista renderizada.", async function () {
-      const productFromDb = await this.productManager.getProductById(
-        mockProduct._id.toString()
-      );
-      const productId = productFromDb[0]._id;
+    it("El endpoint /item/:productId obtiene el producto según su Id. Devuelve una vista renderizada.", async function () {
+      const productId = mockProduct._id;
       const response = await requester
         .get(`/item/${productId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response.text).to.include(mockProduct.title);
       expect(response.status).to.be.equal(200);
-    }); */
+    });
 
-    /*     it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
+    it("El endpoint /products/:category obtiene los productos según la categoría a la que pertenece. Si el parámetro `category` es `inicio` se traerán todos los productos. Devuelve una vista renderizada.", async function () {
       const response = await requester
         .get(`/products/inicio`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
@@ -220,7 +217,7 @@ describe("Pruebas app e-commerce FF", function () {
       expect(isHTML(response.text)).to.be.equal(true);
       expect(response2.text).to.include(mockProduct.title);
       expect(response2.status).to.be.equal(200);
-    }); */
+    });
 
     /*     it("Eliminar el producto de la base de datos", async function () {
       await this.productManager.deleteProductById(mockProduct._id.toString());
