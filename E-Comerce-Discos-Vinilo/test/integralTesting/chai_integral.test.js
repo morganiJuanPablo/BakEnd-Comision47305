@@ -256,15 +256,26 @@ describe("Pruebas app e-commerce FF", function () {
         "No puedes añadir al carrito productos que has creado."
       );
 
-      //Un usuario premium intenta añadir al carrito un producto creado por otro usuario, en este caso el producto creado por el administrador.
+      //El administrador intenta añadir al carrito un producto. Pasamos en la petición su cookie.
       const productAdminId = mockProductByAdmin._id.toString();
       const response2 = await requester
+        .post(`/cart/${cartId}/product/${productId}`)
+        .set("Cookie", [
+          `${cookieSesionAdmin.name}=${cookieSesionAdmin.value}`,
+        ]);
+      expect(response2.body.status).to.be.equal("error");
+      expect(response2.body.message).to.be.equal(
+        "El administrador no puede añadir productos al carrito."
+      );
+
+      //Un usuario premium intenta añadir al carrito un producto creado por otro usuario, en este caso el producto creado por el administrador.
+      const response3 = await requester
         .post(`/cart/${cartId}/product/${productAdminId}`)
         .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
 
       const userCart = await this.cartsManager.getCartById(cartId);
-      expect(response2.body.status).to.be.equal("success");
-      expect(response2.body.message).to.be.equal(
+      expect(response3.body.status).to.be.equal("success");
+      expect(response3.body.message).to.be.equal(
         "¡Producto agregado al carrito!"
       );
       expect(userCart.products).to.not.be.empty;
