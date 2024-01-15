@@ -1,8 +1,12 @@
 //
 const socketClient = io();
+let user;
 
 const cardProductAdmin = document.getElementById("cardProductAdmin");
 
+socketClient.on("userConnected", (userConnected) => {
+  user = userConnected;
+});
 //Recibimos los productos
 socketClient.on("arrayProducts", (dataProducts) => {
   let productsElms = "";
@@ -92,13 +96,22 @@ updateProductsForm.addEventListener("submit", (e) => {
     parseFloat(productUpdatedJson.price);
     parseInt(productUpdatedJson.stock);
   }
-  Swal.fire({
-    position: "center",
-    icon: false,
-    title: `El producto con Id: "${productUpdatedJson.Id}" fue actualizado con éxito`,
-    showConfirmButton: false,
-  });
-  socketClient.emit("productUpdatedJson", productUpdatedJson);
+  if (productUpdatedJson.owner === user.id || user.role === "Administrador") {
+    Swal.fire({
+      position: "center",
+      icon: false,
+      title: `El producto con Id: "${productUpdatedJson.Id}" fue actualizado con éxito`,
+      showConfirmButton: false,
+    });
+    socketClient.emit("productUpdatedJson", productUpdatedJson);
+  } else {
+    Swal.fire({
+      position: "center",
+      icon: false,
+      title: `No puedes actualizar un producto de otro usuario.`,
+      showConfirmButton: false,
+    });
+  }
   updateProductsForm.reset();
 });
 

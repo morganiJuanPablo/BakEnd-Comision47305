@@ -19,7 +19,7 @@ import { generalConfig } from "./config/generalConfig.js";
 import { getProductError } from "./errors/services/productsError.service.js";
 import { swaggerSpecs } from "./config/swagger.config.js";
 import swaggerUI from "swagger-ui-express";
-import { ownerId } from "./controller/realTimeProducts.controller.js";
+import { userConnected } from "./controller/realTimeProducts.controller.js";
 import { errorHandler } from "./errors/errorHandler.js";
 import { EError } from "./errors/Enums/EError.js";
 import { newProductError } from "./errors/services/productsError.service.js";
@@ -59,10 +59,15 @@ socketServer.on("connection", async (socket) => {
     });
     return logger.error(error);
   }
+
+  //Enviamos los productos de la base de datos al front.
   socket.emit("arrayProducts", products);
 
+  //Enviamos el usuario conectado al front para validar si puede eliminar o actualizar productos.
+  socket.emit("userConnected", userConnected);
+
   socket.on("productJson", async (newProduct) => {
-    newProduct.owner = ownerId;
+    newProduct.owner = userConnected.id;
     const result = await productsService.createProduct(newProduct);
     const products = await productsService.getProducts();
     socket.emit("arrayProducts", products);
@@ -75,8 +80,6 @@ socketServer.on("connection", async (socket) => {
   });
 
   socket.on("productUpdatedJson", async (productUpdatedJson) => {
-    productUpdatedJson.owner = ownerId;    
-    /* if (productOwner === userId || userRole === "Administrador") */
     const result = await productsService.updateProductById(
       productUpdatedJson.Id,
       productUpdatedJson
