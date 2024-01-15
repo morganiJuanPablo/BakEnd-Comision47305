@@ -264,10 +264,10 @@ export class SessionsController {
       const user = req.user;
       const data = {
         style: "login.css",
-        message: `🤟Felicidades ${req.user.first_name}, estás dentro🤟`,
+        message: `🤟Felicidades ${user.first_name}, estás dentro🤟`,
         payload: user,
       };
-      res.render("login", data);      
+      res.render("login", data);
     } catch (error) {
       logger.error(error.message);
       res.status(500).json({ message: error.message });
@@ -278,6 +278,7 @@ export class SessionsController {
   static loginUser = async (req, res) => {
     try {
       const user = req.user;
+      /* console.log("user desde el controlador", req.user); */
       const token = generateToken(user);
       res.cookie("authLoginFoo", token, { maxAge: 3600000, httpOnly: true });
       /* res.json({ status: "success", message: "Usuario logueado" }); */

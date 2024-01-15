@@ -13,7 +13,7 @@ import {
   loginUserCreateError,
   newUserCreateError,
 } from "../errors/services/userCreateError.service.js";
-import { logger } from "../helpers/logger.js";
+import { UsersDto } from "../dao/dto/users.dto.js";
 
 const JWTStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
@@ -81,7 +81,8 @@ export const passportInit = () => {
           if (!isValidated(password, user)) {
             return done(null, false);
           }
-          return done(null, user);
+          const userDto = new UsersDto(user);          
+          return done(null, userDto);
         } catch (error) {
           return done(error);
         }

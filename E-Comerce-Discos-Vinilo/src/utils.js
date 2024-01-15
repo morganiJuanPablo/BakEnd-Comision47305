@@ -14,11 +14,11 @@ export const isValidated = (password, userInfo) => {
   return bcrypt.compareSync(password, userInfo.password);
 };
 
-export const generateToken = (user) => {
+export const generateToken = (user) => { 
   const token = jwt.sign(
     {
-      id: user._id,
-      name: user.first_name,
+      id: user.id.toString(),
+      name: user.full_name,
       email: user.email,
       role: user.role,
       age: user.age,

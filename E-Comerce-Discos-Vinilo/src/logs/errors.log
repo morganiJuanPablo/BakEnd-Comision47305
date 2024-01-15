@@ -1460,3 +1460,49 @@ updatePath: ''
 [101merror[49m: Cannot read properties of undefined (reading 'status')
 [101merror[49m: Cannot read properties of undefined (reading 'status')
 [101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: GetUsersDto is not defined
+[101merror[49m: userInfo.first_nameuserInfo.last_name is not a function
+[101merror[49m: Cannot read properties of null (reading 'email')
+[101merror[49m: Cannot read properties of null (reading 'email')
+[101merror[49m: Cannot read properties of null (reading 'email')
+[101merror[49m: Cannot read properties of null (reading 'email')
+[101merror[49m: console.log(...) is not a function
+[101merror[49m: users validation failed: password: Path `password` is required., last_name: Path `last_name` is required., first_name: Path `first_name` is required.
+[101merror[49m: No se pudo crear el nuevo usuario
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: Cannot read properties of null (reading 'first_name')
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: data and hash arguments required
+[101merror[49m: UsersDto is not defined
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: El usuario solicitado no existe en nuestros registros
+[101merror[49m: Cannot read properties of undefined (reading 'status')

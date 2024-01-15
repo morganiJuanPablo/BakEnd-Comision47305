@@ -1,9 +1,9 @@
 //
-
-export class GetUsersDto {
-  constructor(userInfo) {    
-    this.full_name = `${userInfo.first_name} ${userInfo.last_name}`;
-    (this.email = userInfo.email),
+export class UsersDto {
+  constructor(userInfo) {
+      (this.id = userInfo._id),
+      (this.full_name = `${userInfo.first_name} ${userInfo.last_name}`),
+      (this.email = userInfo.email),
       (this.age = userInfo.age),
       (this.role = userInfo.role),
       (this.cart = userInfo.cart);

@@ -16,14 +16,15 @@ import cookieParser from "cookie-parser";
 import passport from "passport";
 import { passportInit } from "./config/passportConfig.js";
 import { generalConfig } from "./config/generalConfig.js";
-import { CustomError } from "./errors/services/customError.service.js";
-import { EError } from "./errors/Enums/EError.js";
 import { getProductError } from "./errors/services/productsError.service.js";
-import { errorHandler } from "./errors/errorHandler.js";
-import { logger } from "./helpers/logger.js";
 import { swaggerSpecs } from "./config/swagger.config.js";
 import swaggerUI from "swagger-ui-express";
 import { ownerId } from "./controller/realTimeProducts.controller.js";
+import { errorHandler } from "./errors/errorHandler.js";
+import { EError } from "./errors/Enums/EError.js";
+import { newProductError } from "./errors/services/productsError.service.js";
+import { CustomError } from "./errors/services/customError.service.js";
+import { logger } from "./helpers/logger.js";
 
 const port = generalConfig.server.port;
 const app = express();
@@ -74,6 +75,8 @@ socketServer.on("connection", async (socket) => {
   });
 
   socket.on("productUpdatedJson", async (productUpdatedJson) => {
+    productUpdatedJson.owner = ownerId;    
+    /* if (productOwner === userId || userRole === "Administrador") */
     const result = await productsService.updateProductById(
       productUpdatedJson.Id,
       productUpdatedJson

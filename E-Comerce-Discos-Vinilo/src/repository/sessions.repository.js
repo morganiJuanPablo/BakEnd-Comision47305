@@ -1,6 +1,4 @@
 //
-/* import { GetUsersDto } from "../dao/dto/users.dto.js"; */
-
 export class SessionsRepository {
   constructor(dao) {
     this.dao = dao;

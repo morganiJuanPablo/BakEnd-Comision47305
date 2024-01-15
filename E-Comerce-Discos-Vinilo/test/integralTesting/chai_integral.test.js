@@ -27,6 +27,8 @@ let mockProduct;
 
 //FUNCION GENERAL TESTING
 describe("Pruebas app e-commerce FF", function () {
+  //
+  //
   before(async function () {
     this.productManager = new ProductsManagerMongo();
     this.usersManager = new UsersManagerMongo();
@@ -167,7 +169,7 @@ describe("Pruebas app e-commerce FF", function () {
     it("Crear un producto en la base de datos", async function () {
       //El administrador crea un producto
       newProductByAdmin.owner = mockUserAdmin._id;
-      mockProductByAdmin = await this.productManager.addProduct(
+      mockProductByAdmin = await this.productManager.createProduct(
         newProductByAdmin
       );
       expect(mockProductByAdmin).to.have.property("_id");
@@ -177,7 +179,9 @@ describe("Pruebas app e-commerce FF", function () {
       //Cambiamos el rol del usuario para que pueda generar un producto ya que 'Usuario' no puede crearlos, sólo pueden 'Premium' y 'Administrador'. Si el rol es 'Usuario' la prueba no pasa.
       mockUser.role = "Premium";
       newProductByPremium.owner = mockUser._id;
-      mockProduct = await this.productManager.addProduct(newProductByPremium);
+      mockProduct = await this.productManager.createProduct(
+        newProductByPremium
+      );
       expect(mockProduct).to.have.property("_id");
       expect(mockUser.role).to.be.not.equal("Usuario");
     });
@@ -253,7 +257,7 @@ describe("Pruebas app e-commerce FF", function () {
     });
 
     it("El endpoint /cart/:cartId/product/:productId agrega un producto, según su Id, al carrito asignado al usuario conectado.", async function () {
-      //Un usuario premium intenta añadir al carrito un producto añadido por él mismo.
+      //Un usuario premium intenta añadir al carrito un producto creado por él mismo.
       const cartId = mockUser.cart.toString();
       const productId = mockProduct._id.toString();
       const response = await requester
