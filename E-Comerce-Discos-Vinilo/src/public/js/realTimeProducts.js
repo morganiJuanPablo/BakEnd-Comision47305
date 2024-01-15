@@ -110,6 +110,7 @@ updateProductsForm.addEventListener("submit", (e) => {
       icon: false,
       title: `No puedes actualizar un producto de otro usuario.`,
       showConfirmButton: false,
+      timer: 3000,
     });
   }
   updateProductsForm.reset();
