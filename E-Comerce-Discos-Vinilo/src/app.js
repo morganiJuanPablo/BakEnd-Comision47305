@@ -66,6 +66,7 @@ socketServer.on("connection", async (socket) => {
   };
   socket.emit("arrayProducts", data);
 
+  //Escuchamos desde el front la info del nuevo producto para crearlo con el 'Service'. Luego con emmit enviamos nuevamente el arreglo de productos actualizados y el usuario conectado.
   socket.on("productJson", async (newProduct) => {
     newProduct.owner = userConnected.id;
     const result = await productsService.createProduct(newProduct);
@@ -77,6 +78,7 @@ socketServer.on("connection", async (socket) => {
     socket.emit("arrayProducts", data);
   });
 
+  //Escuchamos desde el front el id del producto que se quiere eliminar y lo hacemos a través del 'Service'. Luego con emmit enviamos nuevamente el arreglo de productos actualizados y el usuario conectado.
   socket.on("deleteProductById", async (idProduct) => {
     await productsService.deleteProductById(idProduct);
     const products = await productsService.getProducts();
@@ -87,6 +89,7 @@ socketServer.on("connection", async (socket) => {
     socket.emit("arrayProducts", data);
   });
 
+  //Escuchamos desde el front la nueva info del producto a actualizar y lo hacemos con el 'Service'. Validamos si el usuario conectado es el 'owner' del producto o bien, si su rol es 'Administrador'. Luego con emmit enviamos nuevamente el arreglo de productos actualizados y el usuario conectado o simplemente un mensaje de que no se puede llevar a cabo la acción si no cumple con las validaciones.
   socket.on("productUpdatedJson", async (productUpdatedJson) => {
     const product = await productsService.getProductById(productUpdatedJson.Id);
     if (
