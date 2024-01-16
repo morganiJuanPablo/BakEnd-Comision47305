@@ -49,7 +49,7 @@ const socketServer = new Server(httpServer);
 //Websockets
 socketServer.on("connection", async (socket) => {
   logger.info("Cliente en linea");
-  const products = await productsService.getProducts();
+  let products = await productsService.getProducts();
   if (!products) {
     const error = CustomError.createError({
       name: "Data Base error",
@@ -59,33 +59,60 @@ socketServer.on("connection", async (socket) => {
     });
     return logger.error(error);
   }
-
-  //Enviamos los productos de la base de datos al front.
-  socket.emit("arrayProducts", products);
-
-  //Enviamos el usuario conectado al front para validar si puede eliminar o actualizar productos.
-  socket.emit("userConnected", userConnected);
+  //Enviamos los productos de la base de datos al front junto con el usuario conectado para validar a la hora de eliminar, crear y actualizar un producto..
+  const data = {
+    products,
+    userConnected,
+  };
+  socket.emit("arrayProducts", data);
 
   socket.on("productJson", async (newProduct) => {
     newProduct.owner = userConnected.id;
     const result = await productsService.createProduct(newProduct);
     const products = await productsService.getProducts();
-    socket.emit("arrayProducts", products);
+    const data = {
+      products,
+      userConnected,
+    };
+    socket.emit("arrayProducts", data);
   });
 
   socket.on("deleteProductById", async (idProduct) => {
     await productsService.deleteProductById(idProduct);
     const products = await productsService.getProducts();
-    socket.emit("arrayProducts", products);
+    const data = {
+      products,
+      userConnected,
+    };
+    socket.emit("arrayProducts", data);
   });
 
   socket.on("productUpdatedJson", async (productUpdatedJson) => {
-    const result = await productsService.updateProductById(
-      productUpdatedJson.Id,
-      productUpdatedJson
-    );
-    const products = await productsService.getProducts();
-    socket.emit("arrayProducts", products);
+    const product = await productsService.getProductById(productUpdatedJson.Id);
+    if (
+      product[0].owner.toString() === userConnected.id ||
+      userConnected.role === "Administrador"
+    ) {
+      const result = await productsService.updateProductById(
+        productUpdatedJson.Id,
+        productUpdatedJson
+      );
+      const products = await productsService.getProducts();
+      const data = {
+        products,
+        userConnected,
+      };
+      socket.emit("arrayProducts", data);
+      socket.emit(
+        "message",
+        `El producto con Id: "${productUpdatedJson.Id}" fue actualizado con éxito`
+      );
+    } else {
+      socket.emit(
+        "message",
+        `No puedes actualizar un producto de otro usuario.`
+      );
+    }
   });
 
   //Chat

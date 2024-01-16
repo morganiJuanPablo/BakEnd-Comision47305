@@ -9,7 +9,7 @@ export class realTimeProductsController {
   static renderRealTimeProductsView = async (req, res) => {
     try {
       if (req.user?.email) {
-        userConnected = req.user;
+        userConnected = req.user;        
         const sessionExist = req.user.email && true;
         const data = {
           sessionExist,

@@ -1,16 +1,14 @@
 //
 const socketClient = io();
-let user;
 
 const cardProductAdmin = document.getElementById("cardProductAdmin");
 
-socketClient.on("userConnected", (userConnected) => {
-  user = userConnected;
-});
-//Recibimos los productos
-socketClient.on("arrayProducts", (dataProducts) => {
+//Recibimos los productos y el usuario conectado
+socketClient.on("arrayProducts", (data) => {  
+  let userRole = data.userConnected.role;
+  let userId = data.userConnected.id;
   let productsElms = "";
-  dataProducts.forEach((p) => {
+  data.products.forEach((p) => {
     const {
       thumbnail,
       title,
@@ -30,7 +28,7 @@ socketClient.on("arrayProducts", (dataProducts) => {
     src=${thumbnail}
     alt="Vinyl Cover"
     />
-    <button class="trashBtn" onclick= deleteProduct('${_id}','${owner}','${userRole}') ><img src="https://res.cloudinary.com/dqykftyy6/image/upload/v1695040127/TrashIcon-01_hgtcmn.png" alt="Eliminar producto"></button>
+    <button class="trashBtn" onclick= deleteProduct('${_id}','${userId}','${owner}','${userRole}') ><img src="https://res.cloudinary.com/dqykftyy6/image/upload/v1695040127/TrashIcon-01_hgtcmn.png" alt="Eliminar producto"></button>
     </div>
     <div class="productInfo">
     <h1 class="title">${title}</h1>
@@ -96,29 +94,21 @@ updateProductsForm.addEventListener("submit", (e) => {
     parseFloat(productUpdatedJson.price);
     parseInt(productUpdatedJson.stock);
   }
-  if (productUpdatedJson.owner === user.id || user.role === "Administrador") {
+  socketClient.emit("productUpdatedJson", productUpdatedJson);
+  socketClient.on("message", (message) => {
     Swal.fire({
       position: "center",
       icon: false,
-      title: `El producto con Id: "${productUpdatedJson.Id}" fue actualizado con éxito`,
+      title: message,
       showConfirmButton: false,
     });
-    socketClient.emit("productUpdatedJson", productUpdatedJson);
-  } else {
-    Swal.fire({
-      position: "center",
-      icon: false,
-      title: `No puedes actualizar un producto de otro usuario.`,
-      showConfirmButton: false,
-      timer: 3000,
-    });
-  }
+  });
   updateProductsForm.reset();
 });
 
 //Delete products ById
 //Aquí es en donde hacemos la validación para eliminar el producto, siempre y cuando el usuario conectado corresponda al owner del producto que se quiera eliminar. La variable userId las recuperamos con estiquetas script en la vista desde el controlador de la ruta que renderiza la misma. Pasamos en la siguiente función el id del producto y el productOwner que viene de owner en el forEach que se hace cuando websocket recibe los productos. La variable role también la pasamos desde el controlador de la ruta y la captamos con otra estiqueta srcipt en la vista. Lo hacemos para validar el rol del usuario ya que si es administrador puede borrar todos los productos sin importar que los haya generado el o un usuario premium
-const deleteProduct = (productId, productOwner, userRole) => {
+const deleteProduct = (productId, userId, productOwner, userRole) => {
   if (productOwner === userId || userRole === "Administrador") {
     const swalWithBootstrapButtons = Swal.mixin({
       buttonsStyling: false,
