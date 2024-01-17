@@ -254,7 +254,7 @@ export class SessionsController {
       res.render("unauthorized", { style: "unauthorized.css" });
     } catch (error) {
       logger.error(error.message);
-      res.send({ message: error.message });
+      res.status(500).send({ message: error.message });
     }
   };
 
@@ -330,13 +330,16 @@ export class SessionsController {
   };
 
   /////////////////////////////////////////////////////
-  static logout = (req, res) => {
+  static logout = async (req, res) => {
     try {
+      const user = { ...req.user };
+      user.last_connection = new Date();
+      await sessionsService.updateUser(user.id, user);
       res.clearCookie("authLoginFoo");
       res.redirect("/api/session/login");
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.json({ message: error.message });
     }
   };
 

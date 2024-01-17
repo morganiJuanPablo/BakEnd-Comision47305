@@ -4,6 +4,11 @@ export class SessionsRepository {
     this.dao = dao;
   }
   /////////////////////////////////////////////////////
+  async getUsers() {
+    const users = await this.dao.getUsers();
+    return users;
+  }
+  /////////////////////////////////////////////////////
   async getUser(username) {
     const user = await this.dao.getUser(username);
     return user;

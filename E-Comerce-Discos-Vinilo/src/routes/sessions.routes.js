@@ -9,10 +9,16 @@ import {
   authLoginPassport,
   checkRole,
 } from "../middleware/middleware.js";
+import { sessionsService } from "../repository/index.js";
 
 const router = Router();
 
 ////GET
+
+router.get("/users", async (req, res) => {
+  const users = await sessionsService.getUsers();
+  res.json(users);
+});
 ///////////////////////////////////////////////////////////////////
 router.get("/login", SessionsController.loginView);
 
@@ -52,7 +58,7 @@ router.get("/session_destroyed", SessionsController.sessionDestroyedView);
 router.get("/unauthorized", SessionsController.unauthorizedView);
 
 ///////////////////////////////////////////////////////////////////
-router.get("/logout", SessionsController.logout);
+router.get("/logout", tokenAuth, SessionsController.logout);
 
 ///////////////////////////////////////////////////////////////////GITHUB
 router.get("/github_new_user", passport.authenticate("githubRegisterStrategy"));
