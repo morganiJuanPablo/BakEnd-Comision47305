@@ -18,7 +18,7 @@ const usersSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique:true
+    unique: true,
   },
   age: {
     type: Number,
@@ -36,6 +36,19 @@ const usersSchema = new mongoose.Schema({
   cart: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "carts",
+  },
+  documents: {
+    type: [
+      {
+        name: { type: String, required: true },
+        reference: { type: String, required: true },
+      },
+    ],
+    default: [],
+  },
+  last_connection: {
+    type: Date,
+    default: null,
   },
 });
 
