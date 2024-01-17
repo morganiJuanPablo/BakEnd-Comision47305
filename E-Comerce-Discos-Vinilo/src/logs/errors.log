@@ -1510,3 +1510,14 @@ updatePath: ''
 [101merror[49m: E11000 duplicate key error collection: ecomerceDB.products index: code_1 dup key: { code: "foo1" }
 [101merror[49m: E11000 duplicate key error collection: ecomerceDB.products index: code_1 dup key: { code: "foo123" }
 [101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')
+[101merror[49m: Cannot read properties of undefined (reading 'status')

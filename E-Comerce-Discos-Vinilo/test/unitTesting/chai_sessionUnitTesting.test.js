@@ -61,6 +61,7 @@ describe("Testing funciones referidas a las sesiones y la entidad de los usuario
     const newUserFromDb = await this.usersManager.updateUser(user._id, user);
     expect(newUserFromDb).to.have.property("_id");
     expect(newUserFromDb).to.be.an("object");
+    expect(newUserFromDb.age).to.be.equal(40);
   });
 
   it("Eliminamos un usuario através de su Id. Chequeamos luego no debería existir en la base de datos.", async function () {
@@ -69,7 +70,7 @@ describe("Testing funciones referidas a las sesiones y la entidad de los usuario
     expect(userFromDb).to.be.not.exist;
   });
 
-  it("Función para obtener el role del usuario según el dominio del correo con el que se registra.", async function () {
+  it("Función para obtener el rol del usuario según el dominio del correo con el que se registra.", async function () {
     const result = roleClient(
       `username${generalConfig.managers.domainManagers}`
     );

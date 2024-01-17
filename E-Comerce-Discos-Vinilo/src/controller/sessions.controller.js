@@ -71,7 +71,7 @@ export class SessionsController {
       res.render("modifyRoleUser", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ message: error.message });
     }
   };
 
@@ -254,7 +254,7 @@ export class SessionsController {
       res.render("unauthorized", { style: "unauthorized.css" });
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ message: error.message });
     }
   };
 

@@ -308,4 +308,26 @@ describe("Pruebas app e-commerce FF", function () {
       });
     });
   });
+
+  //ADMINISTRADOR DE PRODUCTOS
+  ///////////////////////////////////////////////////////////////////////////////////////
+  describe("Administrador de productos", function () {
+    it("El endpoint /realtimeproducts renderiza la vista del administrador de productos de la base de datos, crear, actualizar y eliminar los mismos. La vista trabaja con Websocket para llevar a cabo dichas acciones.", async function () {
+      //Un usuario 'normal' NO puede ingresar al administrador de productos.
+      const response = await requester
+        .get("/realtimeproducts")
+        .set("Cookie", [`${cookieSesion.name}=${cookieSesion.value}`]);
+      expect(response.header.location).to.be.equal("/api/session/unauthorized");
+      expect(response.status).to.be.equal(302);
+
+      //Un usuario 'Administrador' puede ingresar al administrador de productos.
+      const response2 = await requester
+        .get("/realtimeproducts")
+        .set("Cookie", [
+          `${cookieSesionAdmin.name}=${cookieSesionAdmin.value}`,
+        ]);
+      expect(isHTML(response2.text)).to.be.equal(true);
+      expect(response2.status).to.be.equal(200);
+    });
+  });
 });

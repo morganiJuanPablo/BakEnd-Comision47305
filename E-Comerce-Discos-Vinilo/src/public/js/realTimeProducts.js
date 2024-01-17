@@ -17,8 +17,7 @@ socketClient.on("arrayProducts", (data) => {
       price,
       code,
       stock,
-      _id,
-      status,
+      _id,      
       owner,
     } = p;
     productsElms += ` <div class="cardProductAdmin">
@@ -37,9 +36,7 @@ socketClient.on("arrayProducts", (data) => {
     <p class="code"><span class="titlesInfo">Código: </span>${code}</p>
     <p class="stock"><span class="titlesInfo">Stock: </span>${stock}</p>
     <p class="category"><span class="titlesInfo">Categoría:
-      </span>${category}</p>
-      <p class="status"><span class="titlesInfo">Status:
-        </span>'${status}'</p>
+      </span>${category}</p>      
     <p class="id"><span class="titlesInfo">Id:
       </span>'${_id}'</p>      
     <p class="id"><span class="titlesInfo">Creado por:
@@ -52,13 +49,13 @@ socketClient.on("arrayProducts", (data) => {
 
 //Formulario para crear producto
 const createProductsForm = document.getElementById("createProductsForm");
-const inputStatus = document.getElementById("inputStatus");
-let isChecked = false;
+/* const inputStatus = document.getElementById("inputStatus"); */
+/* let isChecked = false; */
 
-inputStatus.addEventListener("change", () => {
+/* inputStatus.addEventListener("change", () => {
   isChecked = inputStatus.checked;
 });
-
+ */
 createProductsForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(createProductsForm);
@@ -69,7 +66,7 @@ createProductsForm.addEventListener("submit", (e) => {
   }
   productJson.price = +productJson.price;
   productJson.stock = +productJson.stock;
-  productJson["status"] = isChecked;
+  /* productJson["status"] = isChecked; */
   if (productJson.thumbnail) {
     Swal.fire({
       imageUrl: `${productJson.thumbnail}`,

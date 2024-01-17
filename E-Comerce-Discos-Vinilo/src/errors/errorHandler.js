@@ -14,7 +14,7 @@ export const errorHandler = (error, req, res, next) => {
       logger.error(error.message);
       break;
     default:
-      res.json({ status: "error", error: "Unhandled Error" });
+      /* res.json({ status: "error", error: "Unhandled Error" }); */
       break;
   }
   next()

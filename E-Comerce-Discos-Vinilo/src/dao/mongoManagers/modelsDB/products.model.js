@@ -37,8 +37,7 @@ const productsSchema = new mongoose.Schema({
     enum: ["TopVentas", "EdicionesEspeciales"],
   },
   status: {
-    type: Boolean,
-    required: true,
+    type: Boolean,    
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,

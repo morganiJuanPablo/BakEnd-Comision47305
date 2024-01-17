@@ -9,7 +9,7 @@ export class realTimeProductsController {
   static renderRealTimeProductsView = async (req, res) => {
     try {
       if (req.user?.email) {
-        userConnected = req.user;        
+        userConnected = req.user;
         const sessionExist = req.user.email && true;
         const data = {
           sessionExist,
@@ -24,7 +24,7 @@ export class realTimeProductsController {
       }
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.json({ message: error.message });
     }
   };
 }
