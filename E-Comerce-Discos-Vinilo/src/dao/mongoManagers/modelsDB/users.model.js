@@ -50,6 +50,12 @@ const usersSchema = new mongoose.Schema({
     type: Date,
     default: null,
   },
+  status: {
+    type: String,
+    required: true,
+    enum: ["Pendiente", "Incompleto", "Completo"],
+    default: "Pendiente",
+  },
 });
 
 usersSchema.plugin(mongoosePaginate);
