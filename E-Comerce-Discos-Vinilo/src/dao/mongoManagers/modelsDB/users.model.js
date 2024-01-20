@@ -56,6 +56,10 @@ const usersSchema = new mongoose.Schema({
     enum: ["Pendiente", "Incompleto", "Completo"],
     default: "Pendiente",
   },
+  avatar: {
+    type: String,
+    default: "",
+  },
 });
 
 usersSchema.plugin(mongoosePaginate);

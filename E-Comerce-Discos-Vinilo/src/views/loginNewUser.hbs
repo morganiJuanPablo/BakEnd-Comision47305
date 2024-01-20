@@ -1,6 +1,6 @@
 <main class="loginMain">
   <div class="loaderBackground">// CARGANDO... //</div>
-  <form method="post" action="/api/session/new_user">
+  <form method="post" action="/api/session/new_user" enctype="multipart/form-data">
     {{#if error}}
       <p class="errorMessage">{{error}}</p>
     {{/if}}
@@ -10,6 +10,7 @@
     <input type="email" name="email" placeholder="E-mail" />
     <input type="number" name="age" placeholder="Edad" />
     <input type="password" name="password" placeholder="Contraseña" />
+    <input type="file" name="avatar" />
     <button class="submitBtns">// Crear //</button>
     <section class="externalConnectSection">
       <a class="submitBtns" href="/api/session/github_new_user">O crea tu cuenta

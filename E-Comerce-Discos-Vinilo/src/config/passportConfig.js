@@ -14,7 +14,6 @@ import {
   newUserCreateError,
 } from "../errors/services/userCreateError.service.js";
 import { UsersDto } from "../dao/dto/users.dto.js";
-import { logger } from "../helpers/logger.js";
 
 const JWTStrategy = jwt.Strategy;
 const extractJwt = jwt.ExtractJwt;
@@ -53,6 +52,7 @@ export const passportInit = () => {
             } else {
               const role = roleClient(newUser.email);
               newUser.role = role;
+              newUser.avatar = req.file.filename;
               const userRegistered = await sessionsService.createUser(newUser);
               return done(null, userRegistered);
             }

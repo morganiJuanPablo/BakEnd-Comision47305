@@ -10,6 +10,7 @@ import {
   checkRole,
 } from "../middleware/middleware.js";
 import { sessionsService } from "../repository/index.js";
+import { uploadImgProfileUsers } from "../utils.js";
 
 const router = Router();
 
@@ -84,8 +85,10 @@ router.get(
 
 ////POST
 ///////////////////////////////////////////////////////////////////
+//Utilizamos el middleware de carga de la imagen de profile del usuario. Single porque es un solo archivo y ponemos entre paréntesis en qué propiedad del modelo user se va a cargar. Luego multer genera req.file, con la información del archivo que vamos a utilizar en lo que es el registro del usuario. En nuestro caso en la configuración de passport.
 router.post(
   "/new_user",
+  uploadImgProfileUsers.single("avatar"),
   authRegisterPassport,
   SessionsController.generateNewUser
 );

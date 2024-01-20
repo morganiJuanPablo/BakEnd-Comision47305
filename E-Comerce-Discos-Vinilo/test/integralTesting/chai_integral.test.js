@@ -312,7 +312,7 @@ describe("Pruebas app e-commerce FF", function () {
   //ADMINISTRADOR DE PRODUCTOS
   ///////////////////////////////////////////////////////////////////////////////////////
   describe("Administrador de productos", function () {
-    it("El endpoint /realtimeproducts renderiza la vista del administrador de productos de la base de datos, crear, actualizar y eliminar los mismos. La vista trabaja con Websocket para llevar a cabo dichas acciones.", async function () {
+    it("El endpoint /realtimeproducts renderiza la vista del administrador de productos de la base de datos, crear, actualizar y eliminar los mismos. La vista trabaja con Websocket para llevar a cabo dichas acciones. Devuelve una vista renderizada.", async function () {
       //Un usuario 'normal' NO puede ingresar al administrador de productos.
       const response = await requester
         .get("/realtimeproducts")
