@@ -384,6 +384,26 @@ export class SessionsController {
           reference: UserIdentification.filename,
         });
       }
+      if (UserResidence) {
+        docs.push({
+          name: "UserResidence",
+          reference: UserResidence.filename,
+        });
+      }
+      if (UserBankStatement) {
+        docs.push({
+          name: "UserBankStatement",
+          reference: UserBankStatement.filename,
+        });
+      }
+      user.documents = docs;
+      if (docs.length < 3) {
+        user.status = "Incompleto";
+      } else {
+        user.status = "Completo";
+      }
+      await sessionsService.updateUser(user._id, user);
+      res.send({ status: "success", message: "Se cargaron los documentos." });
     } catch (error) {
       logger.error(error.message);
       res.json({ status: "error", message: error.message });
