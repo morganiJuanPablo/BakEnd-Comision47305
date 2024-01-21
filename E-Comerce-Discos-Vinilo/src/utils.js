@@ -85,16 +85,15 @@ const documentsStorage = multer.diskStorage({
   destination: function (req, file, callback) {
     callback(null, path.join(__dirname, "/multer/users/documents"));
   },
-  //Nombre de la imagen
+  //Nombre del documento
   filename: function (req, file, callback) {
-    callback(null, `${req.body.email}-document-${file.originalname}`);
+    callback(null, `${req.user.email}-document-${file.originalname}`);
   },
 });
 
 //uploader de los documentos de los usarios.
 const uploadDocumentUsers = multer({
   storage: documentsStorage,
-  fileFilter: profileMulterFilter,
 });
 
 //
@@ -111,10 +110,9 @@ const productsImgStorage = multer.diskStorage({
   },
 });
 
-//uploader de las imágenes de perfil de los usarios.
+//uploader de las imágenes de los productos.
 const uploadImgProducts = multer({
   storage: productsImgStorage,
-  fileFilter: profileMulterFilter,
 });
 
 export { uploadImgProfileUsers, uploadDocumentUsers, uploadImgProducts };

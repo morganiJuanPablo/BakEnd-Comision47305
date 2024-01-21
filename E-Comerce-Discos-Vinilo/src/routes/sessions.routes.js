@@ -10,7 +10,7 @@ import {
   checkRole,
 } from "../middleware/middleware.js";
 import { sessionsService } from "../repository/index.js";
-import { uploadImgProfileUsers } from "../utils.js";
+import { uploadImgProfileUsers, uploadDocumentUsers } from "../utils.js";
 
 const router = Router();
 
@@ -91,6 +91,19 @@ router.post(
   uploadImgProfileUsers.single("avatar"),
   authRegisterPassport,
   SessionsController.generateNewUser
+);
+
+///////////////////////////////////////////////////////////////////
+//Utilizamos el middleware de carga de archivos con el método fields ( porque van a ser varios documentos) es un arreglo con distintos objetos cuya estructura la definimos a contiuación.
+router.post(
+  "/user_documents/:userId",
+  /* tokenAuth */
+  uploadDocumentUsers.fields([
+    { name: "identification", maxCount: 1 },
+    { name: "residence", maxCount: 1 },
+    { name: "bankStatement", maxCount: 1 },
+  ]),
+  SessionsController.uploadDocuments
 );
 
 ///////////////////////////////////////////////////////////////////

@@ -31,6 +31,7 @@ export const passportInit = () => {
       async (req, username, password, done) => {
         const { first_name, last_name, age } = req.body;
         try {
+          console.log(req.file)
           const user = await sessionsService.getUser(username);
           if (user) {
             return done(null, false);

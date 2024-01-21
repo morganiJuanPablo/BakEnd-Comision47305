@@ -367,4 +367,26 @@ export class SessionsController {
       res.json({ status: "error", message: error.message });
     }
   };
+
+  /////////////////////////////////////////////////////
+  static uploadDocuments = async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const user = await sessionsService.getUserById(userId);
+      //Ahora multer al pasar por el middleware crea una propiedad llamada req.files y a partir de la misma vamos a obtener la info de cada documento por separado. Ya que recibimos un arreglo por cada documento. Luego pusheamos en un solo arreglo todos los documentos validando que el usuario nos lo haya enviado.
+      const UserIdentification = req.files["identification"]?.[0] || null;
+      const UserResidence = req.files["residence"]?.[0] || null;
+      const UserBankStatement = req.files["bankStatement"]?.[0] || null;
+      const docs = [];
+      if (UserIdentification) {
+        docs.push({
+          name: "UserIdentification",
+          reference: UserIdentification.filename,
+        });
+      }
+    } catch (error) {
+      logger.error(error.message);
+      res.json({ status: "error", message: error.message });
+    }
+  };
 }
