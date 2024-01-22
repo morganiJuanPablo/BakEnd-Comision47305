@@ -86,6 +86,7 @@ export class SessionsController {
             status: "success",
             email: user.email,
             role: user.role,
+            statusDocs: user.status,
           };
           res.send(data);
         } else {
@@ -353,15 +354,17 @@ export class SessionsController {
         if (user.role === "Usuario") {
           user.role = "Premium";
         } else {
-          return res.send({
-            status: "error",
-            message: "El usuario ya es Premium.",
-          });
+          user.role = "Usuario";
         }
         const userNewRole = await sessionsService.updateUser(userId, user);
         res.send({
           status: "success",
-          data: userNewRole.role,
+          message: `Usuario actualizado con éxito.\nNuevo rol: ${userNewRole.role}.`,
+        });
+      } else {
+        res.send({
+          status: "error",
+          message: "El usuario no ha completado la documentación necesaria.",
         });
       }
     } catch (error) {

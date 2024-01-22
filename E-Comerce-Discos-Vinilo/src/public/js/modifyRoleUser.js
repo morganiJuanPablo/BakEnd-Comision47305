@@ -16,7 +16,8 @@ getUserId.addEventListener("submit", async function (e) {
       body: JSON.stringify({ userId: userId }),
     });
     const result = await response.json();
-    const { status, email, role, message } = result;
+    const { status, email, role, message, statusDocs } = result;
+
     if (status === "success") {
       loaderBack.classList.add("off");
       messageErrorContainer.classList.add("off");
@@ -56,17 +57,16 @@ getUserId.addEventListener("submit", async function (e) {
               const resultRoleChanged = await responseRoleChanged.json();
               Swal.fire({
                 showConfirmButton: false,
-                title: `Usuario actualizado con éxito.\nNuevo rol: ${resultRoleChanged.data}`,
-                timer: 3500,
+                title: resultRoleChanged.message,
+                timer: 4000,
               });
               setTimeout(() => {
                 location.reload();
-              }, 3000);
+              }, 3500);
             }
           });
       });
-    }
-    if (status === "error" || !status) {
+    } else if (status === "error" || !status) {
       loaderBack.classList.add("off");
       messageErrorContainer.innerHTML = `<p class="messageError">${message}</p>`;
     }
