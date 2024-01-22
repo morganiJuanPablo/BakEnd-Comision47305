@@ -32,7 +32,7 @@ export class SessionsController {
       res.render("login", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -45,7 +45,7 @@ export class SessionsController {
       res.render("loginNewUser", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -58,7 +58,7 @@ export class SessionsController {
       res.render("linkNewPassword", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -71,7 +71,7 @@ export class SessionsController {
       res.render("modifyRoleUser", data);
     } catch (error) {
       logger.error(error.message);
-      res.send({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -83,22 +83,26 @@ export class SessionsController {
         const user = await sessionsService.getUserById(userId);
         if (user) {
           const data = {
+            status: "success",
             email: user.email,
             role: user.role,
-            status: "success",
           };
-          return res.json(data);
+          res.send(data);
+        } else {
+          res.send({
+            status: "error",
+            message: "El usuario no existe en nuestros registros.",
+          });
         }
       } else {
-        const data = {
-          message: "No se ha ingresado ningún valor",
+        res.send({
           status: "error",
-        };
-        return res.json(data);
+          message: "No se ha ingresado ningún valor",
+        });
       }
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -127,7 +131,7 @@ export class SessionsController {
       }
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -142,7 +146,7 @@ export class SessionsController {
       return res.render("newUserPass", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -194,7 +198,7 @@ export class SessionsController {
       return res.render("login", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -208,7 +212,7 @@ export class SessionsController {
       res.render("loginNewUser", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -233,7 +237,7 @@ export class SessionsController {
       }
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -243,7 +247,6 @@ export class SessionsController {
       res.render("sessionDestroyed", { style: "sessionDestroyed.css" });
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
       res.redirect("/api/session/login");
     }
   };
@@ -254,7 +257,7 @@ export class SessionsController {
       res.render("unauthorized", { style: "unauthorized.css" });
     } catch (error) {
       logger.error(error.message);
-      res.status(500).send({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -270,7 +273,7 @@ export class SessionsController {
       res.render("login", data);
     } catch (error) {
       logger.error(error.message);
-      res.status(500).json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -288,10 +291,8 @@ export class SessionsController {
         style: "login.css",
         error: "No se pudo iniciar la sesión",
       };
-      res.render("login", data);
       logger.error(error.message);
-      /*       
-    res.status(500).json({ message: error.message }); */
+      res.render("login", data);
     }
   };
 
@@ -307,8 +308,8 @@ export class SessionsController {
         style: "login.css",
         error: "No se pudo iniciar la sesión",
       };
-      res.render("login", data);
       logger.error(error.message);
+      res.render("login", data);
     }
   };
 
@@ -324,8 +325,8 @@ export class SessionsController {
         style: "login.css",
         error: "No se pudo iniciar la sesión",
       };
-      res.render("login", data);
       logger.error(error.message);
+      res.render("login", data);
     }
   };
 
@@ -339,7 +340,7 @@ export class SessionsController {
       res.redirect("/api/session/login");
     } catch (error) {
       logger.error(error.message);
-      res.json({ message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -347,24 +348,25 @@ export class SessionsController {
   static modifyRoleUser = async (req, res) => {
     try {
       const { userId } = req.body;
-
       const user = await sessionsService.getUserById(userId);
-      if (user) {
+      if (user.status === "Completo") {
         if (user.role === "Usuario") {
           user.role = "Premium";
-        } else if (user.role === "Premium") {
-          user.role = "Usuario";
+        } else {
+          return res.send({
+            status: "error",
+            message: "El usuario ya es Premium.",
+          });
         }
+        const userNewRole = await sessionsService.updateUser(userId, user);
+        res.send({
+          status: "success",
+          data: userNewRole.role,
+        });
       }
-      const userNewRole = await sessionsService.updateUser(userId, user);
-      res.json({
-        status: "success",
-        data: userNewRole.role,
-      });
-      /* res.json({ status: "error", message: "El usuario ingresado no existe" }); */
     } catch (error) {
       logger.error(error.message);
-      res.json({ status: "error", message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 
@@ -406,7 +408,7 @@ export class SessionsController {
       res.send({ status: "success", message: "Se cargaron los documentos." });
     } catch (error) {
       logger.error(error.message);
-      res.json({ status: "error", message: error.message });
+      res.send({ status: "error", message: error.message });
     }
   };
 }
