@@ -6,17 +6,29 @@ export class TicketsRepository {
   }
   /////////////////////////////////////////////////////
   async createTicket(newTicket) {
-    const ticket = await this.dao.createTicket(newTicket);
-    return ticket;
+    try {
+      const ticket = await this.dao.createTicket(newTicket);
+      return ticket;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
   /////////////////////////////////////////////////////
   async getTicketById(ticketId) {
-    const user = await this.dao.getTicket(ticketId);
-    return user;
+    try {
+      const user = await this.dao.getTicket(ticketId);
+      return user;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
   /////////////////////////////////////////////////////
   async getTickets() {
-    const tickets = await this.dao.getTickets();
-    return tickets;
+    try {
+      const tickets = await this.dao.getTickets();
+      return tickets;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 }
