@@ -9,20 +9,28 @@ export class CartsRepository {
 
   /////////////////////////////////////////////////////
   async createCart() {
-    const cart = await this.dao.createCart();
-    return cart;
+    try {
+      const cart = await this.dao.createCart();
+      return cart;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async getCarts() {
-    const carts = await this.dao.getCarts();
-    return carts;
+    try {
+      const carts = await this.dao.getCarts();
+      return carts;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async getProductsOk(cartId) {
-    const cart = await this.dao.getCartById(cartId);
-    if (cart.products.length) {
+    try {
+      const cart = await this.dao.getCartById(cartId);
       if (cart.products.length) {
         let productsOk = [];
         for (let i = 0; i < cart.products.length; i++) {
@@ -48,15 +56,17 @@ export class CartsRepository {
         productsOk.ticket = newTicket;
         return productsOk;
       } else {
-        res.json({ status: "error", message: "El carrito está vacío." });
+        return [];
       }
+    } catch (error) {
+      logger.error(error.message);
     }
   }
 
   /////////////////////////////////////////////////////
   async getProductsRejected(cartId) {
-    const cart = await this.dao.getCartById(cartId);
-    if (cart.products.length) {
+    try {
+      const cart = await this.dao.getCartById(cartId);
       if (cart.products.length) {
         let productsRejected = [];
         for (let i = 0; i < cart.products.length; i++) {
@@ -66,8 +76,10 @@ export class CartsRepository {
         }
         return productsRejected;
       } else {
-        res.json({ status: "error", message: "El carrito está vacío." });
+        return [];
       }
+    } catch (error) {
+      logger.error(error.message);
     }
   }
 
@@ -78,6 +90,8 @@ export class CartsRepository {
       if (cart) {
         const cartUpdated = await this.dao.updateCart(cartId, newCart);
         return cartUpdated;
+      } else {
+        return cart;
       }
     } catch (error) {
       logger.error(error.message);
@@ -86,34 +100,50 @@ export class CartsRepository {
 
   /////////////////////////////////////////////////////
   async getCartById(cartId) {
-    const cart = await this.dao.getCartById(cartId);
-    for (let i = 0; i < cart.products.length; i++) {
-      let product = cart.products[i];
-      let subtotal = product.quantity * product.productId.price;
-      product.subtotal = subtotal;
+    try {
+      const cart = await this.dao.getCartById(cartId);
+      for (let i = 0; i < cart.products.length; i++) {
+        let product = cart.products[i];
+        let subtotal = product.quantity * product.productId.price;
+        product.subtotal = subtotal;
+      }
+      let totalPrice = cart.products.reduce((acc, elem) => {
+        return (acc += elem.subtotal);
+      }, 0);
+      cart.totalPrice = totalPrice.toFixed(2);
+      return cart;
+    } catch (error) {
+      logger.error(error.message);
     }
-    let totalPrice = cart.products.reduce((acc, elem) => {
-      return (acc += elem.subtotal);
-    }, 0);
-    cart.totalPrice = totalPrice.toFixed(2);
-    return cart;
   }
 
   /////////////////////////////////////////////////////
   async addProduct(cartId, productId, quantity) {
-    const newCart = await this.dao.addProduct(cartId, productId, quantity);
-    return newCart;
+    try {
+      const newCart = await this.dao.addProduct(cartId, productId, quantity);
+      return newCart;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async deleteProduct(cartId, productId) {
-    const cart = await this.dao.newCartWithoutProduct(cartId, productId);
-    return cart;
+    try {
+      const cart = await this.dao.newCartWithoutProduct(cartId, productId);
+      return cart;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async deleteAllProducts(cartId) {
-    const cart = await this.dao.deleteAllProducts(cartId);
-    return cart;
+    try {
+      const cart = await this.dao.deleteAllProducts(cartId);
+      return cart;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 }
