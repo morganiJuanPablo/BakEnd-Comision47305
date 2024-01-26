@@ -5,27 +5,47 @@ export class SessionsRepository {
   }
   /////////////////////////////////////////////////////
   async getUsers() {
-    const users = await this.dao.getUsers();
-    return users;
+    try {
+      const users = await this.dao.getUsers();
+      return users;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
   /////////////////////////////////////////////////////
   async getUser(username) {
-    const user = await this.dao.getUser(username);
-    return user;
+    try {
+      const user = await this.dao.getUser(username);
+      return user;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
   /////////////////////////////////////////////////////
   async getUserById(userId) {
-    const user = await this.dao.getUserById(userId);
-    return user;
+    try {
+      const user = await this.dao.getUserById(userId);
+      return user;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
   /////////////////////////////////////////////////////
   async createUser(newUser) {
-    const user = await this.dao.createUser(newUser);
-    return user;
+    try {
+      const user = await this.dao.createUser(newUser);
+      return user;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
   /////////////////////////////////////////////////////
   async updateUser(id, user) {
-    const userUpdated = await this.dao.updateUser(id, user);
-    return userUpdated;
+    try {
+      const userUpdated = await this.dao.updateUser(id, user);
+      return userUpdated;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 }
