@@ -28,7 +28,7 @@ router.get(
 ///////////////////////////////////////////////////////////////////
 
 //GET
-router.get("/cart/:cartId/purchase", tokenAuth, CartsController.getPurchase);
+router.get("/cart/:cartId/purchase", tokenAuth, CartsController.getPurchaseView);
 
 ///////////////////////////////////////////////////////////////////
 

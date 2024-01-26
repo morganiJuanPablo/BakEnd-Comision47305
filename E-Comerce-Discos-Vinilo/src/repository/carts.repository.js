@@ -38,9 +38,7 @@ export class CartsRepository {
         let totalPrice = productsOk.reduce((acc, elem) => {
           return (acc += elem.subtotal);
         }, 0);
-
         productsOk.totalPrice = totalPrice;
-
         let code = uuidv4();
         const newTicket = {
           code,

@@ -48,7 +48,7 @@ export class CartsController {
   };
 
   /////////////////////////////////////////////////////
-  static getPurchase = async (req, res) => {
+  static getPurchaseView = async (req, res) => {
     try {
       const { cartId } = req.params;
       const productsOk = await cartsService.getProductsOk(cartId);
@@ -60,7 +60,7 @@ export class CartsController {
           purchaseExist = true;
         } else {
           purchaseExist = false;
-        }
+        }      
         let rejectedExist;
         if (productsRejected.length) {
           rejectedExist = true;
