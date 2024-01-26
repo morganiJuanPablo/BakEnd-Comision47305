@@ -5,19 +5,31 @@ export class ChatsRepository {
   }
   /////////////////////////////////////////////////////
   async getChat() {
-    const chat = await this.dao.getChat();
-    return chat;
+    try {
+      const chat = await this.dao.getChat();
+      return chat;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async updateChat(newMessage) {
-    const newChat = await this.dao.updateChat(newMessage);
-    return newChat;
+    try {
+      const newChat = await this.dao.updateChat(newMessage);
+      return newChat;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async emptyChat() {
-    const emptyCart = await this.dao.deleteMany({});
-    return emptyCart;
+    try {
+      const emptyCart = await this.dao.deleteMany({});
+      return emptyCart;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 }
