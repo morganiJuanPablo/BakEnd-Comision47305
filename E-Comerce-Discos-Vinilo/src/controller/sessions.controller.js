@@ -86,7 +86,6 @@ export class SessionsController {
             status: "success",
             email: user.email,
             role: user.role,
-            statusDocs: user.status,
           };
           res.send(data);
         } else {

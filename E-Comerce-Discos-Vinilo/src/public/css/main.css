@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Hepta+Slab:wght@300;400;600;700&display=swap");
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -10,10 +12,10 @@
 #principalMain {
   width: 100%;
   height: auto;
-  background-image: url("https://res.cloudinary.com/dqykftyy6/image/upload/v1694942083/nme-cover-foo-fighters-2021-header_2560x1625_xarzen.png");
+  background-image: url("https://res.cloudinary.com/dqykftyy6/image/upload/v1706269841/ProyectoBackEnd/BackgroundECommerce_m5vhwa.jpg");
   background-attachment: fixed;
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat, top;
   position: relative;
 }

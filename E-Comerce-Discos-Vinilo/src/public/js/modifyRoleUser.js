@@ -16,7 +16,7 @@ getUserId.addEventListener("submit", async function (e) {
       body: JSON.stringify({ userId: userId }),
     });
     const result = await response.json();
-    const { status, email, role, message, statusDocs } = result;
+    const { status, email, role, message } = result;
 
     if (status === "success") {
       loaderBack.classList.add("off");
