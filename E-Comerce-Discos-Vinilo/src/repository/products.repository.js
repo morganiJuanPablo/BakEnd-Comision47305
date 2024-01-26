@@ -5,35 +5,59 @@ export class ProductsRepository {
   }
   /////////////////////////////////////////////////////
   async addManyProducts(products) {
-    const productsToMock = await this.dao.addManyProducts(products);
-    return productsToMock;
+    try {
+      const productsToMock = await this.dao.addManyProducts(products);
+      return productsToMock;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async createProduct(product) {
-    const newProduct = await this.dao.createProduct(product);
-    return newProduct;
+    try {
+      const newProduct = await this.dao.createProduct(product);
+      return newProduct;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async getProductById(productId) {
-    const product = await this.dao.getProductById(productId);
-    return product;
+    try {
+      const product = await this.dao.getProductById(productId);
+      return product;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async getProducts(category, options) {
-    const products = await this.dao.getProducts(category, options);
-    return products;
+    try {
+      const products = await this.dao.getProducts(category, options);
+      return products;
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async deleteProductById(idProduct) {
-    await this.dao.deleteProductById(idProduct);
+    try {
+      await this.dao.deleteProductById(idProduct);
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 
   /////////////////////////////////////////////////////
   async updateProductById(productId, productUpdated) {
-    await this.dao.updateProductById(productId, productUpdated);
+    try {
+      await this.dao.updateProductById(productId, productUpdated);
+    } catch (error) {
+      logger.error(error.message);
+    }
   }
 }
