@@ -30,8 +30,7 @@ export const passportInit = () => {
       },
       async (req, username, password, done) => {
         const { first_name, last_name, age } = req.body;
-        try {
-          console.log(req.file)
+        try {          
           const user = await sessionsService.getUser(username);
           if (user) {
             return done(null, false);
@@ -53,7 +52,7 @@ export const passportInit = () => {
             } else {
               const role = roleClient(newUser.email);
               newUser.role = role;
-              newUser.avatar = req.file.filename;
+              newUser.avatar = req.file?.filename;
               const userRegistered = await sessionsService.createUser(newUser);
               return done(null, userRegistered);
             }
